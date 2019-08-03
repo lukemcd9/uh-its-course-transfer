@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body>
+    <nav th:replace="menubar :: copy"></nav>
+
+    <!--  Content container -->
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="dropshadow">Course Transfer Database</h1>
+            <p class="lead" th:text="${jumbotron}"></p>
+            <div sec:authorize="isAnonymous()">
+                <p><a class="btn btn-lg btn-success" href="/transferdatabase/login"  th:href="@{/login}"  role="button">UH Login Here</a></p>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <form action="/transferdatabase/logout" th:action="@{/logout}" method="post" id="logout_form">
+                    <button class="btn btn-lg btn-default" type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+        <div class="row marketing">
+            <div class="col-sm-6">
+                <p class="h4">
+                    Classification &nbsp;
+                    <a th:href="@{/help/classifications}" type="button" class="btn btn-default btn-xs pull-center">View</a>
+                </p>
+                <p>
+                    University of Hawaii Community Colleges Faculty Classification Plan.
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <p class="h4">
+                    Guidelines &nbsp;
+                    <a th:href="@{/help/guidelines}" type="button" class="btn btn-default btn-xs">View</a> 
+                </p> 
+                <p>
+                    Guidelines for Tenure and Promotion for the University of Hawaii Community Colleges.&nbsp;
+                </p>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-sm-6">
+                <p class="h4">
+                    Important Dates &nbsp;
+                    <a th:href="@{/help/dates}" type="button" class="btn btn-default btn-xs">View</a>
+                </p>
+                <p>
+                    University-level deadlines for promotion and tenure review.
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <p class="h4">
+                    Frequently Asked Questions &nbsp;
+                    <a th:href="@{/help/faq}" type="button" class="btn btn-default btn-xs">View</a>
+                </p>
+                <p>
+                    We have assembled responses to a number of common 
+                    questions you might have about the process.&nbsp;
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- / Content container. -->
+
+    <div th:replace="footer :: copy"></div>
+</body>
+</html>

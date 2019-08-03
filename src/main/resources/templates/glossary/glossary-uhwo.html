@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body>
+    <nav th:replace="menubar :: copy"></nav>
+
+    <div class='container'>
+        <div class='row'>
+            <div class='col-xs-offset-1 col-xs-10'>
+                <div class="card glossary">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/glossary}" href="/transferdatabase/glossary">Glossaries</a></li>
+                        <li class="breadcrumb-item active">University of Hawai&#699;i West O&#699;ahu</li>
+                    </ol>
+                    <div class="card-block">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Foundation Requirements</h4>
+                                <ul class="list-unstyled">
+                                  <li>FW -- Written Communication</li>
+                                  <li>FS -- Symbolic Reasoning </li>
+                                  <li>FGA -- Global &amp; Multicultural Perspectives Group A</li>
+                                  <li>FGB -- Global &amp; Multicultural Perspectives Group B</li>
+                                  <li>FGC -- Global &amp; Multicultural Perspectives Group C</li>
+                                </ul>
+                            </li>
+                        </ul>        
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Diversification Requirements</h4>
+                                <h5>Arts, Humanities, &amp; Literature</h5>
+                                <ul class="list-unstyled">
+                                  <li>DA -- Arts</li>
+                                  <li>DH -- Humanities</li>
+                                  <li>DL -- Literature</li>
+                                </ul>
+                                <p></p>
+            
+                                <h5>Natural Sciences</h5>
+                                <ul class="list-unstyled">
+                                  <li>DB -- Biological Science</li>
+                                  <li>DP -- Physical Sciences</li>
+                                  <li>DY -- Natural Science Lab</li>
+                                </ul>
+                                <p></p>
+            
+                                <h5>Social Sciences</h5>
+                                <ul class="list-unstyled">
+                                  <li>DS -- Social Sciences</li>
+                                </ul>
+                            </li>
+                        </ul>        
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Miscellaneous acronyms &amp; abbreviations</h4>
+                                <ul class="list-unstyled">
+                                  <li>ELEC -- Lower division elective course; does not fulfill a general education requirement</li>
+                                  <li>UDEL -- Upper division elective course; does not fulfill a general education requirement</li>
+                                  <li>NO CR -- remedial or developmental course; non transferable</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="footer :: copy"></div>
+</body>
+</html>

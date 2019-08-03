@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body>
+    <nav th:replace="menubar :: copy"></nav>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-xs-offset-1 col-xs-10'>
+            <div class="card glossary">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/glossary}" href="/transferdatabase/glossary">Glossaries</a></li>
+                    <li class="breadcrumb-item active">Honolulu Community College</li>
+                </ol>
+                <div class="card-block">
+                    <h4>For LBART (AA degree) use the following course alpha followed by 999:</h4>
+                    <ul class="list-unstyled">
+                      <li>AHIS -- World Civilization</li>
+                      <li>ALDM -- Mathematical or Logical Thinking </li>
+                      <li>AART -- A&amp;H: The Arts</li>
+                      <li>ACUL --  A&amp;H: History &amp; Culture</li>
+                      <li>ALIT -- A&amp;H: Language &amp; Literature</li>
+                      <li>AVAL -- A&amp;H: Values &amp; Meaning</li>
+                      <li>ANSB -- NS: Biological Sciences</li>
+                      <li>ANSP -- NS: Physical Sciences</li>
+                      <li>AAMS -- SS: American Studies</li>
+                      <li>AANT -- SS: Anthropology</li>
+                      <li>ABOT -- SS: Botany</li>
+                      <li>AECO -- SS: Economics</li>
+                      <li>AFAM -- SS: Family Resources</li>
+                      <li>AGEO -- SS: Geography</li>
+                      <li>AJOU -- SS: Journalism</li>
+                      <li>APOL -- SS: Political Science</li>
+                      <li>APSY -- SS: Psychology</li>
+                      <li>AASO -- SS: Sociology</li>
+                      <li>ASSC -- SS: Social Science</li>
+                      <li>AAWS -- SS: Women's Studies </li>
+                      <li>AELC -- AA Elective</li>
+                      <li>NT -- Not Acceptable for Transfer (should only
+                          be used if course is not college level)</li>
+                    </ul>
+        
+                    <h4>For AS &amp; AAS degrees use the following course alpha followed by 99 for non-transfer level (below 100) &amp; 999 for transfer level:</h4>
+                    <ul class="list-unstyled">
+                      <li>ASCM -- Communications</li>
+                      <li>AQLR -- Quantitative &amp; Logical Reasoning</li>
+                      <li>ASGA -- Understand Natural Environment</li>
+                      <li>ASGB -- Functioning Effectively in Society</li>
+                      <li>ASGC -- Understand the Social Environment</li>
+                      <li>ASGD -- Understanding/Appreciating World Cultures &amp; Values</li>
+                      <li>ASEL -- AS, AAS, or ATS Degree Elective</li>
+                      <li>AJ -- AJ Elective</li>
+                      <li>CENT -- CENT Elective</li>
+                      <li>ECED -- ECED Elective</li>
+                      <li>FIRE --  FIRE Elective</li>
+                      <li>HSER -- HSER Elective</li>
+                      <li>OESM -- OESM Elective</li>
+                      <li>NT -- Not Acceptable for Transfer (should only be used if course is not college level)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div th:replace="footer :: copy"></div>
+</body>
+</html>
+

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body>
+    <nav th:replace="menubar :: copy"></nav>
+
+    <div class='container'>
+        <div class='row'>
+            <div class='col-xs-offset-1 col-xs-10'>
+                <div class='card glossary'>
+                    <ol class='breadcrumb'>
+                        <li class="breadcrumb-item"><a th:href="@{/glossary}" href="/transferdatabase/glossary">Glossaries</a></li>
+                        <li class='breadcrumb-item active'>Windward Community College</li>
+                    </ol>
+                    <div class='card-block'>
+                        <p>
+                          A universal course alpha is assigned when there is no direct equivalence
+                          to a WCC course, but still fulfills the core area.  For example, KCC's
+                          FAMR 230 is not taught at WCC, but it will fulfill WCC's social science
+                          area.  Using the new codes, it will transfer to WCC as AADS, fulfilling
+                          the social science requirement.
+                        </p>
+            
+                    </div>
+                </div>
+                <div class='card'>
+                    <div class='card-block'>
+                        <table class='table table-hover'>
+                          <thead>
+                            <tr>
+                                <th colspan='3' class='text-xs-left'   style='border-top-color: #ffffff;'>&#160;</th>
+                                <th colspan='1' class='text-xs-center' style='border-top-color: #ffffff;'>Core Fall 2002 - Spring 2005</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Written Communication</td>
+                                <td colspan='1' class='text-xs-center'>ACOM</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Mathematical or Logical Reasoning</td>
+                                <td class='text-xs-center'>AQLR</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>World Civilization</td>
+                                <td colspan='1' class='text-xs-center'>AHIS</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Oral Communication</td>
+                                <td colspan='1' class='text-xs-center'>AASP</td>
+                            </tr>
+                            <tr>
+                              <td colspan='4' class='text-xs-left'>Arts &amp; Humanities</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Group 1: The Arts</td>
+                                <td colspan='1' class='text-xs-center'>AHM1</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Group 2: History &amp; Culture</td>
+                                <td colspan='1' class='text-xs-center'>AHM2</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Group 3: Languages, Linguistic, &amp; Literature</td>
+                                <td colspan='1' class='text-xs-center'>AHM3</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Group 4: Values &amp; Meaning</td>
+                                <td colspan='1' class='text-xs-center'>AHM4</td>
+                            </tr>
+                            <tr>
+                                <td colspan='4' class='text-xs-left'>Natural Sciences</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Group 1: Biological Science</td>
+                                <td colspan='1' class='text-xs-center'>NS1</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Group 2: Physical Science</td>
+                                <td colspan='1' class='text-xs-center'>NS2</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Group 3: Other Science</td>
+                                <td colspan='1' class='text-xs-center'>NS3</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Natural Science Lab</td>
+                                <td colspan='1' class='text-xs-center'>NSL</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Social Science</td>
+                                <td colspan='1' class='text-xs-center'>AASO</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Elective</td>
+                                <td colspan='1' class='text-xs-center'>ELCT</td>
+                            </tr>
+            
+                            <!--
+                            <tr>
+                                <td colspan='4' class='text-xs-left' style='border-top-color: #ffffff;'>&#160;</td>
+                            </tr>
+                            -->
+                            <tr>
+                                <td colspan='4' class='text-xs-left'>&#160;</td>
+                            </tr>
+            
+                            <tr>
+                                <th colspan='3'></th>
+                                <th colspan='1' class='text-xs-center'>Core Effective Fall 2005</th>
+                            </tr>
+                            <tr>
+                                <td colspan='4' class='text-uppercase font-weight-bold' style='padding-bottom: 0.2rem; padding-top: 1.3rem;'>Foundation Courses</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Written Communication</td>
+                                <td colspan='1' class='text-xs-center'>AAFW</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Symbolic Reasoning</td>
+                                <td colspan='1' class='text-xs-center'>AAFS</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Global &amp; Multicultural Perspectives</td>
+                                <td colspan='1' class='text-xs-center'>AAFG</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Oral Communication</td>
+                                <td colspan='1' class='text-xs-center'>AAFO</td>
+                            </tr>
+                            <tr>
+                                <td colspan='4' class='text-uppercase font-weight-bold' style='padding-bottom: 0.2rem; padding-top: 1.3rem;'>Diversification Courses</td>
+                            </tr>
+                            <tr>
+                                <td colspan='4' class='text-xs-left'>Arts &amp; Humanities</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Arts</td>
+                                <td colspan='1' class='text-xs-center'>AADA</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Humanities</td>
+                                <td colspan='1' class='text-xs-center'>AADH</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Literature</td>
+                                <td colspan='1' class='text-xs-center'>AADL</td>
+                            </tr>
+                            <tr>
+                                <td colspan='4' class='text-xs-left'>Natural Sciences</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Biological Science</td>
+                                <td colspan='1' class='text-xs-center'>AADB</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Physical Science</td>
+                                <td colspan='1' class='text-xs-center'>AADP</td>
+                            </tr>
+                            <tr>
+                                <td colspan='1'>&#160;</td>
+                                <td colspan='2' class='text-xs-left'>Natural Science Lab</td>
+                                <td colspan='1' class='text-xs-center'>AADY</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Social Science</td>
+                                <td colspan='1' class='text-xs-center'>AADS</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3' class='text-xs-left'>Elective</td>
+                                <td colspan='1' class='text-xs-center'>ELCT</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="footer :: copy"></div>
+</body>
+</html>
+

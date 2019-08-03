@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body>
+    <nav th:replace="menubar :: copy"></nav>
+
+    <div class='container'>
+        <div class='row'>
+            <div class='col-xs-offset-1 col-xs-11'>
+                <h4>UH System Course Transfer Database</h4>
+                <p class='lead'>
+                    The access to this system is restricted.<br/>
+                    If you believe you should have access, <br/>
+                    please send an email to
+                    <a href="mailto:duckart@hawaii.edu">duckart@hawaii.edu</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="footer :: copy"></div>
+</body>
+</html>

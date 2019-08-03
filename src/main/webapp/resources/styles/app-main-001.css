@@ -1,0 +1,57 @@
+body {
+    margin-top: 10px;
+
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+h3, h4 {
+   color: #BD9319;
+}
+
+a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0275d8;
+    text-decoration: underline;
+}
+
+td.uh-pre {
+    white-space: pre;           /* CSS 2.0 */
+    white-space: pre-wrap;      /* CSS 2.1 */
+    white-space: pre-line;      /* CSS 3.0 */
+    white-space: -pre-wrap;     /* Opera 4-6 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -hp-pre-wrap;  /* HP Printers */
+    display: inline-block;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+/* Override Bootstrap items. */
+.glossary > .breadcrumb {
+    background-color: white;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+.panel-default > .panel-heading {
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #BD9319;
+    border-color: #ccc;
+    font-weight: normal;
+}
+
+/* ul.uh-align-left, */
+p.uh-align-left {
+   text-align: left;
+}

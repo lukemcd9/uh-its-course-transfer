@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body>
+    <nav th:replace="menubar :: copy"></nav>
+
+    <div class='container'>
+        <div class='row'>
+            <div class='col-xs-offset-1 col-xs-10'>
+                <div class="card glossary">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/glossary}" href="/transferdatabase/glossary">Glossaries</a></li>
+                        <li class="breadcrumb-item active">University of Hawai&#699;i, Hilo</li>
+                    </ol>
+                    <div class="card-header">
+                        <p class="card-text">Here is a <a target='_uhh_transfer' href="http://www.uhh.hawaii.edu/studentaffairs/admissions/transfer.php">Guide to the Terms used in Transfer Articulation Tables</a>.</p>
+                    </div>
+                    <div class="card-block">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Elective Credits</h4>
+                                <ul class="list-unstyled">
+                                    <li>ELCT 000 = Non-Baccalaureate (non-transferrable)</li>
+                                    <li>ELCT LOW = Lower Division Elective Credits</li>
+                                    <li>ELCT UPP = Upper Division Elective Credits</li>
+                                    <li>VOC TECH = Accept the credit in transfer as an elective (UH System courses only)</li>
+                                </ul>
+                            </li>
+                        </ul>        
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Program Specific</h4>
+                                <p>
+                                    Courses may be applied toward the program as an elective credit
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>Any Discipline LOW = Lower Division Credits in that discipline or toward GE</li>
+                                    <li>Any Discipline UPP = Upper Division Credits in that discipline and/or toward Graduation Requirement (45 upper division credit)</li>
+                                    <li>ART STUL = Lower Division Art Studio</li>
+                                    <li>ART STUU = Upper Division Art Studio</li>
+                                </ul>
+                            </li>
+                        </ul>        
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Courses applied toward the current GE requirements</h4>
+                                <ul class="list-unstyled">
+                                <li>HUM SUBL =  Humanities Area Requirement</li>
+                                <li>NSCI SUBL =  Natural Sciences Area Requirement</li>
+                                <li>NSCI LABL =  Natural Science Laboratory Requirement</li>
+                                <li>SSCI SUBL =  Social Sciences Area Requirement</li>
+                                <li>WLD SUBL =  World Cultures Area Requirement</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Courses applied toward Graduation Requirements</h4>
+                                <ul class="list-unstyled">
+                                <li>GAHP = meets the Hawaiian/Asian/Pacific Requirement</li>
+                                <li>WI = meets the Writing Intensive Course Requirement</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Direct Equivalency</h4>
+                                <p>
+                                    If there is a matching course at UH Hilo, the equivalency
+                                    will list both the discipline and course number. For example:
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>English Composition = ENG 100</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Combination Equivalency</h4>
+                                <p>
+                                    Two or more courses can be combined to equal one or more courses at UH Hilo.
+                                    This is more common for quarter-system to semester-system transfers. Example:
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>Eng Comp I + Eng Comp II = ENG 100</li>
+                                    <li>Biol I + Biol II + Biol III = BIOL 175 + BIOL 176</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Course Transfers without Equivalency</h4>
+                                <p>
+                                    A course can transfer and apply towards graduation even if
+                                    UH Hilo does not offer a direct equivalent. In these situations,
+                                    UH Hilo awards credit in the discipline at either the lower
+                                    (100-200) or upper (300-400) level. Example:
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>History of California = HIST LOW</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Course Transfers as an Elective</h4>
+                                <p>
+                                    A course can also transfer and apply towards graduation even
+                                    if UH Hilo doesn't offer the discipline. In these situations,
+                                    the course will be granted elective credit at either the lower
+                                    or upper level. Example:
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>Intro to Architecture = ELCT LOW</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>Course That Do Not  Transfer</h4>
+                                <p>
+                                    Some courses/disciplines do not transfer to UH Hilo. Example:
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>Keyboarding = Non Baccalaureate Course</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="footer :: copy"></div>
+</body>
+</html>

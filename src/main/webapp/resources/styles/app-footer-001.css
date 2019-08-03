@@ -1,0 +1,24 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+.footer {
+    position: absolute;
+    padding-top: 12px;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    font-size: 100%;
+    text-align: center;
+    border-style: solid none none none;
+    border-width: 0.5px 0px 0px 0px;
+    border-color: #ccc;
+}
+
+@media screen and (max-width: 640px) {
+    #uh-footer-container {
+        font-size: 14px;
+        padding-top: 0px;
+    }
+}
