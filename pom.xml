@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
+        <version>1.5.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -41,7 +41,6 @@
         <jquery-version>3.2.0</jquery-version>
         <angularjs-version>1.5.8</angularjs-version>
         <angular-mocks-version>1.5.8</angular-mocks-version>
-        <thymleaf.extras-version>3.0.4.RELEASE</thymleaf.extras-version>
 
         <javax.servlet.version>3.0.1</javax.servlet.version>
         <javax.servlet.jsp.version>2.2.1</javax.servlet.jsp.version>
@@ -84,7 +83,6 @@
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
-            <version>${thymleaf.extras-version}</version>
         </dependency>
 
         <!-- AspectJ -->
@@ -474,11 +472,11 @@
                             <tasks>
                                 <echo>Now that you have a clean project,</echo>
                                 <echo>here are some common goals for this project:</echo>
-                                <echo>$ ./mvnw -Denv=dev clean test</echo>
-                                <echo>$ ./mvnw -Denv=dev clean test -Dtest=*SystemTest </echo>
-                                <echo>$ ./mvnw -Denv=dev clean package</echo>
-                                <echo>$ ./mvnw -Dmaven.test.skip=true -Denv=test clean package</echo>
-                                <echo>$ ./mvnw clean test jacoco:report</echo>
+                                <echo>$ mvn -Denv=dev clean test</echo>
+                                <echo>$ mvn -Denv=dev clean test -Dtest=*SystemTest </echo>
+                                <echo>$ mvn -Denv=dev clean package</echo>
+                                <echo>$ mvn -Dmaven.test.skip=true -Denv=test clean package</echo>
+                                <echo>$ mvn clean test jacoco:report</echo>
                             </tasks>
                         </configuration>
                     </execution>
