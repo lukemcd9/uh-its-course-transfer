@@ -1,4 +1,4 @@
-A web application to demonstrate how to use the UH CAS service.
+A web application to demonstrate how to use the UH Course Transfer service.
 
 ***
 ##### Build Tool
