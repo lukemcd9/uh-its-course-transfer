@@ -1,6 +1,5 @@
 A web application to demonstrate how to use the UH CAS service.
 
-[![Build Status](https://travis-ci.org/fduckart/uh-casdemo.png?branch=master)](https://travis-ci.org/fduckart/uh-casdemo)
 ***
 ##### Build Tool
 First, you need to download and install maven (version 3.2.1+).
@@ -17,7 +16,7 @@ This demonstration application was developed with version 8.0.32.
 The files for the project are kept in a code repository,
 available from here:
 
-https://github.com/fduckart/uh-casdemo
+https://github.com/fduckart/uh-its-course-transfer
 
 ##### Building
 Install the necessary project dependencies:
@@ -47,7 +46,7 @@ Here are instructions for Tomcat 8, for example:
 https://tomcat.apache.org/tomcat-8.0-doc/ssl-howto.html
 
 ##### Deploying to Production
-Copy the casdemo.war file into the webapps directory of Tomcat.
+Copy the transferdatabase.war file into the webapps directory of Tomcat.
 
 ##### Running Unit Tests
 The project includes Unit Tests for various parts of the system.

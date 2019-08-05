@@ -309,36 +309,36 @@
             <version>${angular-mocks-version}</version>
         </dependency>
     </dependencies>
-    <repositories>
-        <!-- Spring -->
-        <repository>
-            <id>springsource-repo</id>
-            <name>SpringSource Repository</name>
-            <url>http://repo.springsource.org/release</url>
-        </repository>
-        <!-- For testing against latest Spring snapshots -->
-        <repository>
-            <id>org.springframework.maven.snapshot</id>
-            <name>Spring Maven Snapshot Repository</name>
-            <url>http://maven.springframework.org/snapshot</url>
-            <releases><enabled>false</enabled></releases>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-        <!-- For developing against latest Spring milestones -->
-        <repository>
-            <id>org.springframework.maven.milestone</id>
-            <name>Spring Maven Milestone Repository</name>
-            <url>http://maven.springframework.org/milestone</url>
-            <snapshots><enabled>false</enabled></snapshots>
-        </repository>
-        <!-- For Hibernate -->
-        <repository>
-            <id>org.jboss.repository.releases</id>
-            <name>JBoss Maven Release Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-            <snapshots><enabled>false</enabled></snapshots>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        &lt;!&ndash; Spring &ndash;&gt;-->
+<!--        <repository>-->
+<!--            <id>springsource-repo</id>-->
+<!--            <name>SpringSource Repository</name>-->
+<!--            <url>http://repo.springsource.org/release</url>-->
+<!--        </repository>-->
+<!--        &lt;!&ndash; For testing against latest Spring snapshots &ndash;&gt;-->
+<!--        <repository>-->
+<!--            <id>org.springframework.maven.snapshot</id>-->
+<!--            <name>Spring Maven Snapshot Repository</name>-->
+<!--            <url>http://maven.springframework.org/snapshot</url>-->
+<!--            <releases><enabled>false</enabled></releases>-->
+<!--            <snapshots><enabled>true</enabled></snapshots>-->
+<!--        </repository>-->
+<!--        &lt;!&ndash; For developing against latest Spring milestones &ndash;&gt;-->
+<!--        <repository>-->
+<!--            <id>org.springframework.maven.milestone</id>-->
+<!--            <name>Spring Maven Milestone Repository</name>-->
+<!--            <url>http://maven.springframework.org/milestone</url>-->
+<!--            <snapshots><enabled>false</enabled></snapshots>-->
+<!--        </repository>-->
+<!--        &lt;!&ndash; For Hibernate &ndash;&gt;-->
+<!--        <repository>-->
+<!--            <id>org.jboss.repository.releases</id>-->
+<!--            <name>JBoss Maven Release Repository</name>-->
+<!--            <url>https://repository.jboss.org/nexus/content/repositories/releases</url>-->
+<!--            <snapshots><enabled>false</enabled></snapshots>-->
+<!--        </repository>-->
+<!--    </repositories>-->
     <build>
         <resources>
           <resource>
@@ -476,8 +476,34 @@
                                 <echo>$ mvn -Denv=dev clean test -Dtest=*SystemTest </echo>
                                 <echo>$ mvn -Denv=dev clean package</echo>
                                 <echo>$ mvn -Dmaven.test.skip=true -Denv=test clean package</echo>
+                                <echo>$ mvn clean test jacoco:report</echo>
                             </tasks>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.3</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/configuration/SpringBootWebApplication.class</exclude>
+                        <exclude>**/configuration/AppConfig.class</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
