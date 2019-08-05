@@ -21,18 +21,18 @@ https://github.com/fduckart/uh-its-course-transfer
 ##### Building
 Install the necessary project dependencies:
 
-    $ mvn install
+    $ ./mvnw install
 
 To build a deployable war file for local development:
 
-    $ mvn clean package
+    $ ./mvnw clean package
 
 You should have a deployable war file in the target directory.
 Deploy as usual in a servlet container, e.g. tomcat.
 
 To build a deployable war file for a specified environment:
 
-    $ mvn -Dmaven.test.skip=true -Denv=test clean package
+    $ ./mvnw -Dmaven.test.skip=true -Denv=test clean package
 
 You should have a deployable war file in the target directory.
 Deploy as usual in a servlet container.
@@ -60,15 +60,15 @@ line arguments.
 
 To run the Unit Tests with a standard build:
 
-    $ mvn -Denv=dev clean test
+    $ ./mvnw -Denv=dev clean test
 
 To run a test class:
 
-    $ mvn clean test -Dtest=RoleTest
+    $ ./mvnw clean test -Dtest=RoleTest
 
 To run a single method in a test class:
 
-    $ mvn clean test -Dtest=RoleTest#longName
+    $ ./mvnw clean test -Dtest=RoleTest#longName
 
 ##### Running System Tests
 The project files include a handful of System Tests.
@@ -80,7 +80,7 @@ appropriate command line argument.
 
 To run the System Tests:
 
-    $ mvn -Denv=dev -Dtest=*SystemTest clean test
+    $ ./mvnw -Denv=dev -Dtest=*SystemTest clean test
 
 **Running the Application locally**
 
