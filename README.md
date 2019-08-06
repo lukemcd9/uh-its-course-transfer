@@ -1,6 +1,5 @@
-A web application to demonstrate how to use the UH CAS service.
+A web application to demonstrate how to use the UH Course Transfer service.
 
-[![Build Status](https://travis-ci.org/fduckart/uh-casdemo.png?branch=master)](https://travis-ci.org/fduckart/uh-casdemo)
 ***
 ##### Build Tool
 First, you need to download and install maven (version 3.2.1+).
@@ -17,23 +16,23 @@ This demonstration application was developed with version 8.0.32.
 The files for the project are kept in a code repository,
 available from here:
 
-https://github.com/fduckart/uh-casdemo
+https://github.com/fduckart/uh-its-course-transfer
 
 ##### Building
 Install the necessary project dependencies:
 
-    $ mvn install
+    $ ./mvnw install
 
 To build a deployable war file for local development:
 
-    $ mvn clean package
+    $ ./mvnw clean package
 
 You should have a deployable war file in the target directory.
 Deploy as usual in a servlet container, e.g. tomcat.
 
 To build a deployable war file for a specified environment:
 
-    $ mvn -Dmaven.test.skip=true -Denv=test clean package
+    $ ./mvnw -Dmaven.test.skip=true -Denv=test clean package
 
 You should have a deployable war file in the target directory.
 Deploy as usual in a servlet container.
@@ -47,7 +46,7 @@ Here are instructions for Tomcat 8, for example:
 https://tomcat.apache.org/tomcat-8.0-doc/ssl-howto.html
 
 ##### Deploying to Production
-Copy the casdemo.war file into the webapps directory of Tomcat.
+Copy the transferdatabase.war file into the webapps directory of Tomcat.
 
 ##### Running Unit Tests
 The project includes Unit Tests for various parts of the system.
@@ -61,15 +60,15 @@ line arguments.
 
 To run the Unit Tests with a standard build:
 
-    $ mvn -Denv=dev clean test
+    $ ./mvnw -Denv=dev clean test
 
 To run a test class:
 
-    $ mvn clean test -Dtest=RoleTest
+    $ ./mvnw clean test -Dtest=RoleTest
 
 To run a single method in a test class:
 
-    $ mvn clean test -Dtest=RoleTest#longName
+    $ ./mvnw clean test -Dtest=RoleTest#longName
 
 ##### Running System Tests
 The project files include a handful of System Tests.
@@ -81,7 +80,7 @@ appropriate command line argument.
 
 To run the System Tests:
 
-    $ mvn -Denv=dev -Dtest=*SystemTest clean test
+    $ ./mvnw -Denv=dev -Dtest=*SystemTest clean test
 
 **Running the Application locally**
 
