@@ -17,26 +17,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithAnonymousUser;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 
-import edu.hawaii.its.creditxfer.configuration.CachingConfig;
-import edu.hawaii.its.creditxfer.configuration.DatabaseConfig;
-import edu.hawaii.its.creditxfer.configuration.SecurityConfig;
+import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 import edu.hawaii.its.creditxfer.type.Action;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = {
-        SecurityConfig.class,
-        DatabaseConfig.class,
-        CachingConfig.class })
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = { SpringBootWebApplication.class })
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class AdminControllerSystemTest {
 
     @Value("${cas.login.url}")

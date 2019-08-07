@@ -4,18 +4,18 @@ import org.springframework.context.ApplicationEvent;
 
 public class ActionEvent extends ApplicationEvent {
     private static final long serialVersionUID = -5308299518665062983L;
-    private Long uhuuid;
+    private String uhuuid;
     private Long viewUhuuid;
     private String code;
 
-    public ActionEvent(Object source, String code, Long uhuuid, Long viewUhuuid) {
+    public ActionEvent(Object source, String code, String uhuuid, Long viewUhuuid) {
         super(source);
         this.code = code;
         this.uhuuid = uhuuid;
         this.viewUhuuid = viewUhuuid;
     }
 
-    public Long getUhuuid() {
+    public String getUhuuid() {
         return uhuuid;
     }
 

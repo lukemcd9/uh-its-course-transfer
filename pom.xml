@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
+        <version>2.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -32,7 +32,7 @@
         <junit.version>4.12</junit.version>
 
         <org.aspectj-version>1.6.9</org.aspectj-version>
-        <org.slf4j-version>1.6.1</org.slf4j-version>
+        <org.slf4j-version>1.7.16</org.slf4j-version>
         <commons-collections-version>3.2.1</commons-collections-version>
         <commons-dbcp-version>2.1.1</commons-dbcp-version>
         <tiles.version>3.0.5</tiles.version>
@@ -67,6 +67,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -318,70 +323,17 @@
             <version>${angular-mocks-version}</version>
         </dependency>
     </dependencies>
-<!--    <repositories>-->
-<!--        &lt;!&ndash; Spring &ndash;&gt;-->
-<!--        <repository>-->
-<!--            <id>springsource-repo</id>-->
-<!--            <name>SpringSource Repository</name>-->
-<!--            <url>http://repo.springsource.org/release</url>-->
-<!--        </repository>-->
-<!--        &lt;!&ndash; For testing against latest Spring snapshots &ndash;&gt;-->
-<!--        <repository>-->
-<!--            <id>org.springframework.maven.snapshot</id>-->
-<!--            <name>Spring Maven Snapshot Repository</name>-->
-<!--            <url>http://maven.springframework.org/snapshot</url>-->
-<!--            <releases><enabled>false</enabled></releases>-->
-<!--            <snapshots><enabled>true</enabled></snapshots>-->
-<!--        </repository>-->
-<!--        &lt;!&ndash; For developing against latest Spring milestones &ndash;&gt;-->
-<!--        <repository>-->
-<!--            <id>org.springframework.maven.milestone</id>-->
-<!--            <name>Spring Maven Milestone Repository</name>-->
-<!--            <url>http://maven.springframework.org/milestone</url>-->
-<!--            <snapshots><enabled>false</enabled></snapshots>-->
-<!--        </repository>-->
-<!--        &lt;!&ndash; For Hibernate &ndash;&gt;-->
-<!--        <repository>-->
-<!--            <id>org.jboss.repository.releases</id>-->
-<!--            <name>JBoss Maven Release Repository</name>-->
-<!--            <url>https://repository.jboss.org/nexus/content/repositories/releases</url>-->
-<!--            <snapshots><enabled>false</enabled></snapshots>-->
-<!--        </repository>-->
-<!--    </repositories>-->
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/filters</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/env-dev.properties</include>
-                    <include>**/env-test.properties</include>
-                </includes>
-            </resource>
-          <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-            <includes>
-                <include>**/database.properties</include>
-                <include>**/general.properties</include>
-                <include>**/messages.properties</include>
-                <include>**/*.properties</include>
-            </includes>
-          </resource>
-          <resource>
-            <directory>src/main/resources</directory>
-            <filtering>false</filtering>
-            <includes>
-                <include>**/*.*</include>
-            </includes>
-            <excludes>
-                <exclude>**/database.properties</exclude>
-                <exclude>**/general.properties</exclude>
-                <exclude>**/messages.properties</exclude>
-            </excludes>
-          </resource>
-        </resources>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <profiles>
+                        <profile>localhost</profile>
+                    </profiles>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -527,62 +479,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>env-dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-                <property>
-                    <name>env</name>
-                    <value>dev</value>
-                </property>
-            </activation>
-            <build>
-                <filters>
-                    <filter>src/main/filters/env-dev.properties</filter>
-                </filters>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <configuration>
-                            <includes>
-                                <include>**/*Test.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/*SystemTest.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>env-test</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>test</value>
-                </property>
-            </activation>
-            <build>
-                <filters>
-                    <filter>src/main/filters/env-test.properties</filter>
-                </filters>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/*Test.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

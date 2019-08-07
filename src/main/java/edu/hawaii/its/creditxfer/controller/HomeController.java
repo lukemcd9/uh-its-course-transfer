@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.hawaii.its.creditxfer.access.User;
 import edu.hawaii.its.creditxfer.action.ActionRecorder;
-import edu.hawaii.its.creditxfer.security.UserContextService;
+import edu.hawaii.its.creditxfer.access.UserContextService;
 import edu.hawaii.its.creditxfer.service.MessageService;
 import edu.hawaii.its.creditxfer.type.Message;
 
@@ -33,7 +33,7 @@ public class HomeController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping(value = { "", "/", "/home" })
+    @GetMapping(value = {"/", "/home" })
     public String gate(Locale locale, Model model) {
         logger.debug("User at gate. The client locale is {}.", locale);
 
@@ -50,14 +50,14 @@ public class HomeController {
     }
 
     @GetMapping(value = { "/gate" })
-    public String home(Model model) {
+    public String home() {
         logger.debug("User at gate. ");
         return "home";
     }
 
     @PreAuthorize("hasRole('ROLE_UH')")
     @RequestMapping(value = { "/attributes" }, method = { RequestMethod.GET })
-    public String attributes(Locale locale, Model model) {
+    public String attributes(Model model) {
 
         logger.info("Entered attributes...");
 
@@ -72,12 +72,12 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String contact(Locale locale, Model model) {
+    public String contact() {
         return "contact";
     }
 
     @GetMapping(value = "/faq")
-    public String faq(Locale locale, Model model) {
+    public String faq() {
         return "help/faq";
     }
 
@@ -113,6 +113,11 @@ public class HomeController {
     @GetMapping(value = "/li")
     public String list() {
         return "list";
+    }
+
+    @GetMapping(value = "/whatever")
+    public String whatever() {
+        return "whatever";
     }
 
     @GetMapping(value = "/ex")

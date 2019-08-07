@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.hawaii.its.creditxfer.access.User;
-import edu.hawaii.its.creditxfer.security.UserContextService;
+import edu.hawaii.its.creditxfer.access.UserContextService;
 
 @ControllerAdvice
 public class ErrorControllerAdvice {

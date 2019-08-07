@@ -23,23 +23,22 @@ import org.springframework.util.Assert;
 @Configuration
 @EnableTransactionManagement
 @PropertySources({
-        @PropertySource("classpath:META-INF/spring/general.properties"),
-        @PropertySource("classpath:META-INF/spring/database.properties"),
+        @PropertySource("classpath:custom.properties"),
         @PropertySource(value = "file://${user.home}/.${user.name}-conf/creditxfer-overrides.properties",
                         ignoreResourceNotFound = true),
 })
 public class DatabaseConfig {
 
-    @Value("${jdbc.url}")
+    @Value("${app.datasource.url}")
     private String url;
 
-    @Value("${jdbc.user}")
+    @Value("${app.datasource.username}")
     private String username;
 
-    @Value("${jdbc.password}")
+    @Value("${app.datasource.password}")
     private String password;
 
-    @Value("${jdbc.driverClassName}")
+    @Value("${app.datasource.driverClassName}")
     private String driverClassName;
 
     @PostConstruct
@@ -86,19 +85,19 @@ public class DatabaseConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Value("${db.hibernate.dialect}")
+    @Value("${app.jpa.properties.hibernate.dialect}")
     private String hibernateDialect;
 
-    @Value("${db.hibernate.hbm2ddl.auto}")
+    @Value("${app.jpa.hibernate.ddl-auto}")
     private String hibernateHbm2ddlAuto;
 
-    @Value("${db.hibernate.cache.provider_class}")
+    @Value("${app.jpa.properties.hibernate.cache.provider_class}")
     private String hibernateCacheProviderClass;
 
-    @Value("${db.hibernate.connection.shutdown}")
+    @Value("${app.jpa.properties.hibernate.connection.shutdown}")
     private String hibernateConnectionShutdown;
 
-    @Value("${db.hibernate.show_sql}")
+    @Value("${app.jpa.show-sql}")
     private String hibernateShowSql;
 
     protected Properties jpaProperties() {

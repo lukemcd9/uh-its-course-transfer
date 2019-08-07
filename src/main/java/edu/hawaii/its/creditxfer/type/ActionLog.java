@@ -17,14 +17,14 @@ public class ActionLog implements Serializable {
     private static final long serialVersionUID = 2L;
     private Long id;
     private Long actionId;
-    private Long userUhuuid; // Logged in user.
+    private String userUhuuid; // Logged in user.
     private Long viewUhuuid; // User viewed.
 
     public ActionLog() {
         // Empty. Required for JPA.
     }
 
-    public ActionLog(Long actionId, Long userUhuuid) {
+    public ActionLog(Long actionId, String userUhuuid) {
         this.actionId = actionId;
         this.userUhuuid = userUhuuid;
     }
@@ -43,7 +43,7 @@ public class ActionLog implements Serializable {
     }
 
     @Column(name = "ACTLOG_USER_UHNUMBER")
-    public Long getUserUhuuid() {
+    public String getUserUhuuid() {
         return userUhuuid;
     }
 
@@ -60,7 +60,7 @@ public class ActionLog implements Serializable {
         this.actionId = actionId;
     }
 
-    public void setUserUhuuid(Long userUhuuid) {
+    public void setUserUhuuid(String userUhuuid) {
         this.userUhuuid = userUhuuid;
     }
 
