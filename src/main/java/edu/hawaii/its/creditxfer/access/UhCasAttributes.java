@@ -76,7 +76,7 @@ public class UhCasAttributes implements UhAttributes {
                     }
                 }
 
-                // Couldn't match up username, 
+                // Couldn't match up username,
                 // just return first value.
                 return values.get(0); // We are done.
             }

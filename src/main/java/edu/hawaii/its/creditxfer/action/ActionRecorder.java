@@ -15,11 +15,11 @@ public class ActionRecorder implements ApplicationEventPublisherAware {
         this.publisher = publisher;
     }
 
-    public void publish(String code, Long uhuuid) {
+    public void publish(String code, String uhuuid) {
         this.publisher.publishEvent(new ActionEvent(this, code, uhuuid, null));
     }
 
-    public void publish(String code, Long uhuuid, Long viewUhuuid) {
+    public void publish(String code, String uhuuid, Long viewUhuuid) {
         this.publisher.publishEvent(new ActionEvent(this, code, uhuuid, viewUhuuid));
     }
 }

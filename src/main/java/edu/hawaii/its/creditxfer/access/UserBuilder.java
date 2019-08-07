@@ -55,7 +55,7 @@ public final class UserBuilder {
         // Don't move this statement above the exists call
         // above because exists implicitly checks that the
         // Long data type conversion will work okay.
-        user.setUhuuid(Long.valueOf(uhuuid));
+        user.setUhuuid(uhuuid);
 
         logger.info("Done adding roles; uhuuid: " + uhuuid);
 

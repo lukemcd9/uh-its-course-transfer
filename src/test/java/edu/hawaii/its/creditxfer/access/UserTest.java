@@ -27,11 +27,11 @@ public class UserTest {
 
         authorities = new LinkedHashSet<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(Role.ANONYMOUS.longName()));
-        user = new User("b", 12345L, authorities);
+        user = new User("b", "12345", authorities);
 
         assertEquals("b", user.getUsername());
         assertEquals("b", user.getUid());
-        assertEquals(Long.valueOf(12345), user.getUhuuid());
+        assertEquals(String.valueOf(12345), user.getUhuuid());
         assertNull(user.getAttributes());
     }
 }
