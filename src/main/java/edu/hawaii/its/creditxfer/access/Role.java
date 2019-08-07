@@ -2,6 +2,7 @@ package edu.hawaii.its.creditxfer.access;
 
 public enum Role {
     ANONYMOUS,
+    USER,
     UH,
     EMPLOYEE,
     ADMIN;
