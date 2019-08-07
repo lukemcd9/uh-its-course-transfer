@@ -31,7 +31,7 @@ public class User extends org.springframework.security.core.userdetails.User {
     }
 
     public void setUhuuid(String uhuuid) {
-        this.uhuuid = uhuuid;
+        this.uhuuid = uhuuid != null ? uhuuid : "";
     }
 
     public String getAttribute(String name) {
