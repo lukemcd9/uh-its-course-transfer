@@ -443,7 +443,6 @@
                                 <echo>Now that you have a clean project,</echo>
                                 <echo>here are some common goals for this project:</echo>
                                 <echo>$ ./mvnw -Denv=dev clean test</echo>
-                                <echo>$ ./mvnw -Denv=dev clean test -Dtest=*SystemTest </echo>
                                 <echo>$ ./mvnw -Denv=dev clean package</echo>
                                 <echo>$ ./mvnw -Dmaven.test.skip=true -Denv=test clean package</echo>
                                 <echo>$ ./mvnw clean test jacoco:report</echo>

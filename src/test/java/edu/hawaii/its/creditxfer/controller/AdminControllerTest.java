@@ -32,7 +32,7 @@ import edu.hawaii.its.creditxfer.type.Action;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class AdminControllerSystemTest {
+public class AdminControllerTest {
 
     @Value("${cas.login.url}")
     private String casLoginUrl;

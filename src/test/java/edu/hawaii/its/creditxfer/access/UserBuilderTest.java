@@ -25,7 +25,7 @@ import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class UserBuilderSystemTest {
+public class UserBuilderTest {
 
     @Autowired
     private UserBuilder userBuilder;

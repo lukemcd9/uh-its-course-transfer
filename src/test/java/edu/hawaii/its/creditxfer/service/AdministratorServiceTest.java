@@ -15,7 +15,7 @@ import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class AdministratorServiceSystemTest {
+public class AdministratorServiceTest {
 
     @Autowired
     private AdministratorService administratorService;
