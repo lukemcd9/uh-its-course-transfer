@@ -59,10 +59,10 @@ public class Message implements Serializable {
     @Override
     public String toString() {
         return "Message [id=" + id
-                + ", typeId=" + typeId
-                + ", enabled=" + enabled
-                + ", text=" + text
-                + "]";
+            + ", typeId=" + typeId
+            + ", enabled=" + enabled
+            + ", text=" + text
+            + "]";
     }
 
 }

@@ -61,12 +61,12 @@ public class AdminControllerSystemTest {
     }
 
     @Test
-    @WithMockUhUser(username = "uh", roles = { "ROLE_UH" })
+    @WithMockUhUser()
     public void adminViaUh() throws Exception {
         // Not high enough role for access.
         mockMvc.perform(get("/admin"))
-                .andExpect(status().is3xxRedirection());
-    }
+            .andExpect(status().is4xxClientError())
+            .andExpect(status().is(403));    }
 
     @Test
     @WithAnonymousUser
