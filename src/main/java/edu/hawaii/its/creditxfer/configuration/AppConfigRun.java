@@ -15,5 +15,9 @@ import org.springframework.context.annotation.PropertySources;
                         ignoreResourceNotFound = true)
 })
 public class AppConfigRun {
-    // Empty.
+
+    public void init() {
+        //Empty
+    }
+
 }
