@@ -61,6 +61,8 @@ public class MessageServiceSystemTest {
         Message m1 = messageService.findMessage(Message.GATE_MESSAGE);
         assertSame(m0, m1);
 
+        final String text = m0.getText();
+
         m0.setText("This land is your land.");
         messageService.update(m0);
         assertSame(m0, m1);
@@ -71,6 +73,12 @@ public class MessageServiceSystemTest {
         Message m2 = messageService.findMessage(Message.GATE_MESSAGE);
         assertSame(m0, m2);
         assertSame(m1, m2);
+
+        //Put the original text back.
+        m0.setText(text);
+        messageService.update(m0);
+        assertTrue(m0.getText().startsWith("University of Hawaii Information"));
+        assertTrue(m0.getText().endsWith("."));
 
         Message m3 = new Message();
         m3.setId(999);

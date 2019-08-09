@@ -11,7 +11,6 @@ import org.jasig.cas.client.validation.Saml11TicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.cas.ServiceProperties;
 import org.springframework.security.cas.authentication.CasAssertionAuthenticationToken;
@@ -33,7 +32,6 @@ import edu.hawaii.its.creditxfer.access.UserBuilder;
 import edu.hawaii.its.creditxfer.access.UserDetailsServiceImpl;
 
 @ComponentScan(basePackages = "edu.hawaii.its.creditxfer")
-//@EnableConfigurationProperties(SecurityConfig.class)
 @ConfigurationProperties(prefix = "cas")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -187,8 +185,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/login").permitAll()
             .antMatchers("/logout").permitAll()
             .antMatchers("/denied").permitAll()
+            .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/404").permitAll()
-            .anyRequest().authenticated();
+            .anyRequest().authenticated()
+            .and()
+            .addFilter(casAuthenticationFilter())
+            .addFilterBefore(logoutFilter(), LogoutFilter.class)
+            .addFilterBefore(singleSignOutFilter(), CasAuthenticationFilter.class)
+            .logout()
+            .invalidateHttpSession(true)
+            .deleteCookies("JSESSIONID")
+            .logoutUrl("/logout").permitAll()
+            .logoutSuccessUrl(homeUrl);
     }
 
     @Override

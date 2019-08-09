@@ -115,11 +115,6 @@ public class HomeController {
         return "list";
     }
 
-    @GetMapping(value = "/whatever")
-    public String whatever() {
-        return "whatever";
-    }
-
     @GetMapping(value = "/ex")
     public String explore() {
         return "explore";
