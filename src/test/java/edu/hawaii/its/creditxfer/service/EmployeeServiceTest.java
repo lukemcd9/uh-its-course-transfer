@@ -1,5 +1,6 @@
-package edu.hawaii.its.creditxfer.action;
+package edu.hawaii.its.creditxfer.service;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -14,13 +15,19 @@ import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class ActionListenerSystemTest {
+public class EmployeeServiceTest {
 
     @Autowired
-    private ActionListener actionListener;
+    private EmployeeService employeeService;
 
     @Test
-    public void mapNotEmpty() {
-        assertTrue(actionListener.mapSize() > 0);
+    public void exists() {
+        assertTrue(employeeService.exists("89999999"));
+        assertTrue(employeeService.exists("10000004"));
+
+        assertFalse(employeeService.exists(null));
+        assertFalse(employeeService.exists(""));
+        assertFalse(employeeService.exists("  "));
+        assertFalse(employeeService.exists("no-way-none"));
     }
 }

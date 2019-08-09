@@ -17,7 +17,7 @@ import edu.hawaii.its.creditxfer.type.ActionLog;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class ActionServiceSystemTest {
+public class ActionServiceTest {
 
     @Autowired
     private ActionService actionService;

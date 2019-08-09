@@ -20,7 +20,7 @@ import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
-public class UserDetailsServiceSystemTest {
+public class UserDetailsServiceTest {
 
     @Autowired
     private UserBuilder userBuilder;

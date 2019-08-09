@@ -17,7 +17,7 @@ import edu.hawaii.its.creditxfer.type.Message;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class MessageServiceSystemTest {
+public class MessageServiceTest {
 
     @Autowired
     private MessageService messageService;

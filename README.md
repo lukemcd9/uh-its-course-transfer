@@ -70,18 +70,6 @@ To run a single method in a test class:
 
     $ ./mvnw clean test -Dtest=RoleTest#longName
 
-##### Running System Tests
-The project files include a handful of System Tests.
-For this project, System Tests are defined as those tests that may
-call live remote systems, such as a search against the production
-LDAP server. A standard build of the application will exclude the
-System Tests, but you can explicitly run them by specifying the
-appropriate command line argument.
-
-To run the System Tests:
-
-    $ ./mvnw -Denv=dev -Dtest=*SystemTest clean test
-
 **Running the Application locally**
 
 http://localhost:8080/transferdatabase/
