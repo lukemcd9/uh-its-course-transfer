@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.hawaii.its.creditxfer.type.Employee;
+
 /**
  * A JPA-based implementation of the Employee Service. Delegates to a JPA entity
  * manager to issue data access calls against the backing repository. The
@@ -19,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private EntityManager em;
+
+    private Query query;
 
     @PersistenceContext
     public void setEntityManager(EntityManager em) {
@@ -39,7 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Long uhId = Long.valueOf(s);
         String qlString = "select e from Employee e "
                 + "where e.uhNumber = :uhNumber";
-        Query query = em.createQuery(qlString);
+        query = em.createQuery(qlString);
         query.setParameter("uhNumber", uhId);
 
         return query.getResultList().size() > 0;

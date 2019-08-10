@@ -12,6 +12,14 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Value("#{'${admin.list}'.split(',')}")
     private List<String> admins;
 
+    public void setAdmins(List<String> admins) {
+        this.admins = admins;
+    }
+
+    public List<String> getAdmins() {
+        return admins;
+    }
+
     @Override
     @Transactional(readOnly = true)
     public boolean exists(String uhuuid) {

@@ -30,6 +30,7 @@ public class ActionServiceImpl implements ActionService {
         this.em = em;
     }
 
+    @Override
     public EntityManager getEntityManager() {
         return em;
     }

@@ -1,7 +1,13 @@
 package edu.hawaii.its.creditxfer.service;
 
+import javax.persistence.EntityManager;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -28,6 +34,19 @@ public class MessageServiceTest {
         assertEquals("Y", message.getEnabled());
         assertEquals(Integer.valueOf(Message.GATE_MESSAGE), message.getTypeId());
         assertTrue(message.getText().startsWith("University of Hawaii Information"));
+
+        // Cause an internal exception to happen.
+        EntityManager em = messageService.getEntityManager();
+        messageService.setEntityManager(null);
+        message = messageService.findMessage(Message.ACCESS_DENIED_MESSAGE);
+        assertNull(message);
+
+        // Make sure the denied access message actually exists.
+        messageService.evictCache();
+        messageService.setEntityManager(em);
+        message = messageService.findMessage(Message.ACCESS_DENIED_MESSAGE);
+        assertThat(message.getId(), equalTo(Message.ACCESS_DENIED_MESSAGE));
+        assertThat(message.getText(), containsString("system is restricted"));
     }
 
     @Test

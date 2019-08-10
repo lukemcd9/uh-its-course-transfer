@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
+import edu.hawaii.its.creditxfer.type.Action;
 import edu.hawaii.its.creditxfer.type.ActionLog;
 
 @RunWith(SpringRunner.class)
@@ -25,6 +26,20 @@ public class ActionServiceTest {
     @Test
     public void construction() {
         assertNotNull(actionService);
+    }
+
+    @Test
+    public void getEntityManager() {
+        assertNotNull(actionService.getEntityManager());
+    }
+
+    @Test
+    public void findAction() {
+        Action action = actionService.findAction(10L);
+        assertNotNull(action);
+        assertEquals(action.getEnabled(), "N");
+        assertEquals(action.getCode(), "employee.view.home");
+        assertEquals(action.getDescription(), "Employee viewing homepage.");
     }
 
     @Test
