@@ -1,7 +1,6 @@
 package edu.hawaii.its.creditxfer.controller;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,13 +34,15 @@ public class AdminController {
     // Exceptions for testing. Remove this stuff at some point.
     //
 
-    private boolean isExceptionTestingEnabled() {
-        return true;
+    private boolean isExceptionTestingEnabled = true;
+
+    public void disableExceptionTesting() {
+        isExceptionTestingEnabled = false;
     }
 
     @RequestMapping(value = "/admin/ioexception", method = RequestMethod.GET)
     public String ioexception(Model model) throws IOException {
-        if (isExceptionTestingEnabled()) {
+        if (isExceptionTestingEnabled) {
             throw new IOException("Threw an IOException from admin!");
         }
         return "exception"; // Return view name.
@@ -49,7 +50,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/npe", method = RequestMethod.GET)
     public String npe(Model model) throws NullPointerException {
-        if (isExceptionTestingEnabled()) {
+        if (isExceptionTestingEnabled) {
             throw new NullPointerException("Threw an NullPointerException from admin!");
         }
         return "exception"; // Return view name.

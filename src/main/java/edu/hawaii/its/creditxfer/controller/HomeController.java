@@ -93,7 +93,7 @@ public class HomeController {
         return "glossary/glossary-" + id.trim();
     }
 
-    @GetMapping(value = "/help/fonts")
+    @GetMapping(value = "/fonts")
     public String fonts() {
         logger.debug("User at fonts.");
         return "help/fonts";
@@ -120,12 +120,4 @@ public class HomeController {
         return "explore";
     }
     //-///////////////////////////////////////////////////////////////////////
-
-    public void setUserContextService(UserContextService userContextService) {
-        this.userContextService = userContextService;
-    }
-
-    public void setActionRecorder(ActionRecorder actionRecorder) {
-        this.actionRecorder = actionRecorder;
-    }
 }

@@ -2,6 +2,7 @@ package edu.hawaii.its.creditxfer.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
@@ -9,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -96,5 +98,37 @@ public class AdminControllerTest {
         assertEquals(13, aZ.getId().intValue());
         assertEquals("employee.save.creditxfer", aZ.getCode());
         aZ = null;
+    }
+
+    @Test
+    public void testEnabledExceptionTesting() {
+        Model model = new ExtendedModelMap();
+        try {
+            controller.ioexception(model);
+        } catch (IOException e) {
+            assertNotNull(e);
+        }
+        try {
+            controller.npe(model);
+        } catch (NullPointerException e) {
+            assertNotNull(e);
+        }
+    }
+
+    @Test
+    public void testDisabledExceptionTesting() {
+        Model model = new ExtendedModelMap();
+
+        controller.disableExceptionTesting();
+        try {
+            controller.ioexception(model);
+        } catch (Exception e) {
+            assertEquals(e, "exception");
+        }
+        try {
+            controller.npe(model);
+        } catch (Exception e) {
+            assertEquals(e, "exception");
+        }
     }
 }
