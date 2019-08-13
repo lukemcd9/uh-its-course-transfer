@@ -33,12 +33,18 @@ public class HomeController {
     @Autowired
     private MessageService messageService;
 
+    private int messageNumber = Message.GATE_MESSAGE;
+
+    public void setMessageNumber(int messageNumber) {
+        this.messageNumber = messageNumber;
+    }
+
     @GetMapping(value = {"/", "/home" })
     public String gate(Locale locale, Model model) {
         logger.debug("User at gate. The client locale is {}.", locale);
 
         try {
-            Message message = messageService.findMessage(Message.GATE_MESSAGE);
+            Message message = messageService.findMessage(messageNumber);
             if (message != null) {
                 model.addAttribute("systemMessage", message.getText());
             }

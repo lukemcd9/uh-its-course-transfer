@@ -81,6 +81,17 @@ public class HomeControllerTest {
     }
 
     @Test
+    public void testControllerNullMessage() {
+        Model model = new ExtendedModelMap();
+        try {
+            homeController.setMessageNumber(9999);
+            homeController.gate(Locale.US, model);
+        } catch (Exception e) {
+            assertNotNull(e);
+        }
+    }
+
+    @Test
     public void requestUrlHome() throws Exception {
         mockMvc.perform(get("/home"))
             .andExpect(status().isOk())
