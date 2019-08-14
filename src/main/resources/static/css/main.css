@@ -89,7 +89,6 @@ td.uh-pre {
     background-color: white;
 }
 .fixed-top .navbar-brand {
-    padding-left: 20px;
     padding-right: 0px;
 }
 .fixed-top .navbar-brand > img {
@@ -98,10 +97,11 @@ td.uh-pre {
     background-color: transparent;
 }
 .navbar-brand.uh-nav-app-name {
-    height: 30px;
+    height: 50px;
     width: auto;
     color: #BD9319;
     background-color: transparent;
+
 
     font-family: alegreyasans-regular, opensans-regular, serif;
     font-weight: normal;
@@ -306,7 +306,7 @@ button.redify-link {
   }
 }
 
-@media(min-width:768px) {
+@media(min-width:992px) {
 
     .navbar {
         min-height: 90px;

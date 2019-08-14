@@ -1,17 +1,20 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white border-bottom border-light" role="navigation" th:fragment="copy">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navbar-collapse-1"
+              aria-controls="navbarText" aria-expanded="false"
+              aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
             <a class="navbar-brand uh-nav-app-name" href="/" th:href="@{/}">
                 <img class="d-inline-block" width="50px" height="50px" th:src="@{/images/seal.jpg}"
                   src="images/seal.jpg" alt="">
                 <span>Course Transfer</span>
             </a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
                     <a th:href="@{/}" href="/" class="nav-link">
