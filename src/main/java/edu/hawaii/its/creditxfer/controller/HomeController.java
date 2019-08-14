@@ -35,6 +35,10 @@ public class HomeController {
 
     private int messageNumber = Message.GATE_MESSAGE;
 
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
     public void setMessageNumber(int messageNumber) {
         this.messageNumber = messageNumber;
     }

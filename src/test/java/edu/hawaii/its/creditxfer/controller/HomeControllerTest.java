@@ -71,24 +71,21 @@ public class HomeControllerTest {
         assertFalse(model.asMap().entrySet().isEmpty());
         assertTrue(model.asMap().keySet().contains("systemMessage"));
 
-        try {
-            model = null;
-            homeController.gate(Locale.US, model);
-        } catch (Exception e) {
-            assertNotNull(e);
-        }
-
     }
 
     @Test
     public void testControllerNullMessage() {
         Model model = new ExtendedModelMap();
-        try {
-            homeController.setMessageNumber(9999);
-            homeController.gate(Locale.US, model);
-        } catch (Exception e) {
-            assertNotNull(e);
-        }
+
+        homeController.setMessageNumber(9999);
+        homeController.gate(Locale.US, model);
+        assertTrue(model.asMap().entrySet().isEmpty());
+        assertFalse(model.asMap().keySet().contains("systemMessage"));
+
+        homeController.setMessageService(null);
+        homeController.gate(Locale.US, model);
+        assertTrue(model.asMap().entrySet().isEmpty());
+        assertFalse(model.asMap().keySet().contains("systemMessage"));
     }
 
     @Test
