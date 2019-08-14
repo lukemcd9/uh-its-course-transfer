@@ -9,8 +9,8 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 16px;
     font-weight: 300;
- 
-    padding-top: 50px; 
+
+    padding-top: 7em;
     padding-bottom: 50px;
     background-color: white;
 }
@@ -30,7 +30,7 @@ a:hover {
 }
 
 .btn:hover {
-    background-color:  #F5ECCE ; 
+    background-color:  #F5ECCE ;
 }
 
 .seal-color {
@@ -83,22 +83,16 @@ td.uh-pre {
 .navbar {
     background-color: white;
 }
-.navbar-fixed-top .nav {
-    padding-top: 40px;
-    padding-bottom: 0px;
+.fixed-top .nav {
     padding-left: 0px;
     padding-right: 20px;
     background-color: white;
 }
-.navbar-fixed-top .navbar-brand {
+.fixed-top .navbar-brand {
     padding-left: 20px;
     padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    min-height: 50px;
-    min-width: 50px;
 }
-.navbar-fixed-top .navbar-brand > img {
+.fixed-top .navbar-brand > img {
     height: 50px;
     width: 50px;
     background-color: transparent;
@@ -106,7 +100,6 @@ td.uh-pre {
 .navbar-brand.uh-nav-app-name {
     height: 30px;
     width: auto;
-    padding-top: 20px;
     color: #BD9319;
     background-color: transparent;
 
@@ -156,7 +149,7 @@ td.uh-pre {
 .container-fluid .jumbotron.compacted {
     padding-right: 10px;
     padding-left: 10px;
-    padding-top: 10px; 
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 
@@ -314,14 +307,11 @@ button.redify-link {
 }
 
 @media(min-width:768px) {
-    body {
-        padding-top: 100px;
-        padding-bottom: 50px;
-    }
+
     .navbar {
         min-height: 90px;
     }
-    .navbar-fixed-top .navbar-brand > img {
+    .fixed-top .navbar-brand > img {
         position: inherit;
         top: 0px;
         left: 25px;
@@ -333,7 +323,6 @@ button.redify-link {
         top: 0px;
         left: 115px;
         height: 90px;
-        padding-top: 51px;
         white-space: nowrap;
         text-align: left;
         font-size: 28px;
