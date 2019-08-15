@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
@@ -16,11 +17,24 @@ import edu.hawaii.its.creditxfer.type.Message;
 public class MessageServiceImpl implements MessageService {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
+
     private EntityManager em;
 
+    @Override
+    public EntityManager getEntityManager() {
+        return em;
+    }
+
+    @Override
     @PersistenceContext
     public void setEntityManager(EntityManager em) {
         this.em = em;
+    }
+
+    @Override
+    @CacheEvict(value = "messages", allEntries = true)
+    public void evictCache() {
+        // Empty.
     }
 
     @Override

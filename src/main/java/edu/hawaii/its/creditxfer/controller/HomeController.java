@@ -33,12 +33,22 @@ public class HomeController {
     @Autowired
     private MessageService messageService;
 
+    private int messageNumber = Message.GATE_MESSAGE;
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    public void setMessageNumber(int messageNumber) {
+        this.messageNumber = messageNumber;
+    }
+
     @GetMapping(value = {"/", "/home" })
     public String gate(Locale locale, Model model) {
         logger.debug("User at gate. The client locale is {}.", locale);
 
         try {
-            Message message = messageService.findMessage(Message.GATE_MESSAGE);
+            Message message = messageService.findMessage(messageNumber);
             if (message != null) {
                 model.addAttribute("systemMessage", message.getText());
             }
@@ -93,7 +103,7 @@ public class HomeController {
         return "glossary/glossary-" + id.trim();
     }
 
-    @GetMapping(value = "/help/fonts")
+    @GetMapping(value = "/fonts")
     public String fonts() {
         logger.debug("User at fonts.");
         return "help/fonts";
@@ -120,12 +130,4 @@ public class HomeController {
         return "explore";
     }
     //-///////////////////////////////////////////////////////////////////////
-
-    public void setUserContextService(UserContextService userContextService) {
-        this.userContextService = userContextService;
-    }
-
-    public void setActionRecorder(ActionRecorder actionRecorder) {
-        this.actionRecorder = actionRecorder;
-    }
 }

@@ -15,7 +15,7 @@
             </div>
             <div sec:authorize="isAuthenticated()">
                 <form action="/transferdatabase/logout" th:action="@{/logout}" method="post" id="logout_form">
-                    <button class="btn btn-lg btn-default" type="submit">Logout</button>
+                    <button class="btn btn-lg btn-light btn-outline-secondary text-dark" type="submit">Logout</button>
                 </form>
             </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="col-sm-6">
                 <p class="h4">
                     Classification &nbsp;
-                    <a th:href="@{/help/classifications}" type="button" class="btn btn-default btn-xs pull-center">View</a>
+                    <a th:href="@{/help/classifications}" role="button" class="btn btn-outline-secondary text-dark btn-xs">View</a>
                 </p>
                 <p>
                     University of Hawaii Community Colleges Faculty Classification Plan.
@@ -32,7 +32,7 @@
             <div class="col-sm-6">
                 <p class="h4">
                     Guidelines &nbsp;
-                    <a th:href="@{/help/guidelines}" type="button" class="btn btn-default btn-xs">View</a> 
+                    <a th:href="@{/help/guidelines}" role="button" class="btn btn-outline-secondary text-dark btn-xs">View</a>
                 </p> 
                 <p>
                     Guidelines for Tenure and Promotion for the University of Hawaii Community Colleges.&nbsp;
@@ -44,7 +44,7 @@
             <div class="col-sm-6">
                 <p class="h4">
                     Important Dates &nbsp;
-                    <a th:href="@{/help/dates}" type="button" class="btn btn-default btn-xs">View</a>
+                    <a th:href="@{/help/dates}" role="button" class="btn btn-outline-secondary text-dark btn-xs">View</a>
                 </p>
                 <p>
                     University-level deadlines for promotion and tenure review.
@@ -53,7 +53,7 @@
             <div class="col-sm-6">
                 <p class="h4">
                     Frequently Asked Questions &nbsp;
-                    <a th:href="@{/help/faq}" type="button" class="btn btn-default btn-xs">View</a>
+                    <a th:href="@{/help/faq}" role="button" class="btn btn-outline-secondary text-dark btn-xs">View</a>
                 </p>
                 <p>
                     We have assembled responses to a number of common 

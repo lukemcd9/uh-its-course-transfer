@@ -30,6 +30,17 @@ public class AdministratorServiceTest {
         assertFalse(administratorService.exists(""));
         assertFalse(administratorService.exists("  "));
         assertFalse(administratorService.exists("no-way-none"));
+
+        //testEmptyAdmin
+        administratorService.getAdmins().clear();
+        assertFalse(administratorService.exists("89999999"));
+        assertFalse(administratorService.exists("10000001"));
+
+        //testNullAdmin
+        administratorService.setAdmins(null);
+        assertFalse(administratorService.exists("89999999"));
+        assertFalse(administratorService.exists("10000001"));
+
     }
 
     @Test
@@ -44,4 +55,5 @@ public class AdministratorServiceTest {
         assertFalse(administratorService.exists("  "));
         assertFalse(administratorService.exists("no-way-none"));
     }
+
 }

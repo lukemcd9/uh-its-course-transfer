@@ -73,4 +73,16 @@ public class ActionListenerImpl implements ActionListener {
         return actionMap.size();
     }
 
+
+    public ActionService getActionService() {
+        return actionService;
+    }
+
+    public void setActionService(ActionService actionService) {
+        this.actionService = actionService;
+    }
+
+    public void setActionMap(Map<String, Action> actionMap) {
+        this.actionMap = actionMap;
+    }
 }
