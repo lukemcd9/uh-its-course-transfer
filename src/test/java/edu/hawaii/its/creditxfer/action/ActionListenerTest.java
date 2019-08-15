@@ -1,5 +1,9 @@
 package edu.hawaii.its.creditxfer.action;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -19,8 +23,44 @@ public class ActionListenerTest {
     @Autowired
     private ActionListener actionListener;
 
+    @Autowired
+    private ActionRecorder actionRecorder;
+
     @Test
-    public void mapNotEmpty() {
+    public void fillActionTest() {
         assertTrue(actionListener.mapSize() > 0);
+
+        actionListener.setActionService(null);
+        actionListener.fillActionMap();
+        assertEquals(actionListener.mapSize(), 12);
+
+        actionListener.setActionMap(null);
+        try {
+            actionListener.fillActionMap();
+        } catch (Exception e) {
+            assertNotNull(e);
+        }
+    }
+
+    @Test
+    public void onApplicationEventTest() {
+        ActionEvent actionEvent = new ActionEvent(this, "code", "uhuuid", 123L);
+        actionListener.onApplicationEvent(actionEvent);
+        assertEquals(actionListener.getActionService().logCount(), 0);
+
+        actionListener.onApplicationEvent(null);
+        assertEquals(actionListener.getActionService().logCount(), 0);
+
+        actionRecorder.publish("employee.view.home", "234");
+        assertEquals(actionListener.getActionService().logCount(), 0);
+
+        actionRecorder.publish("employee.view.creditxfer", "345678", 345678L);
+        assertEquals(actionListener.getActionService().logCount(), 1);
+    }
+
+    @Test
+    public void testToString() {
+        ActionEvent actionEvent = new ActionEvent(this, "code", "myId", 123L);
+        assertEquals(actionEvent.toString(), "ActionEvent [, uhuuid=myId, viewUhuuid=123, code=code]");
     }
 }
