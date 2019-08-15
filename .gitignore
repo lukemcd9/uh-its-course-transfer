@@ -7,3 +7,4 @@ output.txt
 /target
 *-overrides.properties
 /.idea
+*.iml
