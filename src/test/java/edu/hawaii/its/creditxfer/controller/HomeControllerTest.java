@@ -180,20 +180,6 @@ public class HomeControllerTest {
     }
 
     @Test
-    public void requestUrlList() throws Exception {
-        mockMvc.perform(get("/li"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("list"));
-    }
-
-    @Test
-    public void requestUrlExplore() throws Exception {
-        mockMvc.perform(get("/ex"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("explore"));
-    }
-
-    @Test
     public void requestUrl404() throws Exception {
         mockMvc.perform(get("/404"))
                 .andExpect(status().is3xxRedirection())

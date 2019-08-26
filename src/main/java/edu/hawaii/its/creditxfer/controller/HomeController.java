@@ -118,16 +118,4 @@ public class HomeController {
     public String invalid() {
         return "redirect:/";
     }
-
-    //-///////////////////////////////////////////////////////////////////////
-    @GetMapping(value = "/li")
-    public String list() {
-        return "list";
-    }
-
-    @GetMapping(value = "/ex")
-    public String explore() {
-        return "explore";
-    }
-    //-///////////////////////////////////////////////////////////////////////
 }
