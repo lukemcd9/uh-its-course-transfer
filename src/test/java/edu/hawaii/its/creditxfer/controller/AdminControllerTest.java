@@ -68,7 +68,8 @@ public class AdminControllerTest {
         // Not high enough role for access.
         mockMvc.perform(get("/admin"))
             .andExpect(status().is4xxClientError())
-            .andExpect(status().is(403));    }
+            .andExpect(status().is(403));
+    }
 
     @Test
     @WithAnonymousUser
@@ -102,14 +103,13 @@ public class AdminControllerTest {
 
     @Test
     public void testEnabledExceptionTesting() {
-        Model model = new ExtendedModelMap();
         try {
-            controller.ioexception(model);
+            controller.ioexception();
         } catch (IOException e) {
             assertNotNull(e);
         }
         try {
-            controller.npe(model);
+            controller.npe();
         } catch (NullPointerException e) {
             assertNotNull(e);
         }
@@ -117,16 +117,14 @@ public class AdminControllerTest {
 
     @Test
     public void testDisabledExceptionTesting() {
-        Model model = new ExtendedModelMap();
-
         controller.disableExceptionTesting();
         try {
-            controller.ioexception(model);
+            controller.ioexception();
         } catch (Exception e) {
             assertEquals(e, "exception");
         }
         try {
-            controller.npe(model);
+            controller.npe();
         } catch (Exception e) {
             assertEquals(e, "exception");
         }
