@@ -1,10 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <div class='container-fluid' xmlns:security="http://www.springframework.org/security/tags">
   <security:authorize access="hasRole('ROLE_ADMIN')">
     <div class='row'>
       <div class='col-xs-offset-1 col-xs-10'>
         <h4>Administration</h4>
         <hr/>
-        <a href="<c:url value='/admin/actions' />">View Action codes</a><br/>
+        <a th:href="@{/admin/actions}" href="/admin/actions">View Action codes</a><br/>
         <br>
         <hr/>
         <p>
@@ -14,11 +17,12 @@
           has been coded to throw just for demonstration of their<br/>
           handling within the application.
         </p>
-        <a href="<c:url value='/admin/npe' />">Null Pointer Exception</a><br/>
-        <a href="<c:url value='/admin/ioexception' />">I/O Exception</a><br/>
+        <a th:href="@{/admin/npe}" href="/admin/npe">Null Pointer Exception</a><br/>
+        <a th:href="@{/admin/ioexception}" href="/admin/ioexception">I/O Exception</a><br/>
         <hr/>
       </div>
     </div>
   </security:authorize>
 </div>
+</html>
 

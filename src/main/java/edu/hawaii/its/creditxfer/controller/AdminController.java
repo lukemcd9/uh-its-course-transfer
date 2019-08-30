@@ -41,7 +41,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/ioexception", method = RequestMethod.GET)
-    public String ioexception(Model model) throws IOException {
+    public String ioexception() throws IOException {
         if (isExceptionTestingEnabled) {
             throw new IOException("Threw an IOException from admin!");
         }
@@ -49,7 +49,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/npe", method = RequestMethod.GET)
-    public String npe(Model model) throws NullPointerException {
+    public String npe() throws NullPointerException {
         if (isExceptionTestingEnabled) {
             throw new NullPointerException("Threw an NullPointerException from admin!");
         }

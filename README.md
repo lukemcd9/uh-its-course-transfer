@@ -1,6 +1,7 @@
 A web application to demonstrate how to use the UH Course Transfer service.
 
-***
+[![Build Status](https://travis-ci.org/fduckart/uh-its-course-transfer.svg?branch=master)](https://travis-ci.org/fduckart/uh-its-course-transfer)
+
 ##### Build Tool
 First, you need to download and install maven (version 3.2.1+).
 
