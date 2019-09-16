@@ -1,16 +1,15 @@
 package edu.hawaii.its.creditxfer.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.hawaii.its.creditxfer.repository.MessageRepository;
 import edu.hawaii.its.creditxfer.type.Message;
 
 @Repository("messageService")
@@ -18,18 +17,8 @@ public class MessageServiceImpl implements MessageService {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
 
-    private EntityManager em;
-
-    @Override
-    public EntityManager getEntityManager() {
-        return em;
-    }
-
-    @Override
-    @PersistenceContext
-    public void setEntityManager(EntityManager em) {
-        this.em = em;
-    }
+    @Autowired
+    private MessageRepository messageRepository;
 
     @Override
     @CacheEvict(value = "messages", allEntries = true)
@@ -40,21 +29,13 @@ public class MessageServiceImpl implements MessageService {
     @Override
     @Transactional(readOnly = true)
     @Cacheable(value = "messages", key = "#id")
-    public Message findMessage(int id) {
-        Message message = null;
-        try {
-            message = em.find(Message.class, id);
-        } catch (Exception e) {
-            logger.error("Error:", e);
-        }
-        return message;
-    }
+    public Message findMessage(Integer id) { return messageRepository.findById(id).orElse(null);}
 
     @Override
     @Transactional
     @CachePut(value = "messages", key = "#result.id")
     public Message update(Message message) {
-        em.merge(message);
+        messageRepository.save(message);
         return message;
     }
 
@@ -62,7 +43,7 @@ public class MessageServiceImpl implements MessageService {
     @Transactional
     @CachePut(value = "messages", key = "#result.id")
     public Message add(Message message) {
-        em.persist(message);
+        messageRepository.save(message);
         return message;
     }
 

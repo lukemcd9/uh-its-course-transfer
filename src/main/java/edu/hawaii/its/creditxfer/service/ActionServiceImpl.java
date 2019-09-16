@@ -2,14 +2,13 @@ package edu.hawaii.its.creditxfer.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.hawaii.its.creditxfer.repository.ActionLoggerRepository;
+import edu.hawaii.its.creditxfer.repository.ActionRepository;
 import edu.hawaii.its.creditxfer.type.Action;
 import edu.hawaii.its.creditxfer.type.ActionLog;
 
@@ -23,39 +22,28 @@ import edu.hawaii.its.creditxfer.type.ActionLog;
 @Repository
 public class ActionServiceImpl implements ActionService {
 
-    private EntityManager em;
+    @Autowired
+    private ActionRepository actionRepository;
 
-    @PersistenceContext
-    public void setEntityManager(EntityManager em) {
-        this.em = em;
-    }
-
-    @Override
-    public EntityManager getEntityManager() {
-        return em;
-    }
+    @Autowired
+    private ActionLoggerRepository actionLoggerRepository;
 
     @Transactional(readOnly = true)
-    public List<Action> findActions() {
-        String qlString = "select a from Action a order by a.id";
-
-        return em.createQuery(qlString, Action.class).getResultList();
+    public List<Action> findActions() { return actionRepository.findAllByOrderById();
     }
 
     public Action findAction(Long id) {
-        return em.find(Action.class, id);
+        return actionRepository.findById(id);
     }
 
     @Transactional
     public void record(ActionLog actionLog) {
-        em.persist(actionLog);
+        actionLoggerRepository.save(actionLog);
     }
 
     @Override
     public long logCount() {
-        String qlString = "select count(a) from ActionLog a";
-        Query query = em.createQuery(qlString, Long.class);
-        return (long) query.getSingleResult();
+        return actionLoggerRepository.count();
     }
 
 }

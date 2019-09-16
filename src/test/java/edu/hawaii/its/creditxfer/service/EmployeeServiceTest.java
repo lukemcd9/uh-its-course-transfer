@@ -2,7 +2,6 @@ package edu.hawaii.its.creditxfer.service;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +30,5 @@ public class EmployeeServiceTest {
         assertFalse(employeeService.exists("  "));
         assertFalse(employeeService.exists("no-way-none"));
         assertFalse(employeeService.exists("99999999"));
-
-        assertNotNull(employeeService.getEntityManager());
     }
 }
