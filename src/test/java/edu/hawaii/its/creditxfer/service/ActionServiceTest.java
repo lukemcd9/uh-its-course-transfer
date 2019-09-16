@@ -29,11 +29,6 @@ public class ActionServiceTest {
     }
 
     @Test
-    public void getEntityManager() {
-        assertNotNull(actionService.getEntityManager());
-    }
-
-    @Test
     public void findAction() {
         Action action = actionService.findAction(10L);
         assertNotNull(action);

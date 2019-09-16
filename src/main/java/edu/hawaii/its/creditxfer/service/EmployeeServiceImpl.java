@@ -1,12 +1,11 @@
 package edu.hawaii.its.creditxfer.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import edu.hawaii.its.creditxfer.repository.EmployeeRepository;
 
 /**
  * A JPA-based implementation of the Employee Service. Delegates to a JPA entity
@@ -18,16 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EntityManager em;
-
-    @PersistenceContext
-    public void setEntityManager(EntityManager em) {
-        this.em = em;
-    }
-
-    public EntityManager getEntityManager() {
-        return em;
-    }
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -37,12 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         Long uhId = Long.valueOf(s);
-        String qlString = "select e from Employee e "
-                + "where e.uhNumber = :uhNumber";
-        Query query = em.createQuery(qlString);
-        query.setParameter("uhNumber", uhId);
-
-        return query.getResultList().size() > 0;
+        return employeeRepository.findByUhNumber(uhId).isPresent();
     }
 
     private boolean isValid(String str) {

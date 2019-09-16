@@ -29,14 +29,9 @@ public class ActionLoggerTest {
     }
 
     @Test
-    public void getEntityManager() {
-        assertNotNull(actionLogger.getEntityManager());
-    }
-
-    @Test
     public void findActions() {
         List<Action> actions = actionLogger.findActions();
-        assertNotEquals(actions.size(), 0);
+        assertNotEquals(0, actions.size());
     }
 
 }

@@ -1,21 +1,14 @@
 package edu.hawaii.its.creditxfer.service;
 
-import javax.persistence.EntityManager;
-
 import edu.hawaii.its.creditxfer.type.Message;
 
 public interface MessageService {
 
-    public Message findMessage(int id);
+    Message findMessage(Integer id);
 
-    public Message add(Message message);
+    Message add(Message message);
 
-    public void evictCache();
+    void evictCache();
 
-    public Message update(Message message);
-
-    public void setEntityManager(EntityManager em);
-
-    public EntityManager getEntityManager();
-
+    Message update(Message message);
 }
