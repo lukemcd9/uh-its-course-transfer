@@ -69,7 +69,7 @@ public class MessageServiceTest {
         Message m0 = messageService.findMessage(Message.GATE_MESSAGE);
         Message m1 = messageService.findMessage(Message.GATE_MESSAGE);
 
-        assertEquals(m0.toString(), m1.toString());
+        assertSame(m0, m1);
 
         final String text = m0.getText();
 
