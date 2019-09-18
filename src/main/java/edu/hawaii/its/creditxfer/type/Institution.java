@@ -55,15 +55,6 @@ public class Institution {
     }
 
     @Override
-    public String toString() {
-        return "Institution [code=" + code
-            + ", description=" + description
-            + ", city=" + city
-            + ", stateProvince=" + stateProvince
-            + "]";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -88,5 +79,14 @@ public class Institution {
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (stateProvince != null ? stateProvince.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Institution [code=" + code
+            + ", description=" + description
+            + ", city=" + city
+            + ", stateProvince=" + stateProvince
+            + "]";
     }
 }

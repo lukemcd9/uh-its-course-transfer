@@ -69,15 +69,6 @@ public class ActionLog implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "ActionLog [id=" + id
-                + ", actionId=" + actionId
-                + ", userUhuuid=" + userUhuuid
-                + ", viewUhuuid=" + viewUhuuid
-                + "]";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -102,5 +93,14 @@ public class ActionLog implements Serializable {
         result = 31 * result + (userUhuuid != null ? userUhuuid.hashCode() : 0);
         result = 31 * result + (viewUhuuid != null ? viewUhuuid.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ActionLog [id=" + id
+            + ", actionId=" + actionId
+            + ", userUhuuid=" + userUhuuid
+            + ", viewUhuuid=" + viewUhuuid
+            + "]";
     }
 }

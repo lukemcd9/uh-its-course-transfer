@@ -33,11 +33,6 @@ public class Employee implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Employee [uhNumber=" + uhNumber + "]";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -52,5 +47,10 @@ public class Employee implements Serializable {
     @Override
     public int hashCode() {
         return uhNumber != null ? uhNumber.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [uhNumber=" + uhNumber + "]";
     }
 }
