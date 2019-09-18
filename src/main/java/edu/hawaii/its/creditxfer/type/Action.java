@@ -69,4 +69,31 @@ public class Action implements Serializable {
         return "Action [id=" + id + ", enabled=" + enabled
                 + ", code=" + code + ", description=" + description + "]";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Action action = (Action) o;
+
+        if (id != null ? !id.equals(action.id) : action.id != null)
+            return false;
+        if (code != null ? !code.equals(action.code) : action.code != null)
+            return false;
+        if (description != null ? !description.equals(action.description) : action.description != null)
+            return false;
+        return enabled != null ? enabled.equals(action.enabled) : action.enabled == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (code != null ? code.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
+        return result;
+    }
 }

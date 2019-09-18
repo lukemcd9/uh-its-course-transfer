@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.hawaii.its.creditxfer.repository.ActionRepository;
-import edu.hawaii.its.creditxfer.type.Action;
+import edu.hawaii.its.creditxfer.repository.ActionLoggerRepository;
+import edu.hawaii.its.creditxfer.type.ActionLog;
 
 /**
  * A JPA-based implementation of the ActionLogger Service. Delegates to a JPA entity
@@ -19,11 +19,10 @@ import edu.hawaii.its.creditxfer.type.Action;
 public class ActionLoggerImpl implements ActionLogger {
 
     @Autowired
-    private ActionRepository actionRepository;
+    private ActionLoggerRepository actionLoggerRepository;
 
     @Transactional(readOnly = true)
-    @SuppressWarnings("unchecked")
-    public List<Action> findActions() {
-        return actionRepository.findAllByOrderById();
+    public List<ActionLog> findActionLogs() {
+        return actionLoggerRepository.findAllByOrderById();
     }
 }

@@ -1,7 +1,5 @@
 package edu.hawaii.its.creditxfer.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -14,8 +12,6 @@ import edu.hawaii.its.creditxfer.type.Message;
 
 @Repository("messageService")
 public class MessageServiceImpl implements MessageService {
-
-    private static final Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
 
     @Autowired
     private MessageRepository messageRepository;
@@ -33,18 +29,11 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     @Transactional
-    @CachePut(value = "messages", key = "#result.id")
-    public Message update(Message message) {
-        messageRepository.save(message);
-        return message;
-    }
+    @CachePut(value = "messages", key = "#result")
+    public Message update(Message message) { return messageRepository.save(message); }
 
     @Override
     @Transactional
-    @CachePut(value = "messages", key = "#result.id")
-    public Message add(Message message) {
-        messageRepository.save(message);
-        return message;
-    }
-
+    @CachePut(value = "messages", key = "#result")
+    public Message add(Message message) { return messageRepository.save(message); }
 }

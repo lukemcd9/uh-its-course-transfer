@@ -77,4 +77,30 @@ public class ActionLog implements Serializable {
                 + "]";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        ActionLog actionLog = (ActionLog) o;
+
+        if (id != null ? !id.equals(actionLog.id) : actionLog.id != null)
+            return false;
+        if (actionId != null ? !actionId.equals(actionLog.actionId) : actionLog.actionId != null)
+            return false;
+        if (userUhuuid != null ? !userUhuuid.equals(actionLog.userUhuuid) : actionLog.userUhuuid != null)
+            return false;
+        return viewUhuuid != null ? viewUhuuid.equals(actionLog.viewUhuuid) : actionLog.viewUhuuid == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (actionId != null ? actionId.hashCode() : 0);
+        result = 31 * result + (userUhuuid != null ? userUhuuid.hashCode() : 0);
+        result = 31 * result + (viewUhuuid != null ? viewUhuuid.hashCode() : 0);
+        return result;
+    }
 }

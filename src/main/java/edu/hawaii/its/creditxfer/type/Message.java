@@ -66,4 +66,30 @@ public class Message implements Serializable {
             + "]";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Message message = (Message) o;
+
+        if (id != null ? !id.equals(message.id) : message.id != null)
+            return false;
+        if (typeId != null ? !typeId.equals(message.typeId) : message.typeId != null)
+            return false;
+        if (text != null ? !text.equals(message.text) : message.text != null)
+            return false;
+        return enabled != null ? enabled.equals(message.enabled) : message.enabled == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (typeId != null ? typeId.hashCode() : 0);
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
+        return result;
+    }
 }

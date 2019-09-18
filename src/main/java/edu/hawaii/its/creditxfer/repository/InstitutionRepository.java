@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import edu.hawaii.its.creditxfer.type.Institution;
 
-
 public interface InstitutionRepository extends JpaRepository<Institution, Integer> {
 
     Optional<Institution> findByCode(String code);
