@@ -86,7 +86,7 @@ public class MessageServiceTest {
         assertSame(m0, m2);
         assertSame(m1, m2);
 
-        //Put the original text back.
+        // Put the original text back.
         m0.setText(text);
         messageService.update(m0);
         assertTrue(m0.getText().startsWith("University of Hawaii Information"));
@@ -99,9 +99,9 @@ public class MessageServiceTest {
         m3.setTypeId(1);
         messageService.add(m3);
 
-        m3 = messageService.findMessage(999);
         Message m4 = messageService.findMessage(999);
         assertEquals(m4, m3);
+        m3 = messageService.findMessage(999);
         assertSame(m4, m3);
     }
 

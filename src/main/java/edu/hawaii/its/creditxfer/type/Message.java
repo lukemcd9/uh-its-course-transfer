@@ -58,15 +58,6 @@ public class Message implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Message [id=" + id
-            + ", typeId=" + typeId
-            + ", enabled=" + enabled
-            + ", text=" + text
-            + "]";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -91,5 +82,14 @@ public class Message implements Serializable {
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Message [id=" + id
+            + ", typeId=" + typeId
+            + ", enabled=" + enabled
+            + ", text=" + text
+            + "]";
     }
 }

@@ -65,12 +65,6 @@ public class Action implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Action [id=" + id + ", enabled=" + enabled
-                + ", code=" + code + ", description=" + description + "]";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -95,5 +89,11 @@ public class Action implements Serializable {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Action [id=" + id + ", enabled=" + enabled
+            + ", code=" + code + ", description=" + description + "]";
     }
 }
