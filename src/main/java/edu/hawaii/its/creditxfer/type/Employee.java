@@ -37,4 +37,20 @@ public class Employee implements Serializable {
         return "Employee [uhNumber=" + uhNumber + "]";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Employee employee = (Employee) o;
+
+        return uhNumber != null ? uhNumber.equals(employee.uhNumber) : employee.uhNumber == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return uhNumber != null ? uhNumber.hashCode() : 0;
+    }
 }

@@ -7,6 +7,8 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import static org.hamcrest.CoreMatchers.not;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,9 +99,83 @@ public class MessageServiceTest {
         m3.setTypeId(1);
         messageService.add(m3);
 
+        m3 = messageService.findMessage(999);
         Message m4 = messageService.findMessage(999);
         assertEquals(m4, m3);
         assertSame(m4, m3);
     }
 
+    @Test
+    public void testEquals() {
+        Message m1 = new Message();
+        assertThat(m1, equalTo(m1));
+        Message m2 = null;
+        assertThat(m1, not(equalTo(m2)));
+        m2 = new Message();
+        assertThat(m1, equalTo(m2));
+        m1.setId(1);
+        assertThat(m1, not(equalTo(m2)));
+        m2.setId(1);
+        assertThat(m1, equalTo(m2));
+        m2.setId(2);
+        assertThat(m1, not(equalTo(m2)));
+        m1.setId(null);
+        m2.setId(2);
+        assertThat(m1, not(equalTo(m2)));
+        // Wrong class.
+        assertThat(m1, not(equalTo(new String())));
+    }
+
+    @Test
+    public void testHashCode() {
+        Message m0 = new Message();
+        Message m1 = new Message();
+        assertThat(m0, equalTo(m1));
+        assertThat(m1, equalTo(m0));
+        assertThat(m0.hashCode(), equalTo(m1.hashCode()));
+        assertThat(m1.hashCode(), equalTo(m0.hashCode()));
+        m0.setId(1);
+        assertThat(m0, not(equalTo(m1)));
+        assertThat(m1, not(equalTo(m0)));
+        assertThat(m0.hashCode(), not(equalTo(m1.hashCode())));
+        assertThat(m1.hashCode(), not(equalTo(m0.hashCode())));
+        m1.setId(m0.getId());
+        assertThat(m0, equalTo(m1));
+        assertThat(m1, equalTo(m0));
+        assertThat(m0.hashCode(), equalTo(m1.hashCode()));
+        assertThat(m1.hashCode(), equalTo(m0.hashCode()));
+        m0.setTypeId(1);
+        assertThat(m0, not(equalTo(m1)));
+        assertThat(m1, not(equalTo(m0)));
+        assertThat(m0.hashCode(), not(equalTo(m1.hashCode())));
+        assertThat(m1.hashCode(), not(equalTo(m0.hashCode())));
+        m1.setTypeId(1);
+        assertThat(m0, equalTo(m1));
+        assertThat(m1, equalTo(m0));
+        assertThat(m0.hashCode(), equalTo(m1.hashCode()));
+        assertThat(m1.hashCode(), equalTo(m0.hashCode()));
+        m0.setText("text");
+        assertThat(m0, not(equalTo(m1)));
+        assertThat(m1, not(equalTo(m0)));
+        assertThat(m0.hashCode(), not(equalTo(m1.hashCode())));
+        assertThat(m1.hashCode(), not(equalTo(m0.hashCode())));
+        m1.setText("text");
+        assertThat(m0, equalTo(m1));
+        assertThat(m1, equalTo(m0));
+        assertThat(m0.hashCode(), equalTo(m1.hashCode()));
+        assertThat(m1.hashCode(), equalTo(m0.hashCode()));
+        m0.setEnabled("enabled");
+        assertThat(m0, not(equalTo(m1)));
+        assertThat(m1, not(equalTo(m0)));
+        assertThat(m0.hashCode(), not(equalTo(m1.hashCode())));
+        assertThat(m1.hashCode(), not(equalTo(m0.hashCode())));
+        m1.setEnabled("enabled");
+        assertThat(m0, equalTo(m1));
+        assertThat(m1, equalTo(m0));
+        assertThat(m0.hashCode(), equalTo(m1.hashCode()));
+        assertThat(m1.hashCode(), equalTo(m0.hashCode()));
+        assertThat(m0.equals(m0), equalTo(true));
+        assertThat(m0.equals(null), equalTo(false));
+        assertThat(m0.equals(new String()), equalTo(false));
+    }
 }

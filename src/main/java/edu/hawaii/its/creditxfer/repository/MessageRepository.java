@@ -10,5 +10,4 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 
     @Override
     Optional<Message> findById(Integer id);
-
 }

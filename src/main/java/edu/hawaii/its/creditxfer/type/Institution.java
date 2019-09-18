@@ -62,4 +62,31 @@ public class Institution {
             + ", stateProvince=" + stateProvince
             + "]";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Institution that = (Institution) o;
+
+        if (code != null ? !code.equals(that.code) : that.code != null)
+            return false;
+        if (description != null ? !description.equals(that.description) : that.description != null)
+            return false;
+        if (city != null ? !city.equals(that.city) : that.city != null)
+            return false;
+        return stateProvince != null ? stateProvince.equals(that.stateProvince) : that.stateProvince == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = code != null ? code.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (stateProvince != null ? stateProvince.hashCode() : 0);
+        return result;
+    }
 }

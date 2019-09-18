@@ -29,8 +29,7 @@ public class ActionServiceImpl implements ActionService {
     private ActionLoggerRepository actionLoggerRepository;
 
     @Transactional(readOnly = true)
-    public List<Action> findActions() { return actionRepository.findAllByOrderById();
-    }
+    public List<Action> findActions() { return actionRepository.findAllByOrderById(); }
 
     public Action findAction(Long id) {
         return actionRepository.findById(id);
@@ -45,5 +44,4 @@ public class ActionServiceImpl implements ActionService {
     public long logCount() {
         return actionLoggerRepository.count();
     }
-
 }
