@@ -31,21 +31,20 @@ public class AdministratorServiceTest {
         assertFalse(administratorService.exists("  "));
         assertFalse(administratorService.exists("no-way-none"));
 
-        //testEmptyAdmin
+        // testEmptyAdmin
         administratorService.getAdmins().clear();
         assertFalse(administratorService.exists("89999999"));
         assertFalse(administratorService.exists("10000001"));
 
-        //testNullAdmin
+        // testNullAdmin
         administratorService.setAdmins(null);
         assertFalse(administratorService.exists("89999999"));
         assertFalse(administratorService.exists("10000001"));
-
     }
 
     @Test
     public void testBrokenConfig() {
-        AdministratorService administratorService = new AdministratorServiceImpl();
+        AdministratorService administratorService = new AdministratorService();
 
         assertFalse(administratorService.exists("10000001"));
         assertFalse(administratorService.exists("10000002"));
@@ -55,5 +54,4 @@ public class AdministratorServiceTest {
         assertFalse(administratorService.exists("  "));
         assertFalse(administratorService.exists("no-way-none"));
     }
-
 }
