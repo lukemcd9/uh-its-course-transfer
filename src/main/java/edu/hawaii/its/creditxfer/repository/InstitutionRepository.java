@@ -9,6 +9,8 @@ import edu.hawaii.its.creditxfer.type.Institution;
 
 public interface InstitutionRepository extends JpaRepository<Institution, Integer> {
 
+    List<Institution> findAll();
+
     Optional<Institution> findByCode(String code);
 
     List<Institution> findAllByStateProvince(String state);

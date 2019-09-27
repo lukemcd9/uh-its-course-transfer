@@ -179,6 +179,12 @@ public class HomeControllerTest {
             .andExpect(view().name("help/fonts"));
     }
 
+    @Test public void requestUrlInstitutions() throws Exception {
+        mockMvc.perform(get("/institutions"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("institutions"));
+    }
+
     @Test
     public void requestUrl404() throws Exception {
         mockMvc.perform(get("/404"))

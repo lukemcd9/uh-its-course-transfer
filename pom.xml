@@ -39,8 +39,8 @@
         <hibernate.version>5.2.3.Final</hibernate.version>
         <cas.client-version>3.4.1</cas.client-version>
         <jquery-version>3.2.0</jquery-version>
-        <angularjs-version>1.5.8</angularjs-version>
-        <angular-mocks-version>1.5.8</angular-mocks-version>
+        <angularjs-version>1.7.8</angularjs-version>
+        <angular-mocks-version>1.7.5</angular-mocks-version>
         <thymeleaf.extras-version>3.0.4.RELEASE</thymeleaf.extras-version>
 
         <javax.servlet.version>3.0.1</javax.servlet.version>
