@@ -23,4 +23,8 @@ public class InstitutionService {
     public List<Institution> findAllInstitutionsByState(String state) {
         return institutionRepository.findAllByStateProvince(state);
     }
+
+    public List<Institution> findAll() {
+        return institutionRepository.findAll();
+    }
 }

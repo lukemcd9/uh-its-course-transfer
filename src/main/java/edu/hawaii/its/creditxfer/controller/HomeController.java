@@ -109,6 +109,12 @@ public class HomeController {
         return "help/fonts";
     }
 
+    @GetMapping(value= "/institutions")
+    public String institutions() {
+        logger.debug("User at institutions.");
+        return "institutions";
+    }
+
     @RequestMapping(value = "/denied", method = RequestMethod.GET)
     public String denied() {
         return "denied";
