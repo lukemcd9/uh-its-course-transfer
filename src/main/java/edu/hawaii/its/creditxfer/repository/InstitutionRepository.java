@@ -10,7 +10,7 @@ import edu.hawaii.its.creditxfer.type.Institution;
 
 public interface InstitutionRepository extends JpaRepository<Institution, Integer> {
 
-    @Query("select i from Institution i where i.city <> 'DO NOT USE' or i.city <> 'Do Not Use'")
+    @Query("select i from Institution i where i.city <> 'DO NOT USE' and i.city <> 'Do Not Use'")
     List<Institution> findAll();
 
     Optional<Institution> findByCode(String code);
