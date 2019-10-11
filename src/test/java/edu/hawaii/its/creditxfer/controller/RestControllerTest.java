@@ -56,7 +56,7 @@ public class RestControllerTest {
     public void httpGetInstitutions() throws Exception {
         MvcResult result = mockMvc.perform(get("/api/institutions"))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("data", hasSize(5977)))
+            .andExpect(jsonPath("data", hasSize(5949)))
             .andReturn();
         assertNotNull(result);
     }
