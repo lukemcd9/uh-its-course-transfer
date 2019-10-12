@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.hawaii.its.creditxfer.repository.InstitutionRepository;
 import edu.hawaii.its.creditxfer.type.Institution;
 
+import static edu.hawaii.its.creditxfer.repository.specification.InstitutionSpecification.excludeCity;
+
 @Service
 public class InstitutionService {
 
@@ -25,6 +27,6 @@ public class InstitutionService {
     }
 
     public List<Institution> findAll() {
-        return institutionRepository.findAll();
+        return institutionRepository.findAll(excludeCity("Do Not Use"));
     }
 }
