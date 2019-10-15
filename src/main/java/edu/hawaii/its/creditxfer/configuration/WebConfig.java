@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan(basePackages = { "edu.hawaii.its.creditxfer" },
     excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = Configuration.class) })
-@EntityScan(basePackages = { "edu.hawaii.its.holiday.type" })
+@EntityScan(basePackages = { "edu.hawaii.its.creditxfer.type" })
 @EnableJpaRepositories(basePackages = { "edu.hawaii.its.creditxfer.repository" })
 @EnableTransactionManagement
 public class WebConfig {
