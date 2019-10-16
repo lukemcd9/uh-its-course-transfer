@@ -12,8 +12,9 @@ import edu.hawaii.its.creditxfer.type.Institution_;
 
 public class InstitutionSpecification {
 
+    // Constructor
     private InstitutionSpecification() {
-        // Empty Constructor
+        // Empty
     }
 
     public static Specification<Institution> excludeCity(String city) {
@@ -24,6 +25,20 @@ public class InstitutionSpecification {
                 return predicate;
             }
         };
+    }
+
+    public static Specification<Institution> excludeDescription(String description) {
+        return new Specification<Institution>() {
+            @Override
+            public Predicate toPredicate(Root<Institution> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                Predicate predicate = criteriaBuilder.notLike(criteriaBuilder.lower(root.get(Institution_.description)), ("%" + description + "%").toLowerCase());
+                return predicate;
+            }
+        };
+    }
+
+    public static Specification<Institution> exclude(String string) {
+        return Specification.where(excludeCity(string)).and(excludeDescription(string));
     }
 
 }
