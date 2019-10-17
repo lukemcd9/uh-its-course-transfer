@@ -4,8 +4,9 @@ import javax.persistence.metamodel.SingularAttribute;
 
 public class Institution_ {
 
+    // Constructor
     private Institution_() {
-        //Empty constructor
+        // Empty
     }
 
     public static volatile SingularAttribute<Institution, String> code;
