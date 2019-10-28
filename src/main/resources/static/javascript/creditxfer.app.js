@@ -1,6 +1,6 @@
 "use strict"
 
-var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select"]);
+var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select", "ngSanitize"]);
 
 function InstitutionJsController($scope, dataProvider) {
   var url = "api/institutions";
@@ -70,4 +70,9 @@ creditxferApp.filter('propsFilter', function() {
 
     return out;
   }
+});
+
+// For ngSanitize deprecated method 'lowercase'
+angular.module("creditxferApp").config(function() {
+  angular.lowercase = angular.$$lowercase;
 });
