@@ -341,3 +341,33 @@ button.redify-link {
     }
 
 }
+
+.typeahead-institutions .dropdown-menu {
+    position: absolute;
+    display: block;
+    min-width: 160px;
+    white-space: nowrap;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.typeahead-institutions .dropdown-menu li {
+    font-size: 16px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: normal;
+}
+
+.typeahead-institutions .dropdown-menu li > a {
+    color: #333;
+    text-decoration: none;
+}
+
+.typeahead-institutions .dropdown-menu li.active {
+    background-color: #eee;
+}
+
+.ui-select-container {
+    width:  300px;
+}
