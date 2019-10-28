@@ -185,6 +185,18 @@ public class HomeControllerTest {
             .andExpect(view().name("institutions"));
     }
 
+    @Test public void requestUrlInstitutions2() throws Exception {
+        mockMvc.perform(get("/institutions2"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("institutions2"));
+    }
+
+    @Test public void requestUrlInstitutions3() throws Exception {
+        mockMvc.perform(get("/institutions3"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("institutions3"));
+    }
+
     @Test
     public void requestUrl404() throws Exception {
         mockMvc.perform(get("/404"))
