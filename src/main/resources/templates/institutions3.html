@@ -18,12 +18,11 @@
           <div class="col-xs-7 col-md-offset-2 col-md-7 text-right typeahead-institutions">
             <ui-select class="form-group" ng-model="institutions.selected">
               <ui-select-match placeholder="Search for institution...">{{$select.selected.description}}</ui-select-match>
-              <ui-select-choices minimum-input-length="4" group-by="'stateProvince'" repeat="item in institutions | propsFilter: {description:$select.search}">
+              <ui-select-choices minimum-input-length="4" group-by="'stateProvince'" repeat="item in institutions | propsFilter: {description:$select.search} | limitTo: 400" >
                 <div ng-bind-html="item.description | highlight: $select.search"></div>
               </ui-select-choices>
             </ui-select>
           </div>
-
         </form>
       </div>
     </div>
