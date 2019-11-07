@@ -43,7 +43,7 @@ public class Term {
     public static String extractYear(String termCode) {
         String baseYear = termCode.substring(0, 4);
         char term = termCode.charAt(4);
-        if (term == 0 || term == 1 || term == 2) {
+        if (term == '0' || term == '1' || term == '2') {
             return Integer.toString(Integer.parseInt(baseYear) - 1);
         }
         return baseYear;
