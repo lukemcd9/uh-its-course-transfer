@@ -98,4 +98,18 @@ public class Course {
     public void setCourseNumber(String courseNumber) {
         this.courseNumber = courseNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Course [" +
+            "attribute=" + attribute +
+            ", start=" + start +
+            ", startDescription=" + startDescription +
+            ", end=" + end +
+            ", endDescription=" + endDescription +
+            ", mifValue=" + mifValue +
+            ", subject=" + subject +
+            ", courseNumber=" + courseNumber +
+            ']';
+    }
 }

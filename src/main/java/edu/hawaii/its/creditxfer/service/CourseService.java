@@ -17,4 +17,20 @@ public class CourseService {
     public List<Course> findAll() {
         return courseRepository.findAll();
     }
+
+    public List<Course> findAllByAttribute(String attribute) {
+        return courseRepository.findAllByAttribute(attribute);
+    }
+
+    public List<Course> findAllBySubject(String subject) {
+        return courseRepository.findAllBySubject(subject);
+    }
+
+    public List<Course> findAllBySubjectAndCourseNumber(String subject, String courseNumber) {
+        return courseRepository.findAllBySubjectAndCourseNumber(subject, courseNumber);
+    }
+
+    public List<Course> findAllByMifValue(String mifValue) {
+        return courseRepository.findAllByMifValueOrderBySubject(mifValue);
+    }
 }
