@@ -66,7 +66,7 @@ public class HomeControllerTest {
     public void testController() throws Exception {
         Model model = new ExtendedModelMap();
 
-        assertEquals("gate", homeController.gate(Locale.US, model));
+        assertEquals("home", homeController.home(Locale.US, model));
 
         assertFalse(model.asMap().entrySet().isEmpty());
         assertTrue(model.asMap().keySet().contains("systemMessage"));
@@ -78,12 +78,12 @@ public class HomeControllerTest {
         Model model = new ExtendedModelMap();
 
         homeController.setMessageNumber(9999);
-        homeController.gate(Locale.US, model);
+        homeController.home(Locale.US, model);
         assertTrue(model.asMap().entrySet().isEmpty());
         assertFalse(model.asMap().keySet().contains("systemMessage"));
 
         homeController.setMessageService(null);
-        homeController.gate(Locale.US, model);
+        homeController.home(Locale.US, model);
         assertTrue(model.asMap().entrySet().isEmpty());
         assertFalse(model.asMap().keySet().contains("systemMessage"));
     }
@@ -91,13 +91,6 @@ public class HomeControllerTest {
     @Test
     public void requestUrlHome() throws Exception {
         mockMvc.perform(get("/home"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("gate"));
-    }
-
-    @Test
-    public void requestUrlGate() throws Exception {
-        mockMvc.perform(get("/gate"))
             .andExpect(status().isOk())
             .andExpect(view().name("home"));
     }
