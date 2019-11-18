@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="header :: copy"></head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 <body ng-app="creditxferApp">
     <div class="bg-dark">
-      <div class ="container">
+      <div class="container">
         <div class="row pt-0 pb-0">
           <div class="navbar col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <nav class="navbar-nav navbar-expand navbar-dark">
-              <ul class="navbar-nav">
+              <ul class="navbar-nav align-bottom">
                 <li class="nav-item"><a class="nav-item nav-link" href="#">Home</a></li>
                 <li class="nav-item"><a class="nav-item nav-link" href="#">Calendar</a></li>
                 <li class="nav-item"><a class="nav-item nav-link" href="#">Directory</a></li>
@@ -18,8 +17,8 @@
               </ul>
             </nav>
           </div>
-          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 align-bottom">
-            <nav class="navbar-nav navbar-expand navbar-dark justify-content-end">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 align-content-center">
+            <nav class="navbar-nav navbar-expand navbar-dark justify-content-end top-padding: 5px">
               <ul class="navbar-nav pt-2">
                 <li class="nav-item"><a class="fa fa-twitter fa-lg text-white"></a></li>
                 <li class="nav-item"><a class="fa fa-facebook fa-lg text-white"></a> </li>
@@ -32,6 +31,7 @@
         </div>
       </div>
     </div>
+
     <!-- UH System top nav bar end-->
     <div class="bg-white pt-4 pb-4">
       <div class="container">
