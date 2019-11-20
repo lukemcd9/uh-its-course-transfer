@@ -56,7 +56,7 @@ public class InstitutionRestControllerTest {
         MvcResult result = mockMvc.perform(get("/api/institutions"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("data", hasSize(5948)))
+            .andExpect(jsonPath("$", hasSize(5948)))
             .andReturn();
         assertNotNull(result);
     }

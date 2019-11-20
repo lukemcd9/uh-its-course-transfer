@@ -14,7 +14,7 @@ function InstitutionJsController($scope, dataProvider) {
 
   $scope.loadData = function() {
     dataProvider.loadData(function(response) {
-      $scope.institutions = response.data.data;
+      $scope.institutions = response.data;
       $scope.institutions.forEach(function(i) {
         $scope.institution = i;
         var s = i.stateProvince;
