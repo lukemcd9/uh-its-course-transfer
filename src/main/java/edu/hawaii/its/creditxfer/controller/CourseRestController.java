@@ -73,4 +73,5 @@ public class CourseRestController {
             .ok()
             .body(data);
     }
+
 }
