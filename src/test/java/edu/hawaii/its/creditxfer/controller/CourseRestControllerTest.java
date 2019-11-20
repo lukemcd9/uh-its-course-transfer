@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -20,14 +19,14 @@ import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class RestControllerTest {
+public class CourseRestControllerTest {
 
     private final MediaType APPLICATION_JSON_UTF8 =
         new MediaType(MediaType.APPLICATION_JSON.getType(),
@@ -35,7 +34,7 @@ public class RestControllerTest {
             Charset.forName("utf8"));
 
     @Autowired
-    private InstitutionRestController restController;
+    private CourseRestController restController;
 
     @Autowired
     private WebApplicationContext context;
@@ -53,18 +52,10 @@ public class RestControllerTest {
     }
 
     @Test
-    public void httpGetInstitutions() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/institutions"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("data", hasSize(5948)))
-            .andReturn();
-        assertNotNull(result);
-    }
-
-    @Test
     public void httpGetCourses() throws Exception {
         MvcResult result = mockMvc.perform(get("/api/courses"))
             .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("data", hasSize(9486)))
             .andReturn();
         assertNotNull(result);
@@ -74,6 +65,7 @@ public class RestControllerTest {
     public void httpGetCoursesByAttribute() throws Exception {
         MvcResult result = mockMvc.perform(get("/api/courses/attribute/dh"))
             .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("data", hasSize(1741)))
             .andExpect(jsonPath("data[0].attribute").value("DH"))
             .andExpect(jsonPath("data[0].start").value("201910"))
@@ -91,6 +83,7 @@ public class RestControllerTest {
     public void httpGetCoursesBySubject() throws Exception {
         MvcResult result = mockMvc.perform(get("/api/courses/subject/ics"))
             .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("data", hasSize(33)))
             .andExpect(jsonPath("data[0].attribute").value("FS"))
             .andExpect(jsonPath("data[0].start").value("200810"))
@@ -108,6 +101,7 @@ public class RestControllerTest {
     public void httpGetCoursesBySubjectAndCourseNumber() throws Exception {
         MvcResult result = mockMvc.perform(get("/api/courses/subject/ics/number/141"))
             .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("data", hasSize(12)))
             .andExpect(jsonPath("data[0].attribute").value("FS"))
             .andExpect(jsonPath("data[0].start").value("200810"))
@@ -125,6 +119,7 @@ public class RestControllerTest {
     public void httpGetCoursesByMif() throws Exception {
         MvcResult result = mockMvc.perform(get("/api/courses/mif/kap"))
             .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("data", hasSize(1039)))
             .andExpect(jsonPath("data[0].attribute").value("DH"))
             .andExpect(jsonPath("data[0].start").value("200310"))
@@ -137,7 +132,5 @@ public class RestControllerTest {
             .andReturn();
         assertNotNull(result);
     }
-
-
 
 }
