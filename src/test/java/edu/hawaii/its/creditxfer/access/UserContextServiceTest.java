@@ -37,8 +37,6 @@ public class UserContextServiceTest {
         assertThat(user.getUsername(), equalTo("admin"));
         assertTrue(user.hasRole(Role.ADMIN));
 
-        userContextService.setCurrentUhuuid("87654321");
-        assertThat(userContextService.getCurrentUhuuid(), equalTo("87654321"));
     }
 
     @Test
@@ -53,9 +51,6 @@ public class UserContextServiceTest {
         assertThat(user.getUsername(), equalTo("user"));
         assertFalse(user.hasRole(Role.ADMIN));
 
-        // UhUuid should not change.
-        userContextService.setCurrentUhuuid("87654321");
-        assertThat(userContextService.getCurrentUhuuid(), equalTo("12345678"));
     }
 
     @Test
