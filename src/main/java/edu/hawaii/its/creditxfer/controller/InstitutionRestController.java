@@ -22,14 +22,13 @@ public class InstitutionRestController {
     @Autowired
     private InstitutionService institutionService;
 
-    @GetMapping(value = "/api/institutions", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonData<List<Institution>>> institutions() {
+    @GetMapping(value = "/api/institutions")
+    public ResponseEntity<List<Institution>> institutions() {
         logger.info("Entered REST institutions...");
         List<Institution> institutions = institutionService.findAll();
-        JsonData<List<Institution>> data = new JsonData<>(institutions);
         return ResponseEntity
                 .ok()
-                .body(data);
+                .body(institutions);
     }
 
 }

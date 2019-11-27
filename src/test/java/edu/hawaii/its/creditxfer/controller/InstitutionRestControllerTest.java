@@ -1,33 +1,40 @@
 package edu.hawaii.its.creditxfer.controller;
 
+
+import java.nio.charset.Charset;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
-import edu.hawaii.its.creditxfer.configuration.AppConfig;
-import edu.hawaii.its.creditxfer.configuration.AppConfigRun;
 import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
-@ContextConfiguration(classes = {AppConfig.class, AppConfigRun.class})
-public class ListControllerTest {
+public class InstitutionRestControllerTest {
+
+    private final MediaType APPLICATION_JSON_UTF8 =
+        new MediaType(MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(),
+            Charset.forName("utf8"));
 
     @Autowired
-    ListController listController;
+    private InstitutionRestController restController;
 
     @Autowired
     private WebApplicationContext context;
@@ -36,20 +43,22 @@ public class ListControllerTest {
 
     @Before
     public void setUp() {
-        mockMvc = webAppContextSetup(context)
-            .apply(springSecurity())
-            .build();
+        mockMvc = webAppContextSetup(context).build();
     }
 
     @Test
     public void testConstruction() {
-        assertNotNull(listController);
+        assertNotNull(restController);
     }
 
     @Test
-    public void requestUrlList() throws Exception {
-        mockMvc.perform(get("/li"))
+    public void httpGetInstitutions() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/institutions"))
             .andExpect(status().isOk())
-            .andExpect(view().name("list"));
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("$", hasSize(5948)))
+            .andReturn();
+        assertNotNull(result);
     }
+
 }
