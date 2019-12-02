@@ -63,10 +63,10 @@ public class AuthorizationServiceTest {
         assertFalse(roleHolder.contains(Role.EMPLOYEE));
 
         roleHolder = authorizationService.fetchRoles("10000006");
-        assertThat(roleHolder.size(), equalTo(1));
-        assertTrue(roleHolder.contains(Role.ANONYMOUS));
-        assertFalse(roleHolder.contains(Role.USER));
-        assertFalse(roleHolder.contains(Role.ADMIN));
+        assertThat(roleHolder.size(), equalTo(2));
+        assertFalse(roleHolder.contains(Role.ANONYMOUS));
+        assertTrue(roleHolder.contains(Role.USER));
+        assertTrue(roleHolder.contains(Role.ADMIN));
         assertFalse(roleHolder.contains(Role.EMPLOYEE));
 
         roleHolder = authorizationService.fetchRoles("11668149");
