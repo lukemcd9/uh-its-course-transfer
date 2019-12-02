@@ -38,9 +38,8 @@ public class RoleHolderTest {
         roles = new LinkedHashSet<>();
         roles.add(Role.ANONYMOUS);
         roles.add(Role.USER);
-        roles.add(Role.EMPLOYEE);
         roleHolder = new RoleHolder(roles);
-        assertThat(roleHolder.size(), equalTo(3));
+        assertThat(roleHolder.size(), equalTo(2));
     }
 
     @Test
@@ -51,12 +50,9 @@ public class RoleHolderTest {
         assertThat(roleHolder.size(), equalTo(1));
         roleHolder.add(Role.USER);
         assertThat(roleHolder.size(), equalTo(2));
-        roleHolder.add(Role.EMPLOYEE);
-        assertThat(roleHolder.size(), equalTo(3));
 
         assertThat(roleHolder.toString(), containsString("ROLE_ANONYMOUS"));
         assertThat(roleHolder.toString(), containsString("ROLE_USER"));
-        assertThat(roleHolder.toString(), containsString("ROLE_EMPLOYEE"));
     }
 
     @Test
