@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.hawaii.its.creditxfer.access.User;
-import edu.hawaii.its.creditxfer.action.ActionRecorder;
 import edu.hawaii.its.creditxfer.access.UserContextService;
+import edu.hawaii.its.creditxfer.action.ActionRecorder;
 import edu.hawaii.its.creditxfer.service.MessageService;
 import edu.hawaii.its.creditxfer.type.Message;
 

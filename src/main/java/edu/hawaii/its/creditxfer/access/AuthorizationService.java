@@ -1,7 +1,17 @@
 package edu.hawaii.its.creditxfer.access;
 
-public interface AuthorizationService {
-    public RoleHolder fetchRoles(String uhUuid);
+import org.springframework.stereotype.Service;
 
-    public RoleHolder fetchRoles(String uhUuid, boolean isAuthenticated);
+@Service
+public class AuthorizationService {
+    
+    public RoleHolder fetchRoles(String uhUuid) {
+        RoleHolder roleHolder = new RoleHolder();
+
+        roleHolder.add(Role.USER);
+        roleHolder.add(Role.ADMIN);
+
+        return roleHolder;
+    }
+
 }
