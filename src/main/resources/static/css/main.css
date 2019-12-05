@@ -6,25 +6,35 @@ html {
 }
 
 body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 16px;
+    font-family: "Open Sans", arial,sans-serif;
+    font-size: 15px;
     font-weight: 300;
+    line-height: 1.6;
 
-    padding-top: 7em;
-    padding-bottom: 50px;
-    background-color: white;
+    margin: 0px;
 }
-
+h1 {
+    font-size: 30px;
+    line-height: 2.0em;
+}
+h2 {
+    font-size: 28px;
+}
 h3 {
-   color: #BD9319;
+    color: #BD9319;
+    font-size: 22px;
+    font-style: italic;
+}
+h4 {
+    font-size: 1.2rem;
 }
 
-a {
+.a {
     color: #0275d8;
     text-decoration: none;
 }
 
-a:hover {
+.a:hover {
     color: #0275d8;
     text-decoration: underline;
 }
@@ -52,20 +62,45 @@ p.uh-align-left {
     border-color: #BD9319;
 }
 */
-
-td.uh-pre {
-    white-space: pre;           /* CSS 2.0 */
-    white-space: pre-wrap;      /* CSS 2.1 */
-    white-space: pre-line;      /* CSS 3.0 */
-    white-space: -pre-wrap;     /* Opera 4-6 */
-    white-space: -o-pre-wrap;   /* Opera 7 */
-    white-space: -moz-pre-wrap; /* Mozilla */
-    white-space: -hp-pre-wrap;  /* HP Printers */
-    display: inline-block;
-    word-wrap: break-word;
-    word-break: break-all;
+.fa:hover {
+  opacity: 0.7;
 }
-
+.title, .title a{
+  color:#333;
+  text-decoration: none;
+}
+.list-group a:hover{
+  background-color:#064f30;
+  color:#fff;
+}
+.bg-gold{
+  background: #b4975e;
+}
+.search-box{
+  color:#fff;
+  background: #b4975e;
+}
+.btn-gold-search{
+  background-color: #8f703d;
+  color:#fff;
+  border:1px solid #fff;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+.result_box{
+  border:1px solid #c8c8c8;
+  padding: 30px;
+  margin: 0 0 20px 0;
+}
+.result_box li{
+  list-style:decimal;
+}
+.footer{
+  color:#fff;
+}
+.footer a{
+  color:#c8c8c8;
+}
 .uh-branding-one {
     font-family: cinzel-regular, serif;
     font-size: 1.6em;
@@ -81,22 +116,23 @@ td.uh-pre {
 }
 
 .navbar {
-    background-color: white;
+    margin: 0;
+    padding: 0;
+    line-height: 10px;
 }
 .fixed-top .nav {
     padding-left: 0px;
     padding-right: 20px;
-    background-color: white;
 }
-.fixed-top .navbar-brand {
+.fixed-top .nav-brand {
     padding-right: 0px;
 }
-.fixed-top .navbar-brand > img {
+.fixed-top .nav-brand > img {
     height: 50px;
     width: 50px;
     background-color: transparent;
 }
-.navbar-brand.uh-nav-app-name {
+.nav-brand.uh-nav-app-name {
     height: 50px;
     width: auto;
     color: #BD9319;
@@ -107,15 +143,20 @@ td.uh-pre {
     font-weight: normal;
     font-size: 20px;
 }
-.navbar-brand.uh-nav-app-name:hover {
+.nav-brand.uh-nav-app-name:hover {
     color: #b08a17;
+}
+.nav-item {
+  margin-left: -5px;
+  margin-right: 5%;
+  white-space: nowrap;
 }
 .dropshadow {
     text-shadow: 1px 1px 3px rgba(150, 150, 150, 1);
 }
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:focus,
-.navbar-default .navbar-nav > .open > a:hover {
+.nav-default .nav-nav > .open > a,
+.nav-default .nav-nav > .open > a:focus,
+.nav-default .nav-nav > .open > a:hover {
     color: #555;
     background-color: white;
 }
@@ -172,6 +213,15 @@ td.uh-pre {
 input.form-control.full-width {
     width: 100%;
 }
+.nopadding {
+  padding: 0 ;
+  margin: 0;
+}
+.fa{
+  padding: 0 0 0 0;
+  margin:0 0 0 20px;
+  color: #fff;
+}
 
 #success_message{ display: none;}
 
@@ -179,24 +229,8 @@ button.redify-link {
     color: #d43f3a;
 }
 
-.pinkify {
-    background-color: pink;
-}
-.goldify {
-    background-color: gold;
-}
-.aquafy {
-    background-color: aqua;
-}
-.yellowify {
-    background-color: #ffff66;
-}
-
 /* -------------------------------------------------------- */
-.btn-wrappable {
-    white-space: normal;
-    text-align: left;
-}
+
 .back-to-top {
     display: inline-block;
     clear: both;
@@ -211,95 +245,6 @@ button.redify-link {
     color: #fff;
     text-decoration: none;
 }
-/* -------------------------------------------------------- */
-
-/* -------------------------------------------------------- */
-@font-face {
-    font-family: cinzel-regular;
-    src: url(/transferdatabase/fonts/Cinzel-Regular.ttf);
-}
-
-@font-face {
-    font-family: cormorant-upright-regular;
-    src: url(/transferdatabase/fonts/CormorantUpright-Regular.ttf);
-}
-
-@font-face {
-    font-family: lato-regular;
-    src: url(/transferdatabase/fonts/Lato-Regular.ttf);
-}
-
-@font-face {
-    font-family: librefranklin-regular;
-    src: url(/transferdatabase/fonts/LibreFranklin-Regular.ttf);
-}
-
-@font-face {
-    font-family: opensans-regular;
-    src: url(/transferdatabase/fonts/OpenSans-Regular.ttf);
-}
-@font-face {
-    font-family: roboto-regular;
-    src: url(/transferdatabase/fonts/Roboto-Regular.ttf);
-}
-
-@font-face {
-    font-family: alegreyasans-regular;
-    src: url(/transferdatabase/fonts/AlegreyaSans-Regular.ttf);
-}
-@font-face {
-    font-family: josefinsans-regular;
-    src: url(/transferdatabase/fonts/JosefinSans-Regular.ttf);
-}
-@font-face {
-    font-family: raleway-regular;
-    src: url(/transferdatabase/fonts/Raleway-Regular.ttf);
-}
-@font-face {
-    font-family: yanonekaffeesatz-regular;
-    src: url(/transferdatabase/fonts/YanoneKaffeesatz-Regular.ttf);
-}
-
-@font-face {
-    font-family: alice-regular;
-    src: url(/transferdatabase/fonts/Alice-Regular.ttf);
-}
-
-@font-face {
-    font-family: marcellus-regular;
-    src: url(/transferdatabase/fonts/Marcellus-Regular.ttf);
-}
-
-@font-face {
-    font-family: ovo-regular;
-    src: url(/transferdatabase/fonts/Ovo-Regular.ttf);
-}
-
-@font-face {
-    font-family: vidaloka-regular;
-    src: url(/transferdatabase/fonts/Vidaloka-Regular.ttf);
-}
-
-@font-face {
-    font-family: playfairdisplaysc-regular;
-    src: url(/transferdatabase/fonts/PlayfairDisplaySC-Regular.ttf);
-}
-
-@font-face {
-    font-family: SourceSerifPro-Regular;
-    src: url(/transferdatabase/fonts/SourceSerifPro-Regular.ttf);
-}
-
-@font-face {
-    font-family: playfairdisplay-regular;
-    src: url(/transferdatabase/fonts/PlayfairDisplay-Regular.ttf);
-}
-/* -------------------------------------------------------- */
-
-/* --------------------------------------*/
-/* --------------------------------------*/
-/* --------------------------------------*/
-
 @media(min-width: 1200px) {
   .container, .container-fluid {
     width: 992px;
@@ -309,7 +254,7 @@ button.redify-link {
 @media(min-width:992px) {
 
     .navbar {
-        min-height: 90px;
+        min-height: 35px;
     }
     .fixed-top .navbar-brand > img {
         position: inherit;

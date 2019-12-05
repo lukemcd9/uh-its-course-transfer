@@ -44,11 +44,13 @@ public class HomeController {
     }
 
     @GetMapping(value = {"/", "/home" })
-    public String gate(Locale locale, Model model) {
-        logger.debug("User at gate. The client locale is {}.", locale);
+    public String home(Locale locale, Model model) {
+        logger.debug("User at home. The client locale is {}.", locale);
 
         try {
             Message message = messageService.findMessage(messageNumber);
+            logger.debug("home; message: " +  message);
+
             if (message != null) {
                 model.addAttribute("systemMessage", message.getText());
             }
@@ -56,12 +58,6 @@ public class HomeController {
             logger.error("Error", e);
         }
 
-        return "gate";
-    }
-
-    @GetMapping(value = { "/gate" })
-    public String home() {
-        logger.debug("User at gate. ");
         return "home";
     }
 
