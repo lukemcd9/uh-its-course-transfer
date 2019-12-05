@@ -4,7 +4,6 @@ public enum Role {
     ANONYMOUS,
     USER,
     UH,
-    EMPLOYEE,
     ADMIN;
 
     public String longName() {

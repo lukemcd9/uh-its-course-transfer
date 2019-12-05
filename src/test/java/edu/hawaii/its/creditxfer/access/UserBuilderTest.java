@@ -74,12 +74,10 @@ public class UserBuilderTest {
         assertEquals("10000004", user.getUhuuid());
 
         // Granted Authorities.
-        assertEquals(2, user.getAuthorities().size());
+        assertEquals(1, user.getAuthorities().size());
         assertFalse(user.hasRole(Role.ANONYMOUS));
         assertTrue(user.hasRole(Role.USER));
-        assertTrue(user.hasRole(Role.ADMIN));
-
-        assertTrue(user.hasRole(Role.ADMIN));
+        assertFalse(user.hasRole(Role.ADMIN));
     }
 
     @Test
@@ -117,10 +115,10 @@ public class UserBuilderTest {
         assertEquals("10000009", user.getUhuuid());
 
         // Granted Authorities.
-        assertEquals(2, user.getAuthorities().size());
+        assertEquals(1, user.getAuthorities().size());
         assertFalse(user.hasRole(Role.ANONYMOUS));
         assertTrue(user.hasRole(Role.USER));
-        assertTrue(user.hasRole(Role.ADMIN));
+        assertFalse(user.hasRole(Role.ADMIN));
     }
 
     @Test
