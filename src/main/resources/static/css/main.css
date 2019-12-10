@@ -167,15 +167,26 @@ p.uh-align-left {
     font-size: 90%;
 }
 
-.footer {
-    position: absolute;
-    padding-top: 5px;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 50px;
-    font-size: 100%;
-    text-align: center;
+/*.footer {*/
+/*    position: absolute;*/
+/*    padding-top: 5px;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    !* Set the fixed height of the footer here *!*/
+/*    height: 50px;*/
+/*    font-size: 100%;*/
+/*    text-align: center;*/
+/*}*/
+
+.footer{
+  position: absolute;
+  padding-top: 5px;
+  bottom: 0;
+  width: 100%;
+  color:#fff;
+}
+.footer a{
+  color:#c8c8c8;
 }
 
 .jumbotron {
@@ -314,5 +325,11 @@ button.redify-link {
 }
 
 .ui-select-container {
-    width:  300px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu {
+  display: block;
+  opactity: 100 !important;
 }

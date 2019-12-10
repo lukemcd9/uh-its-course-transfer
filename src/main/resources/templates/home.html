@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="header :: copy"></head>
-<body ng-app="creditxferApp">
+<body ng-app="creditxferApp" ng-controller="InstitutionJsController" data-ng-init="init()">
     <div class="bg-dark">
       <div class="container">
         <div class="row pt-0 pb-0">
@@ -51,7 +51,7 @@
     <!-- UH system header end-->
     <div class="bg-light pt-2 pb-2 border-top border-bottom">
       <div class="container" >
-        <h5 class="title"><a href="index.html">UH System Course Transfer Database</a></h5>
+        <h5 class="title"><a href="/" th:href="@{/}">UH System Course Transfer Database</a></h5>
       </div>
     </div>
     <!-- title bar end-->
@@ -60,7 +60,14 @@
         <form class="form-row">
           <div class="form-group col-md-4">
             <label for="">Transferring from</label>
-            <input type="text" class="form-control" id=" " placeholder="Type your institution" >
+              <div class="form-group">
+              <ui-select ng-model="institutions.selected" theme="bootstrap">
+                <ui-select-match placeholder="Type your institution">{{$select.selected.description}}</ui-select-match>
+                <ui-select-choices minimum-input-length="4" group-by="'stateProvince'" repeat="item in institutions | propsFilter: {description:$select.search} | limitTo: 400" >
+                  <div ng-bind-html="item.description | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+              </div>
           </div>
           <div class="form-group col-md-4">
             <label for="">Transferring to</label>
