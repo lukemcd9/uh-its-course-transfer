@@ -2,11 +2,14 @@
 
 var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select", "ngSanitize"]);
 
-function InstitutionJsController($scope, dataProvider) {
-  var url = "api/institutions";
+function CreditxferJsController($scope, dataProvider) {
+  var institutionUrl = "api/institutions";
+  var courseUrl = "api/courses";
   $scope.institutions = [];
+  $scope.courses = [];
+  $scope.subjects = [];
+  $scope.available = [];
   $scope.selected = "";
-  $scope.states = [];
 
   $scope.init = function() {
     $scope.loadData();
@@ -15,15 +18,34 @@ function InstitutionJsController($scope, dataProvider) {
   $scope.loadData = function() {
     dataProvider.loadData(function(response) {
       $scope.institutions = response.data;
-      $scope.institutions.forEach(function(i) {
-        $scope.institution = i;
-        var s = i.stateProvince;
-        if ($scope.states.indexOf(s) < 0) {
-          $scope.states.push(s);
-        }
-      });
-      $scope.states.sort();
-    }, url);
+    }, institutionUrl);
+
+    dataProvider.loadData(function(response) {
+      $scope.courses = response.data;
+    }, courseUrl)
+  }
+
+  $scope.filterSubjects = function(mifValue) {
+    $scope.subjects = [];
+    $scope.available = [];
+    $scope.courses.forEach(function(c) {
+      $scope.course = c;
+      var s = c.subject;
+      if ($scope.subjects.indexOf(s) < 0 && c.mifValue === mifValue) {
+        $scope.subjects.push(s);
+      }
+    });
+    $scope.subjects.sort();
+  }
+
+  $scope.filterCourses = function(mifValue, subject) {
+    $scope.available = [];
+    $scope.courses.forEach(function(c) {
+      $scope.course = c;
+      if ($scope.available.indexOf(c) < 0 && c.mifValue === mifValue && c.subject === subject) {
+        $scope.available.push(c);
+      }
+    });
   }
 }
 
@@ -37,7 +59,7 @@ creditxferApp.factory("dataProvider", function($http, $log) {
   };
 });
 
-creditxferApp.controller("InstitutionJsController", InstitutionJsController);
+creditxferApp.controller("CreditxferJsController", CreditxferJsController);
 
 creditxferApp.filter('propsFilter', function() {
   return function(items, props) {
@@ -45,6 +67,7 @@ creditxferApp.filter('propsFilter', function() {
     if(!props.description.length){
       return out;
     }
+
     if (angular.isArray(items)) {
       items.forEach(function(item) {
         var itemMatches = false;
