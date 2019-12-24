@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,14 +21,13 @@ public class InstitutionRestController {
     @Autowired
     private InstitutionService institutionService;
 
-    @GetMapping(value = "/api/institutions", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonData<List<Institution>>> institutions() {
+    @GetMapping(value = "/api/institutions")
+    public ResponseEntity<List<Institution>> institutions() {
         logger.info("Entered REST institutions...");
         List<Institution> institutions = institutionService.findAll();
-        JsonData<List<Institution>> data = new JsonData<>(institutions);
         return ResponseEntity
                 .ok()
-                .body(data);
+                .body(institutions);
     }
 
 }

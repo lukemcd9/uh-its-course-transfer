@@ -1,38 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="copy" th:remove="tag">
 
-    <script type="text/javascript" th:src="@{/javascript/app.js}"              src="javascript/app.js"></script>
-    <script type="text/javascript" th:src="@{/javascript/eligibility.js}" src="javascript/eligibility.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/angularjs/angular.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/angular-sanitize/angular-sanitize.js}"></script>
 
-    <script type="text/javascript" th:src="@{/webjars/angularjs/1.7.8/angular.min.js}"        src="webjars/angularjs/1.7.8/angular.min.js"></script>
-    <script type="text/javascript" th:src="@{/webjars/angular-sanitize/1.3.11/angular-sanitize.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/popper.js/popper.min.js}"></script>
 
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"                      src="webjars/jquery/3.2.0/jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"             src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/popper.min.js}"                  src="webjars/popper.js/1.14.3/popper.min.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/angular-ui-bootstrap/ui-bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/angular-ui-bootstrap/ui-bootstrap-tpls.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/angular-ui-select/select.min.js}"></script>
 
-    <script type="text/javascript" th:src="@{/webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/angular-ui-select/0.19.8/select.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery-sortable/js/jquery-sortable.min.js}"></script>
 
-    <script type="text/javascript" th:src="@{/webjars/jquery-sortable/0.9.13/js/jquery-sortable.min.js}" src="webjars/jquery-sortable/0.9.13/js/jquery-sortable.min.js"></script>
-
-    <script type="text/javascript" th:src="@{/javascript/holiday.util.js}" src="javascript/holiday.util.js"></script>
     <script type="text/javascript" th:src="@{/javascript/creditxfer.app.js?v=110}"></script>
 
 
-  <script type="text/javascript" th:src="@{/webjars/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js}" src="webjars/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script type="text/javascript" th:src="@{/webjars/html5shiv/3.7.3/html5shiv.min.js}"  src="webjars/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script type="text/javascript" th:src="@{/webjars/respond/1.4.2/dest/respond.min.js}" src="webjars/respond/1.4.2/dest/respond.min.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/respond/dest/respond.min.js}"></script>
     <![endif]-->
 
-    <footer  class="footer" th:fragment="copy">
-       <div class="container">
-           <span class='uh-branding-one'>University</span>
-           <span class='uh-branding-two'>of&nbsp;</span>
-           <span class='uh-branding-one'>Hawai&#8216;i</span>
-       </div>
+    <footer  class="footer bg-dark pt-4" th:fragment="copy">
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-4 col-sm-5 text-center "> <img class="img-fluid mb-4" th:src="@{images/uh-logo-system.png}" srcset="images/uh-logo-system.png 1x, images/uh-logo-system-2x.png 2x"  alt="UH System logo"> </div>
+          <div class="col-md-8 col-sm-7">
+            <p>The University of Hawai&#699;i is an <a href="https://www.hawaii.edu/offices/eeo/policies/?policy=antidisc">equal opportunity/affirmative action institution</a>.</p>
+            <p>Use of this site implies consent with our <a href="https://www.hawaii.edu/policy/docs/temp/ep2.210.pdf" title="UH Usage Policy">Usage Policy</a>.</p>
+          </div>
+          <div class="col-md-2"> </div>
+        </div>
+      </div>
     </footer>
+
 </div>
+</html>

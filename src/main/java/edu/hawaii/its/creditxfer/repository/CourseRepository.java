@@ -10,7 +10,7 @@ import edu.hawaii.its.creditxfer.type.Course;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-    List<Course> findAll();
+    List<Course> findAllByOrderBySubject();
 
     List<Course> findAllByAttribute(String attribute);
 

@@ -17,14 +17,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class UserBuilderTest {
 
     @Autowired
@@ -76,12 +74,10 @@ public class UserBuilderTest {
         assertEquals("10000004", user.getUhuuid());
 
         // Granted Authorities.
-        assertEquals(2, user.getAuthorities().size());
+        assertEquals(1, user.getAuthorities().size());
         assertFalse(user.hasRole(Role.ANONYMOUS));
         assertTrue(user.hasRole(Role.USER));
-        assertTrue(user.hasRole(Role.ADMIN));
-
-        assertTrue(user.hasRole(Role.ADMIN));
+        assertFalse(user.hasRole(Role.ADMIN));
     }
 
     @Test
@@ -119,10 +115,10 @@ public class UserBuilderTest {
         assertEquals("10000009", user.getUhuuid());
 
         // Granted Authorities.
-        assertEquals(2, user.getAuthorities().size());
+        assertEquals(1, user.getAuthorities().size());
         assertFalse(user.hasRole(Role.ANONYMOUS));
         assertTrue(user.hasRole(Role.USER));
-        assertTrue(user.hasRole(Role.ADMIN));
+        assertFalse(user.hasRole(Role.ADMIN));
     }
 
     @Test

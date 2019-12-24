@@ -15,7 +15,7 @@ public class CourseService {
     private CourseRepository courseRepository;
 
     public List<Course> findAll() {
-        return courseRepository.findAll();
+        return courseRepository.findAllByOrderBySubject();
     }
 
     public List<Course> findAllByAttribute(String attribute) {
