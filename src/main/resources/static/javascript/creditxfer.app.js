@@ -59,6 +59,46 @@ function CreditxferJsController($scope, dataProvider) {
       }
     });
   }
+
+  $scope.showCourse = function(course) {
+    $scope.course = course;
+    $("#course").modal();
+  }
+
+  $scope.headerColor = function(inst) {
+    switch(inst) {
+      case "MAN":
+        $scope.color = "man";
+        break;
+      case "HIL":
+        $scope.color = "hil";
+        break;
+      case "WOA":
+        $scope.color = "woa";
+        break;
+      case "HAW":
+        $scope.color = "haw";
+        break;
+      case "HON":
+        $scope.color = "hon";
+        break;
+      case "KAP":
+        $scope.color = "kap";
+        break;
+      case "KAU":
+        $scope.color = "kau";
+        break;
+      case "LEE":
+        $scope.color = "lee";
+        break;
+      case "MAU":
+        $scope.color = "mau";
+        break;
+      case "WIN":
+        $scope.color = "win";
+      default:
+    }
+  }
 }
 
 creditxferApp.factory("dataProvider", function($http, $log) {

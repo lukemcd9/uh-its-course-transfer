@@ -79,6 +79,47 @@ p.uh-align-left {
 .bg-gold{
   background: #b4975e;
 }
+
+.bg-man{
+  background: #024731;
+}
+
+.bg-hil{
+  background: #D52B1E;
+}
+
+.bg-woa{
+  background: #a71930;
+}
+
+.bg-haw{
+  background: #91004b;
+}
+
+.bg-hon{
+  background: #00747a;
+}
+
+.bg-kap{
+  background: #002395;
+}
+
+.bg-kau{
+  background: #7d5cc6;
+}
+
+.bg-lee{
+  background: #3d7edb;
+}
+
+.bg-mau{
+  background: #005172;
+}
+
+.bg-win{
+  background: #7ab800;
+}
+
 .search-box{
   color:#fff;
   background: #b4975e;
@@ -328,4 +369,8 @@ button.redify-link {
 .ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu {
   display: block;
   opactity: 100 !important;
+}
+
+.clickable {
+  cursor: pointer;
 }
