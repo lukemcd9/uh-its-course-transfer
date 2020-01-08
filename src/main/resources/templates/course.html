@@ -4,13 +4,20 @@
   th:fragment="copy">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #F5F8FF">
-        <h4 class="modal-title" id="courseDescription">{{course.subject}} {{course.courseNumber}}</h4>
+      <div class="modal-header bg-{{color}} text-white">
+        <h4 class="modal-title" id="courseDescription"></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
+        <div class="col-xs-6">
+          <h5>Target Institution</h5>
+          <span>{{course.mifValue}}</span>
+        </div>
+        <div class="col-xs-6">
+          <h5>Source Institution Code</h5>
+          <span>{{course.sourceInstitutionCode}}</span>
+        </div>
       </div>
       <div class="modal-footer borderless">
         <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span

@@ -15,6 +15,6 @@ public class CatalogService {
     private CatalogRepository catalogRepository;
 
     public List<Catalog> findAll() {
-        return catalogRepository.findAllByOrderByMifValue();
+        return catalogRepository.findAllByOrderBySourceInstitutionCode();
     }
 }

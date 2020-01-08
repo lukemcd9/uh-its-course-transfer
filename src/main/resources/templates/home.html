@@ -61,7 +61,7 @@
           <div class="form-group col-md-4">
             <label>Transferring from</label>
               <div class="form-group">
-              <ui-select ng-model="institutions.selected" theme="bootstrap">
+              <ui-select ng-model="institutions.selected" ng-change="filterBySourceInstitution($select.selected.code)" theme="bootstrap">
                 <ui-select-match placeholder="Type your institution">{{$select.selected.description}}</ui-select-match>
                 <ui-select-choices minimum-input-length="4" group-by="'stateProvince'" repeat="item in institutions | propsFilter: {description:$select.search} | limitTo: 400" >
                   <div ng-bind-html="item.description | highlight: $select.search"></div>
@@ -71,6 +71,7 @@
           </div>
           <div class="col-md-4">
             <label>Transferring to</label>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             <div class="form-group">
@@ -86,6 +87,9 @@
 =======
             <select ng-model="target" ng-disabled="!institutions.selected" ng-change="filterSubjects(target); headerColor(target); " class="custom-select" id="target">
 >>>>>>> d57668b... Add colored headers based on target institution.
+=======
+            <select ng-model="target" ng-disabled="!institutions.selected" ng-change="filterSubjects(target); headerColor(target); " class="custom-select selectpicker" id="target">
+>>>>>>> 16df85c... Implement catalog data into search bar, "Transferring from" field usable.
               <option value="">Select a UH Campus</option>
               <option value="HIL">UH Hilo</option>
               <option value="MAN">UH Mānoa</option>
@@ -105,6 +109,7 @@
             <div class="form-group">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <ui-select class="form-group" ng-model="subjects.selected" ng-change="filterCourses(colleges.selected.mifValue, subjects.selected)">
 =======
               <ui-select class="form-group" ng-model="subjects.selected" ng-disabled="!target" ng-change="filterCourses(target, subjects.selected)">
@@ -112,6 +117,9 @@
 =======
               <ui-select class="form-group" ng-model="subjects.selected" theme="bootstrap" ng-disabled="!target" ng-change="filterCourses(target, subjects.selected)">
 >>>>>>> 91bda73... Add course popup, currently empty.
+=======
+              <ui-select class="form-group" ng-model="subjects.selected" theme="bootstrap" ng-disabled="!target" ng-change="filterCourses(subjects.selected, target)">
+>>>>>>> 16df85c... Implement catalog data into search bar, "Transferring from" field usable.
                 <ui-select-match>{{$select.selected}}</ui-select-match>
                 <ui-select-choices repeat="item in subjects | filter: $select.search | limitTo: 400" >
                   <span ng-bind-html="item | highlight: $select.search"></span>
@@ -131,17 +139,17 @@
       </div>
     </div>
     <!-- main content starts-->
-    <div class="container pt-3 pb-3">
+    <div class="container pt-3 pb-4">
       <div class="panel-body" >
         <table ng-show="subjects.selected" class="table table-bordered">
           <thead>
           <tr>
-            <th scope="col" width="10%">Subject</th>
-            <th scope="col" width="10%">Course</th>
-            <th scope="col">Title</th>
-            <th class="bg-{{color}} text-white" scope="col" width="10%">Subject</th>
-            <th class="bg-{{color}} text-white" scope="col" width="10%">Course</th>
-            <th class="bg-{{color}} text-white" scope="col" width="10%">Credits</th>
+            <th scope="col" width="8%">Subject</th>
+            <th scope="col" width="8%">Course</th>
+            <th scope="col" width="30%">Title</th>
+            <th class="bg-{{color}} text-white" scope="col" width="8%">Subject</th>
+            <th class="bg-{{color}} text-white" scope="col" width="8%">Course</th>
+            <th class="bg-{{color}} text-white" scope="col" width="8%">Credits</th>
           </tr>
           </thead>
           <tbody>
@@ -157,6 +165,7 @@
 =======
             <tr data-ng-repeat="c in available" ng-click="showCourse(c)" class="clickable">
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 91bda73... Add course popup, currently empty.
               <td>{{c.subject}} {{c.courseNumber}}</td>
 =======
@@ -167,6 +176,14 @@
               <td> {{c.courseNumber}}</td>
 >>>>>>> d57668b... Add colored headers based on target institution.
               <td></td>
+=======
+              <td>{{c.subjectCodeTrans}}</td>
+              <td>{{c.courseNumberTrans}}</td>
+              <td>{{c.courseTitleTrans}}</td>
+              <td class="bg-{{color}}-hl">{{c.subjectCodeEquiv}}</td>
+              <td class="bg-{{color}}-hl">{{c.courseNumberEquiv}}</td>
+              <td class="bg-{{color}}-hl">{{c.equivCreditsUsed}}</td>
+>>>>>>> 16df85c... Implement catalog data into search bar, "Transferring from" field usable.
             </tr>
 >>>>>>> aca9426... Remove results table on initial load of the page.
           </tbody>

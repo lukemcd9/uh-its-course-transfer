@@ -8,6 +8,6 @@ import edu.hawaii.its.creditxfer.type.Catalog;
 
 public interface CatalogRepository extends JpaRepository<Catalog, Integer> {
 
-    List<Catalog> findAllByOrderByMifValue();
+    List<Catalog> findAllByOrderBySourceInstitutionCode();
 
 }
