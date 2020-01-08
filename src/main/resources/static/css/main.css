@@ -85,7 +85,7 @@ p.uh-align-left {
 }
 
 .bg-hil{
-  background: #D52B1E;
+  background: #d52b1e;
 }
 
 .bg-woa{
@@ -118,6 +118,46 @@ p.uh-align-left {
 
 .bg-win{
   background: #7ab800;
+}
+
+.bg-man-hl{
+  background: #e5ecea;
+}
+
+.bg-hil-hl{
+  background: #fae9e8;
+}
+
+.bg-woa-hl{
+  background: #f6e8ea;
+}
+
+.bg-haw-hl{
+  background: #f4e5ed;
+}
+
+.bg-hon-hl{
+  background: #e5f1f1;
+}
+
+.bg-kap-hl{
+  background: #e5e9f4;
+}
+
+.bg-kau-hl{
+  background: #f2eef9;
+}
+
+.bg-lee-hl{
+  background: #ebf2fb;
+}
+
+.bg-mau-hl{
+  background: #e5edf0;
+}
+
+.bg-win-hl{
+  background: #f1f7e5;
 }
 
 .search-box{
