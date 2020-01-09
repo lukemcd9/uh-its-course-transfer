@@ -48,7 +48,6 @@ function CreditxferJsController($scope, dataProvider) {
       }
     });
     $scope.coursesSourceFiltered.sort();
-    $("#target").val("default").selectpicker("refresh");
   }
 
   $scope.filterSubjects = function(target) {

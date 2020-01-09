@@ -75,7 +75,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
             <div class="form-group">
+<<<<<<< HEAD
               <ui-select ng-model="colleges.selected" theme="bootstrap" ng-change="filterSubjects(colleges.selected.mifValue)">
+=======
+              <ui-select ng-model="colleges.selected" ng-disabled="!institutions.selected" theme="bootstrap" ng-change="filterSubjects(colleges.selected.mifValue); headerColor(colleges.selected.mifValue);">
+>>>>>>> 0dec914... Merge fixes.
                 <ui-select-match placeholder="Type your incoming institution">{{$select.selected.description}}</ui-select-match>
                 <ui-select-choices repeat="item in colleges | filter: $select.search">
                   <div ng-bind-html="item.description | highlight: $select.search"></div>
@@ -110,6 +114,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <ui-select class="form-group" ng-model="subjects.selected" ng-change="filterCourses(colleges.selected.mifValue, subjects.selected)">
 =======
               <ui-select class="form-group" ng-model="subjects.selected" ng-disabled="!target" ng-change="filterCourses(target, subjects.selected)">
@@ -120,6 +125,9 @@
 =======
               <ui-select class="form-group" ng-model="subjects.selected" theme="bootstrap" ng-disabled="!target" ng-change="filterCourses(subjects.selected, target)">
 >>>>>>> 16df85c... Implement catalog data into search bar, "Transferring from" field usable.
+=======
+              <ui-select class="form-group" ng-model="subjects.selected" theme="bootstrap" ng-disabled="!colleges.selected" ng-change="filterCourses(subjects.selected, colleges.selected.mifValue)">
+>>>>>>> 0dec914... Merge fixes.
                 <ui-select-match>{{$select.selected}}</ui-select-match>
                 <ui-select-choices repeat="item in subjects | filter: $select.search | limitTo: 400" >
                   <span ng-bind-html="item | highlight: $select.search"></span>
