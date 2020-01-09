@@ -11,6 +11,17 @@ function CreditxferJsController($scope, dataProvider) {
   $scope.available = [];
   $scope.selected = "";
 
+  $scope.colleges = [{description:"UH Manoa", mifValue: "MAN"},
+    {description: "UH Hilo", mifValue: "HIL"},
+    {description: "UH West O'ahu", mifValue: "WOA"},
+    {description: "Hawai'i Community College", mifValue: "HAW"},
+    {description: "Honolulu Community College", mifValue: "HON"},
+    {description: "Kapi'olani Community College", mifValue: "KAP"},
+    {description: "Kaua'i Community College", mifValue: "KAU"},
+    {description: "Leeward Community College", mifValue: "LEE"},
+    {description: "UH Maui College", mifValue: "MAU"},
+    {description: "Windward Community College", mifValue: "WIN"}];
+
   $scope.init = function() {
     $scope.loadData();
   }
@@ -39,6 +50,7 @@ function CreditxferJsController($scope, dataProvider) {
   }
 
   $scope.filterCourses = function(mifValue, subject) {
+    console.log(mifValue);
     $scope.available = [];
     $scope.courses.forEach(function(c) {
       $scope.course = c;

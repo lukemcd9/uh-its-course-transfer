@@ -69,34 +69,26 @@
               </ui-select>
               </div>
           </div>
-          <div class="form-group col-md-4">
+          <div class="col-md-4">
             <label>Transferring to</label>
-            <select ng-model="target" ng-change="filterSubjects(target)" class="custom-select" id="target">
-              <option value="">Select a UH Campus</option>
-              <option value="HIL">UH Hilo</option>
-              <option value="MAN">UH Mānoa</option>
-              <option value="WOA">UH West Oʻahu</option>
-              <option value="HAW">Hawaiʻi Community College</option>
-              <option value="HON">Honolulu Community College</option>
-              <option value="KAP">Kapiʻolani Community College</option>
-              <option value="KAU">Kauaʻi Community College</option>
-              <option value="LEE">Leeward Community College</option>
-              <option value="MAU">UH Maui College</option>
-              <option value="WIN">Windward Community College</option>
-            </select>
+            <div class="form-group">
+              <ui-select ng-model="colleges.selected" theme="bootstrap" ng-change="filterSubjects(colleges.selected.mifValue)">
+                <ui-select-match placeholder="Type your incoming institution">{{$select.selected.description}}</ui-select-match>
+                <ui-select-choices repeat="item in colleges | filter: $select.search">
+                  <div ng-bind-html="item.description | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
           </div>
           <div class="col-md-2">
             <label>Subject</label>
             <div class="form-group">
-              <ui-select class="form-group" ng-model="subjects.selected" ng-change="filterCourses(target, subjects.selected)">
+              <ui-select class="form-group" ng-model="subjects.selected" ng-change="filterCourses(colleges.selected.mifValue, subjects.selected)">
                 <ui-select-match>{{$select.selected}}</ui-select-match>
                 <ui-select-choices repeat="item in subjects | filter: $select.search | limitTo: 400" >
                   <span ng-bind-html="item | highlight: $select.search"></span>
                 </ui-select-choices>
             </div>
-          </div>
-          <div class="col-md-1">
-            <button class="btn btn-gold-search" type="submit">Search</button>
           </div>
         </form>
       </div>
@@ -114,12 +106,13 @@
           </thead>
           <tbody>
           <tr data-ng-repeat="c in available">
-            <td>{{target}}</td>
+            <td>{{colleges.selected.description}}</td>
             <td>{{c.subject}} {{c.courseNumber}}</td>
             <td>{{c.startDescription}} - {{c.endDescription}}</td>
           </tr>
           </tbody>
         </table>
+        <p ng-show="available.length == 0 && subjects.selected">No results</p>
       </div>
       <!-- add the main content here-->
     </div>
