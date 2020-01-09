@@ -52,40 +52,7 @@ function CreditxferJsController($scope, dataProvider) {
     $scope.available = [];
     $scope.catalog.forEach(function(c) {
       $scope.course = c;
-<<<<<<< HEAD
-      if ($scope.coursesSourceFiltered.indexOf(c) < 0 && c.sourceInstitutionCode === source) {
-        $scope.coursesSourceFiltered.push(c);
-      }
-    });
-    $scope.coursesSourceFiltered.sort();
-  }
-
-  $scope.filterSubjects = function(target) {
-    $scope.subjects = [];
-    $scope.available = [];
-    $scope.coursesSourceFiltered.forEach(function(c) {
-      $scope.course = c;
-      var s = c.subjectCodeEquiv;
-      if ($scope.subjects.indexOf(s) < 0 && c.mifValue === target) {
-        $scope.subjects.push(s);
-      }
-    });
-    $scope.subjects.sort();
-  }
-
-<<<<<<< HEAD
-  $scope.filterCourses = function(mifValue, subject) {
-    console.log(mifValue);
-=======
-  $scope.filterCourses = function(subject, target) {
->>>>>>> 16df85c... Implement catalog data into search bar, "Transferring from" field usable.
-    $scope.available = [];
-    $scope.coursesSourceFiltered.forEach(function(c) {
-      $scope.course = c;
-      if ($scope.available.indexOf(c) < 0 && c.subjectCodeEquiv === subject && c.mifValue === target) {
-=======
       if ($scope.available.indexOf(c) < 0 && c.subjectCodeEquiv === subject) {
->>>>>>> 9b5c611... Load in data only after source and target institution is selected to reduce the amount of courses that get loaded in.
         $scope.available.push(c);
       }
     });
