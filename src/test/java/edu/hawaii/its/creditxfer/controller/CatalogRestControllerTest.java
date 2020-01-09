@@ -59,4 +59,14 @@ public class CatalogRestControllerTest {
             .andReturn();
         assertNotNull(result);
     }
+
+    @Test
+    public void httpGetCatalogBySourceAndTarget() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/catalog/source/1042/target/MAN"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("$", hasSize(883)))
+            .andReturn();
+        assertNotNull(result);
+    }
 }

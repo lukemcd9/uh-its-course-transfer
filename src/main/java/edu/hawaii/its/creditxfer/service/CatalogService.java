@@ -17,4 +17,8 @@ public class CatalogService {
     public List<Catalog> findAll() {
         return catalogRepository.findAllByOrderBySourceInstitutionCode();
     }
+
+    public List<Catalog> findAllBySourceAndTarget(String sourceInstitutionCode, String mifValue) {
+        return catalogRepository.findAllBySourceAndTarget(sourceInstitutionCode, mifValue);
+    }
 }

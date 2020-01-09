@@ -4,9 +4,7 @@ var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select"
 
 function CreditxferJsController($scope, dataProvider) {
   var institutionUrl = "api/institutions";
-  var catalogUrl = "api/catalog";
   $scope.institutions = [];
-  $scope.coursesSourceFiltered = [];
   $scope.subjects = [];
   $scope.available = [];
   $scope.catalog = [];
@@ -31,18 +29,30 @@ function CreditxferJsController($scope, dataProvider) {
     dataProvider.loadData(function(response) {
       $scope.institutions = response.data;
     }, institutionUrl);
+  }
 
+  $scope.loadCatalog = function(source, target) {
+    $scope.subjects = [];
+    $scope.available = [];
+    $scope.catalog = [];
+    var catalogUrl = "api/catalog/source/" + source + "/target/" + target;
     dataProvider.loadData(function(response) {
       $scope.catalog = response.data;
+      $scope.catalog.forEach(function(c) {
+        $scope.course = c;
+        var s = c.subjectCodeEquiv;
+        if ($scope.subjects.indexOf(s) < 0 && c.mifValue === target && c.sourceInstitutionCode === source) {
+          $scope.subjects.push(s);
+        }
+      });
     }, catalogUrl)
   }
 
-  $scope.filterBySourceInstitution = function(source) {
-    console.log(source);
-    $scope.subjects = [];
+  $scope.filterCourses = function(subject) {
     $scope.available = [];
     $scope.catalog.forEach(function(c) {
       $scope.course = c;
+<<<<<<< HEAD
       if ($scope.coursesSourceFiltered.indexOf(c) < 0 && c.sourceInstitutionCode === source) {
         $scope.coursesSourceFiltered.push(c);
       }
@@ -73,6 +83,9 @@ function CreditxferJsController($scope, dataProvider) {
     $scope.coursesSourceFiltered.forEach(function(c) {
       $scope.course = c;
       if ($scope.available.indexOf(c) < 0 && c.subjectCodeEquiv === subject && c.mifValue === target) {
+=======
+      if ($scope.available.indexOf(c) < 0 && c.subjectCodeEquiv === subject) {
+>>>>>>> 9b5c611... Load in data only after source and target institution is selected to reduce the amount of courses that get loaded in.
         $scope.available.push(c);
       }
     });
@@ -123,7 +136,7 @@ creditxferApp.factory("dataProvider", function($http, $log) {
   return {
     loadData: function(callback, url) {
       $http.get(encodeURI(url)).then(callback, function(data, status) {
-        $log.error('Error in dataProvider; status: ', status);
+        $log.error("Error in dataProvider; status: ", status);
       });
     }
   };
@@ -131,7 +144,7 @@ creditxferApp.factory("dataProvider", function($http, $log) {
 
 creditxferApp.controller("CreditxferJsController", CreditxferJsController);
 
-creditxferApp.filter('propsFilter', function() {
+creditxferApp.filter("propsFilter", function() {
   return function(items, props) {
     var out = [];
     if(!props.description.length){
@@ -165,7 +178,7 @@ creditxferApp.filter('propsFilter', function() {
   }
 });
 
-// For ngSanitize deprecated method 'lowercase'
+// For ngSanitize deprecated method "lowercase"
 angular.module("creditxferApp").config(function() {
   angular.lowercase = angular.$$lowercase;
 });

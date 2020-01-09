@@ -61,7 +61,8 @@
           <div class="form-group col-md-4">
             <label>Transferring from</label>
               <div class="form-group">
-              <ui-select ng-model="institutions.selected" ng-change="filterBySourceInstitution($select.selected.code)" theme="bootstrap">
+              <ui-select ng-model="institutions.selected" theme="bootstrap"
+                ng-change="loadCatalog(institutions.selected.code, colleges.selected.mifValue)">
                 <ui-select-match placeholder="Type your institution">{{$select.selected.description}}</ui-select-match>
                 <ui-select-choices minimum-input-length="4" group-by="'stateProvince'" repeat="item in institutions | propsFilter: {description:$select.search} | limitTo: 400" >
                   <div ng-bind-html="item.description | highlight: $select.search"></div>
@@ -76,11 +77,17 @@
 <<<<<<< HEAD
             <div class="form-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
               <ui-select ng-model="colleges.selected" theme="bootstrap" ng-change="filterSubjects(colleges.selected.mifValue)">
 =======
               <ui-select ng-model="colleges.selected" ng-disabled="!institutions.selected" theme="bootstrap" ng-change="filterSubjects(colleges.selected.mifValue); headerColor(colleges.selected.mifValue);">
 >>>>>>> 0dec914... Merge fixes.
                 <ui-select-match placeholder="Type your incoming institution">{{$select.selected.description}}</ui-select-match>
+=======
+              <ui-select ng-model="colleges.selected" ng-disabled="!institutions.selected" theme="bootstrap"
+                ng-change="loadCatalog(institutions.selected.code, colleges.selected.mifValue); headerColor(colleges.selected.mifValue);">
+                <ui-select-match placeholder="Select a UH Campus">{{$select.selected.description}}</ui-select-match>
+>>>>>>> 9b5c611... Load in data only after source and target institution is selected to reduce the amount of courses that get loaded in.
                 <ui-select-choices repeat="item in colleges | filter: $select.search">
                   <div ng-bind-html="item.description | highlight: $select.search"></div>
                 </ui-select-choices>
@@ -115,6 +122,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <ui-select class="form-group" ng-model="subjects.selected" ng-change="filterCourses(colleges.selected.mifValue, subjects.selected)">
 =======
               <ui-select class="form-group" ng-model="subjects.selected" ng-disabled="!target" ng-change="filterCourses(target, subjects.selected)">
@@ -128,6 +136,10 @@
 =======
               <ui-select class="form-group" ng-model="subjects.selected" theme="bootstrap" ng-disabled="!colleges.selected" ng-change="filterCourses(subjects.selected, colleges.selected.mifValue)">
 >>>>>>> 0dec914... Merge fixes.
+=======
+              <ui-select class="form-group" ng-model="subjects.selected" theme="bootstrap" ng-disabled="!colleges.selected"
+                ng-change="filterCourses(subjects.selected)">
+>>>>>>> 9b5c611... Load in data only after source and target institution is selected to reduce the amount of courses that get loaded in.
                 <ui-select-match>{{$select.selected}}</ui-select-match>
                 <ui-select-choices repeat="item in subjects | filter: $select.search | limitTo: 400" >
                   <span ng-bind-html="item | highlight: $select.search"></span>
@@ -149,7 +161,7 @@
     <!-- main content starts-->
     <div class="container pt-3 pb-4">
       <div class="panel-body" >
-        <table ng-show="subjects.selected" class="table table-bordered">
+        <table ng-show="subjects.selected && available.length != 0" class="table table-bordered">
           <thead>
           <tr>
             <th scope="col" width="8%">Subject</th>
