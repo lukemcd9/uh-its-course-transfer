@@ -40,11 +40,12 @@ function CreditxferJsController($scope, dataProvider) {
       $scope.catalog = response.data;
       $scope.catalog.forEach(function(c) {
         $scope.course = c;
-        var s = c.subjectCodeEquiv;
-        if ($scope.subjects.indexOf(s) < 0 && c.mifValue === target && c.sourceInstitutionCode === source) {
+        var s = c.subjectCodeTrans;
+        if ($scope.subjects.indexOf(s) < 0) {
           $scope.subjects.push(s);
         }
       });
+      $scope.subjects.sort();
     }, catalogUrl)
   }
 
@@ -52,7 +53,7 @@ function CreditxferJsController($scope, dataProvider) {
     $scope.available = [];
     $scope.catalog.forEach(function(c) {
       $scope.course = c;
-      if ($scope.available.indexOf(c) < 0 && c.subjectCodeEquiv === subject) {
+      if ($scope.available.indexOf(c) < 0 && c.subjectCodeTrans === subject) {
         $scope.available.push(c);
       }
     });
