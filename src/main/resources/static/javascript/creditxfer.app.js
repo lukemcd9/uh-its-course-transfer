@@ -4,12 +4,22 @@ var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select"
 
 function CreditxferJsController($scope, dataProvider) {
   var institutionUrl = "api/institutions";
-  var courseUrl = "api/courses";
   $scope.institutions = [];
-  $scope.courses = [];
   $scope.subjects = [];
   $scope.available = [];
+  $scope.catalog = [];
   $scope.selected = "";
+
+  $scope.colleges = [{description:"UH Manoa", mifValue: "MAN"},
+    {description: "UH Hilo", mifValue: "HIL"},
+    {description: "UH West O'ahu", mifValue: "WOA"},
+    {description: "Hawai'i Community College", mifValue: "HAW"},
+    {description: "Honolulu Community College", mifValue: "HON"},
+    {description: "Kapi'olani Community College", mifValue: "KAP"},
+    {description: "Kaua'i Community College", mifValue: "KAU"},
+    {description: "Leeward Community College", mifValue: "LEE"},
+    {description: "UH Maui College", mifValue: "MAU"},
+    {description: "Windward Community College", mifValue: "WIN"}];
 
   $scope.init = function() {
     $scope.loadData();
@@ -19,33 +29,74 @@ function CreditxferJsController($scope, dataProvider) {
     dataProvider.loadData(function(response) {
       $scope.institutions = response.data;
     }, institutionUrl);
-
-    dataProvider.loadData(function(response) {
-      $scope.courses = response.data;
-    }, courseUrl)
   }
 
-  $scope.filterSubjects = function(mifValue) {
+  $scope.loadCatalog = function(source, target) {
     $scope.subjects = [];
     $scope.available = [];
-    $scope.courses.forEach(function(c) {
-      $scope.course = c;
-      var s = c.subject;
-      if ($scope.subjects.indexOf(s) < 0 && c.mifValue === mifValue) {
-        $scope.subjects.push(s);
-      }
-    });
-    $scope.subjects.sort();
+    $scope.catalog = [];
+    var catalogUrl = "api/catalog/source/" + source + "/target/" + target;
+    dataProvider.loadData(function(response) {
+      $scope.catalog = response.data;
+      $scope.catalog.forEach(function(c) {
+        $scope.course = c;
+        var s = c.subjectCodeTrans;
+        if ($scope.subjects.indexOf(s) < 0) {
+          $scope.subjects.push(s);
+        }
+      });
+      $scope.subjects.sort();
+    }, catalogUrl)
   }
 
-  $scope.filterCourses = function(mifValue, subject) {
+  $scope.filterCourses = function(subject) {
     $scope.available = [];
-    $scope.courses.forEach(function(c) {
+    $scope.catalog.forEach(function(c) {
       $scope.course = c;
-      if ($scope.available.indexOf(c) < 0 && c.mifValue === mifValue && c.subject === subject) {
+      if ($scope.available.indexOf(c) < 0 && c.subjectCodeTrans === subject) {
         $scope.available.push(c);
       }
     });
+  }
+
+  $scope.showCourse = function(course) {
+    $scope.course = course;
+    $("#course").modal();
+  }
+
+  $scope.headerColor = function(inst) {
+    switch(inst) {
+      case "MAN":
+        $scope.color = "man";
+        break;
+      case "HIL":
+        $scope.color = "hil";
+        break;
+      case "WOA":
+        $scope.color = "woa";
+        break;
+      case "HAW":
+        $scope.color = "haw";
+        break;
+      case "HON":
+        $scope.color = "hon";
+        break;
+      case "KAP":
+        $scope.color = "kap";
+        break;
+      case "KAU":
+        $scope.color = "kau";
+        break;
+      case "LEE":
+        $scope.color = "lee";
+        break;
+      case "MAU":
+        $scope.color = "mau";
+        break;
+      case "WIN":
+        $scope.color = "win";
+      default:
+    }
   }
 }
 
@@ -53,7 +104,7 @@ creditxferApp.factory("dataProvider", function($http, $log) {
   return {
     loadData: function(callback, url) {
       $http.get(encodeURI(url)).then(callback, function(data, status) {
-        $log.error('Error in dataProvider; status: ', status);
+        $log.error("Error in dataProvider; status: ", status);
       });
     }
   };
@@ -61,7 +112,7 @@ creditxferApp.factory("dataProvider", function($http, $log) {
 
 creditxferApp.controller("CreditxferJsController", CreditxferJsController);
 
-creditxferApp.filter('propsFilter', function() {
+creditxferApp.filter("propsFilter", function() {
   return function(items, props) {
     var out = [];
     if(!props.description.length){
@@ -95,7 +146,7 @@ creditxferApp.filter('propsFilter', function() {
   }
 });
 
-// For ngSanitize deprecated method 'lowercase'
+// For ngSanitize deprecated method "lowercase"
 angular.module("creditxferApp").config(function() {
   angular.lowercase = angular.$$lowercase;
 });
