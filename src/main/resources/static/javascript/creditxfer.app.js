@@ -49,6 +49,16 @@ function CreditxferJsController($scope, dataProvider) {
     }, catalogUrl)
   }
 
+  $scope.fetchAttribute = function(mif, subject, number, start) {
+    var attributeUrl = "api/courses/mif/" + mif + "/subject/" + subject + "/number/" + number + "/start/" + start;
+    dataProvider.loadData(function(response) {
+      $scope.attribute = response.data.attribute;
+      $scope.startDescription = response.data.startDescription;
+      $scope.endDescription = response.data.endDescription;
+      console.log($scope.attribute);
+    }, attributeUrl)
+  }
+
   $scope.filterCourses = function(subject) {
     $scope.available = [];
     $scope.catalog.forEach(function(c) {

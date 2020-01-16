@@ -85,18 +85,18 @@
     <div class="container pt-3 pb-4">
       <div class="panel-body" >
         <table ng-show="subjects.selected && available.length != 0" class="table table-bordered">
-          <thead>
+          <thead class="text-white">
           <tr>
-            <th scope="col" width="8%">Subject</th>
-            <th scope="col" width="8%">Course</th>
-            <th scope="col" width="30%">Title</th>
-            <th class="bg-{{color}} text-white" scope="col" width="8%">Subject</th>
-            <th class="bg-{{color}} text-white" scope="col" width="8%">Course</th>
-            <th class="bg-{{color}} text-white" scope="col" width="8%">Credits</th>
+            <th class="bg-nonuh-color" scope="col" width="8%">Subject</th>
+            <th class="bg-nonuh-color" scope="col" width="8%">Course</th>
+            <th class="bg-nonuh-color" scope="col" width="28%">Title</th>
+            <th class="bg-{{color}}" scope="col" width="8%">Subject</th>
+            <th class="bg-{{color}}" scope="col" width="10%">Course</th>
+            <th class="bg-{{color}}" scope="col" width="8%">Credits</th>
           </tr>
           </thead>
           <tbody>
-            <tr data-ng-repeat="c in available" ng-click="showCourse(c)" class="clickable">
+            <tr data-ng-repeat="c in available" ng-click="showCourse(c); fetchAttribute(c.mifValue, c.subjectCodeEquiv, c.courseNumberEquiv, c.academicPeriodStart);" class="clickable">
               <td>{{c.subjectCodeTrans}}</td>
               <td>{{c.courseNumberTrans}}</td>
               <td>{{c.courseTitleTrans}}</td>
