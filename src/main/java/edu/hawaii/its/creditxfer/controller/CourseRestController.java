@@ -68,16 +68,14 @@ public class CourseRestController {
             .body(courses);
     }
 
-    @GetMapping(value = "api/courses/mif/{mifValue}/subject/{subject}/number/{courseNumber}/start/{start}")
-    public ResponseEntity<Course> courseByMifValueSubjectAndCourseNumber(
+    @GetMapping(value = "api/courses/mif/{mifValue}/subject/{subject}")
+    public ResponseEntity<List<Course>> courseByMifValueAndSubject(
         @PathVariable String mifValue,
-        @PathVariable String subject,
-        @PathVariable String courseNumber,
-        @PathVariable String start) {
-        logger.info("Entered REST courses(" + subject + " " + courseNumber + ", " + mifValue + ", " + start + ") ...");
-        Course course = courseService.findByMifValueAndSubjectAndCourseNumber(mifValue.toUpperCase(), subject.toUpperCase(), String.valueOf(courseNumber), String.valueOf(start));
+        @PathVariable String subject) {
+        logger.info("Entered REST courses(" + subject + ", " + mifValue + ")...");
+        List<Course> courses = courseService.findByMifValueAndSubject(mifValue.toUpperCase(), subject.toUpperCase());
         return ResponseEntity
             .ok()
-            .body(course);
+            .body(courses);
     }
 }

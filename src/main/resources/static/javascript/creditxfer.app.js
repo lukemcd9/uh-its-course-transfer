@@ -7,8 +7,12 @@ function CreditxferJsController($scope, dataProvider) {
   $scope.institutions = [];
   $scope.subjects = [];
   $scope.available = [];
+  $scope.attributes = [];
   $scope.catalog = [];
   $scope.selected = "";
+  $scope.attribute = "";
+  $scope.startDescription = "";
+  $scope.endDescription = "";
 
   $scope.colleges = [{description:"UH Manoa", mifValue: "MAN"},
     {description: "UH Hilo", mifValue: "HIL"},
@@ -49,14 +53,19 @@ function CreditxferJsController($scope, dataProvider) {
     }, catalogUrl)
   }
 
-  $scope.fetchAttribute = function(mif, subject, number, start) {
-    var attributeUrl = "api/courses/mif/" + mif + "/subject/" + subject + "/number/" + number + "/start/" + start;
+  $scope.loadAttributes = function(mif, subject) {
+    var attributeUrl = "api/courses/mif/" + mif + "/subject/" + subject;
     dataProvider.loadData(function(response) {
-      $scope.attribute = response.data.attribute;
-      $scope.startDescription = response.data.startDescription;
-      $scope.endDescription = response.data.endDescription;
-      console.log($scope.attribute);
+      $scope.attributes = response.data;
     }, attributeUrl)
+  }
+
+  $scope.findAttribute = function(course) {
+    var filteredAttributes = $scope.attributes.filter(function (a) {
+      return a.courseNumber === course.courseNumberEquiv && a.start === course.academicPeriodStart;
+    })
+
+    return filteredAttributes.length > 0;
   }
 
   $scope.filterCourses = function(subject) {
@@ -70,7 +79,21 @@ function CreditxferJsController($scope, dataProvider) {
   }
 
   $scope.showCourse = function(course) {
+    var filteredAttributes = $scope.attributes.filter(function(a) {
+      return a.courseNumber === course.courseNumberEquiv && a.start === course.academicPeriodStart;
+    })
+
     $scope.course = course;
+    var filteredCourse = filteredAttributes[0];
+
+    try {
+      $scope.attribute = filteredCourse.attribute;
+      $scope.startDescription = filteredCourse.startDescription;
+      $scope.endDescription = filteredCourse.endDescription;
+    } catch(err) {
+      throw "Popup not available, attribute is undefined.";
+    }
+
     $("#course").modal();
   }
 
