@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body ng-app="creditxferApp" ng-controller="CreditxferJsController" data-ng-init="init()">
+<div class="bg-dark">
+    <div class="container">
+        <div class="row pt-0 pb-0">
+            <div class="navbar col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <nav class="navbar-nav navbar-expand navbar-dark">
+                    <ul class="navbar-nav align-bottom">
+                        <li class="nav-item"><a class="nav-item nav-link" th:href="@{/home}">Home</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" th:href="@{/glossary}">Glossary</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" th:href="@{/contact}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" th:href="@{/faq}">Help</a></li>
+                        <li class="nav-item"><a class="nav-item nav-link" th:href="@{/feedback}">Feedback</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!--<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 align-content-center">
+              <nav class="navbar-nav navbar-expand navbar-dark justify-content-end top-padding: 5px">
+                <ul class="navbar-nav pt-2">
+                </ul>
+              </nav>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<!-- UH System top nav bar end-->
+<div class="bg-white pt-4 pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-6"><img th:src="@{images/uh_logo.png}" alt="University of Hawaii" width="100%" class="img-fluid"></div>
+        </div>
+    </div>
+</div>
+<!-- UH system header end-->
+<div class="bg-light pt-2 pb-2 border-top border-bottom">
+    <div class="container" >
+        <h5 class="title"><a href="/" th:href="@{/}">UH System Course Transfer Database</a></h5>
+    </div>
+</div>
+
+<!-- title bar end-->
+
+<div ng-controller="FeedbackController">
+<!--    <nav th:replace="menubar :: copy"></nav>-->
+    <form id="feedbackForm" class="form" th:action="@{/feedback/feedback-success}" method="GET">
+        <div class="container">
+
+            <h4>University of Hawaiʻi System Course Transfer Information System</h4>
+
+            <p>Thank you for taking the time to provide us with feedback on your use of this service.
+                Your feedback will help us to improve the quality and usefulness of the service. Mahalo!
+            </p>
+
+        </div>
+    </form>
+</div>
+
+<nav th:replace="footer :: copy"></nav>
+</body>
+</html>
