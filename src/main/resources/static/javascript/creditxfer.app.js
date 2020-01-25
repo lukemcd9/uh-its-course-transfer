@@ -84,17 +84,16 @@ function CreditxferJsController($scope, dataProvider) {
     })
 
     $scope.course = course;
-    var filteredCourse = filteredAttributes[0];
 
-    try {
+    if (filteredAttributes.length > 0) {
+      var filteredCourse = filteredAttributes[0];
+
       $scope.attribute = filteredCourse.attribute;
       $scope.startDescription = filteredCourse.startDescription;
       $scope.endDescription = filteredCourse.endDescription;
-    } catch(err) {
-      throw "Popup not available, attribute is undefined.";
-    }
 
-    $("#course").modal();
+      $("#course").modal();
+    }
   }
 
   $scope.headerColor = function(inst) {
