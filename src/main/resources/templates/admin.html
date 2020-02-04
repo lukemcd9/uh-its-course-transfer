@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="header :: copy"></head>
+<body ng-app="creditxferApp" ng-controller="CreditxferJsController" data-ng-init="init()">
+<nav th:replace="menubar :: copy"></nav>
 <div class='container-fluid' xmlns:security="http://www.springframework.org/security/tags">
   <security:authorize access="hasRole('ROLE_ADMIN')">
     <div class='row'>
@@ -24,5 +27,6 @@
     </div>
   </security:authorize>
 </div>
+</body>
 </html>
 

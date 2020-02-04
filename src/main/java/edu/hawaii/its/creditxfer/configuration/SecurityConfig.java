@@ -176,6 +176,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/gate").permitAll()
             .antMatchers("/home").permitAll()
             .antMatchers("/contact").permitAll()
+            .antMatchers("/error").permitAll()
             .antMatchers("/ex").permitAll()
             .antMatchers("/ex/**").permitAll()
             .antMatchers("/faq").permitAll()
