@@ -33,4 +33,8 @@ public class CourseService {
     public List<Course> findAllByMifValue(String mifValue) {
         return courseRepository.findAllByMifValueOrderBySubject(mifValue);
     }
+
+    public List<Course> findByMifValueAndSubject(String mifValue, String subject) {
+        return courseRepository.findByMifValueAndSubject(mifValue, subject);
+    }
 }

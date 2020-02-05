@@ -120,6 +120,14 @@ p.uh-align-left {
   background: #7ab800;
 }
 
+.bg-nonuh-color{
+  background:#333333;
+}
+
+.bg-nonuh-color-hl{
+  background:#eaeaea;
+}
+
 .bg-man-hl{
   background: #e5ecea;
 }
@@ -413,4 +421,19 @@ button.redify-link {
 
 .clickable {
   cursor: pointer;
+}
+
+.modal-open[style] {
+  padding-right: 0px !important;
+}
+
+.modal-header {
+  padding:9px 15px;
+  border-bottom:1px solid #eee;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }

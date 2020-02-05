@@ -1,28 +1,42 @@
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<div class="modal fade" id="course" tabindex="-1" role="dialog" aria-labelledby="courseDescription"
-  th:fragment="copy">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-{{color}} text-white">
-        <h4 class="modal-title" id="courseDescription"></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="col-xs-6">
-          <h5>Target Institution</h5>
-          <span>{{course.mifValue}}</span>
+<div class="modal fade" id="course" role="dialog" aria-labelledby="courseDescription" th:fragment="copy">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-{{color}} text-white">
+          <h5 class="modal-title">{{course.courseIdEquiv}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="col-xs-6">
-          <h5>Source Institution Code</h5>
-          <span>{{course.sourceInstitutionCode}}</span>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 ml-auto">
+              <h6>Academic Period Start</h6>
+              <span>{{startDescription}}</span>
+            </div>
+            <div class="col-md-5">
+              <h6>Academic Period End</h6>
+              <span>{{endDescription}}</span>
+            </div>
+            <div class="col-md-3">
+              <h6>Attribute</h6>
+              <span>{{attribute}}</span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4 ml-auto">
+              <h6>Transfer Course Activity Date</h6>
+              <span>{{course.transCourseActivityDate}}</span>
+            </div>
+            <div class="col-md-8">
+              <h6>Equivalent Course Activity Date</h6>
+              <span>{{course.equivCourseActivityDate}}</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer borderless">
-        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span
-          aria-hidden="true">OK</span></button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
       </div>
     </div>
-  </div>
 </div>
