@@ -178,6 +178,16 @@ creditxferApp.filter("propsFilter", function() {
   }
 });
 
+
+function FeedbackController($scope){
+
+  $scope.submit = function(form) {
+
+  }
+}
+
+creditxferApp.controller("FeedbackController", FeedbackController);
+
 // For ngSanitize deprecated method "lowercase"
 angular.module("creditxferApp").config(function() {
   angular.lowercase = angular.$$lowercase;

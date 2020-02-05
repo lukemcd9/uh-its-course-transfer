@@ -1,44 +1,46 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white border-bottom border-light" role="navigation" th:fragment="copy">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navbar-collapse-1"
-              aria-controls="navbarText" aria-expanded="false"
-              aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-            <a class="navbar-brand uh-nav-app-name" href="/" th:href="@{/}">
-                <img class="d-inline-block" width="50px" height="50px" th:src="@{/images/seal.jpg}"
-                  src="images/seal.jpg" alt="">
-                <span>Course Transfer</span>
-            </a>
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a th:href="@{/}" href="/" class="nav-link">
-                        <i class="fa fa-home" aria-hidden="true"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/faq}" href="/faq" class="nav-link">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i> Help
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/glossary}" href="/glossary" class="nav-link">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                        Glossary
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/contact}" href="/contact" class="nav-link">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        Contact
-                    </a>
-                </li>
-            </ul>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<nav role="navigation" th:fragment="copy">
+    <div class="bg-dark">
+        <div class="container">
+            <div class="row pt-0 pb-0">
+                <div class="navbar col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <nav class="navbar-nav navbar-expand navbar-dark">
+                        <ul class="navbar-nav align-bottom">
+                            <li class="nav-item"><a class="nav-item nav-link" th:href="@{/home}">Home</a></li>
+                            <li class="nav-item"><a class="nav-item nav-link" th:href="@{/glossary}">Glossary</a></li>
+                            <li class="nav-item"><a class="nav-item nav-link" th:href="@{/contact}">Contact</a></li>
+                            <li class="nav-item"><a class="nav-item nav-link" th:href="@{/faq}">Help</a></li>
+                            <li class="nav-item"><a class="nav-item nav-link" th:href="@{/feedback}">Feedback</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!--<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 align-content-center">
+                  <nav class="navbar-nav navbar-expand navbar-dark justify-content-end top-padding: 5px">
+                    <ul class="navbar-nav pt-2">
+                    </ul>
+                  </nav>
+                </div>-->
+            </div>
         </div>
     </div>
+
+    <!-- UH System top nav bar end-->
+    <div class="bg-white pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-6"><img th:src="@{/images/uh_logo.png}" alt="University of Hawaii" width="100%" class="img-fluid"></div><h1>Course Transfer Database</h1>
+            </div>
+        </div>
+    </div>
+    <!-- UH system header end-->
+    <div class="bg-light pt-2 pb-2 border-top border-bottom">
+        <div class="container" >
+            <h5 class="title"><a href="/" th:href="@{/}">UH System Course Transfer Database</a></h5>
+        </div>
+    </div>
+
+    <!-- title bar end-->
 </nav>
+</html>

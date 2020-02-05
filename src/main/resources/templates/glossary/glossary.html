@@ -2,13 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="header :: copy"></head>
-<body>
-    <nav th:replace="menubar :: copy"></nav>
-    <style>
-        .list-group a {
-            color: #0275d8;;
-        }
-    </style>
+<body ng-app="creditxferApp" ng-controller="CreditxferJsController" data-ng-init="init()">
+<nav th:replace="menubar :: copy"></nav>
     <div class="container">
         <div class="row">
             <div class="offset-xs-1 col-xs-10 offset-sm-1 col-sm-10">
@@ -44,6 +39,6 @@
         </div>
     </div>
 
-    <div th:replace="footer :: copy"></div>
+<!--    <div th:replace="footer :: copy"></div>-->
 </body>
 </html>
