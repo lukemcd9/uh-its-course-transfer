@@ -7,8 +7,12 @@ function CreditxferJsController($scope, dataProvider) {
   $scope.institutions = [];
   $scope.subjects = [];
   $scope.available = [];
+  $scope.attributes = [];
   $scope.catalog = [];
   $scope.selected = "";
+  $scope.attribute = "";
+  $scope.startDescription = "";
+  $scope.endDescription = "";
 
   $scope.colleges = [{description:"UH Manoa", mifValue: "MAN"},
     {description: "UH Hilo", mifValue: "HIL"},
@@ -49,6 +53,21 @@ function CreditxferJsController($scope, dataProvider) {
     }, catalogUrl)
   }
 
+  $scope.loadAttributes = function(mif, subject) {
+    var attributeUrl = "api/courses/mif/" + mif + "/subject/" + subject;
+    dataProvider.loadData(function(response) {
+      $scope.attributes = response.data;
+    }, attributeUrl)
+  }
+
+  $scope.findAttribute = function(course) {
+    var filteredAttributes = $scope.attributes.filter(function (a) {
+      return a.courseNumber === course.courseNumberEquiv && a.start === course.academicPeriodStart;
+    })
+
+    return filteredAttributes.length > 0;
+  }
+
   $scope.filterCourses = function(subject) {
     $scope.available = [];
     $scope.catalog.forEach(function(c) {
@@ -60,8 +79,21 @@ function CreditxferJsController($scope, dataProvider) {
   }
 
   $scope.showCourse = function(course) {
+    var filteredAttributes = $scope.attributes.filter(function(a) {
+      return a.courseNumber === course.courseNumberEquiv && a.start === course.academicPeriodStart;
+    })
+
     $scope.course = course;
-    $("#course").modal();
+
+    if (filteredAttributes.length > 0) {
+      var filteredCourse = filteredAttributes[0];
+
+      $scope.attribute = filteredCourse.attribute;
+      $scope.startDescription = filteredCourse.startDescription;
+      $scope.endDescription = filteredCourse.endDescription;
+
+      $("#course").modal();
+    }
   }
 
   $scope.headerColor = function(inst) {

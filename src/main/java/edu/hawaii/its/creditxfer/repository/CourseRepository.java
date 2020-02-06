@@ -20,4 +20,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     List<Course> findAllBySubjectAndCourseNumber(@Param("subject") String subject, @Param("courseNumber") String courseNumber);
 
     List<Course> findAllByMifValueOrderBySubject(String mifValue);
+
+    @Query("select c from Course c where c.mifValue = :mifValue and c.subject = :subject")
+    List<Course> findByMifValueAndSubject(@Param("mifValue") String mifValue, @Param("subject") String subject);
 }

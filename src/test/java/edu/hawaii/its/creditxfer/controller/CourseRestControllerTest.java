@@ -133,4 +133,22 @@ public class CourseRestControllerTest {
         assertNotNull(result);
     }
 
+    @Test
+    public void httpGetCourseByMifValueAndSubject() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/courses/mif/man/subject/ics"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("$", hasSize(9)))
+            .andExpect(jsonPath("$[0].attribute").value("FS"))
+            .andExpect(jsonPath("$[0].start").value("200410"))
+            .andExpect(jsonPath("$[0].startDescription").value("Fall 2003"))
+            .andExpect(jsonPath("$[0].end").value("201845"))
+            .andExpect(jsonPath("$[0].endDescription").value("Summer 2018 Accelerated"))
+            .andExpect(jsonPath("$[0].mifValue").value("MAN"))
+            .andExpect(jsonPath("$[0].subject").value("ICS"))
+            .andExpect(jsonPath("$[0].courseNumber").value("141"))
+            .andReturn();
+        assertNotNull(result);
+    }
+
 }
