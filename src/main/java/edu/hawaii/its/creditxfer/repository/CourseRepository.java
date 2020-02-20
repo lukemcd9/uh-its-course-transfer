@@ -2,6 +2,7 @@ package edu.hawaii.its.creditxfer.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,17 +11,13 @@ import edu.hawaii.its.creditxfer.type.Course;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-    List<Course> findAllByOrderBySubject();
+    List<Course> findAllByOrderBySubjectCodeTrans();
 
-    List<Course> findAllByAttribute(String attribute);
-
-    List<Course> findAllBySubject(String subject);
-
-    @Query("select c from Course c where c.subject = :subject and c.courseNumber = :courseNumber")
-    List<Course> findAllBySubjectAndCourseNumber(@Param("subject") String subject, @Param("courseNumber") String courseNumber);
-
-    List<Course> findAllByMifValueOrderBySubject(String mifValue);
-
-    @Query("select c from Course c where c.mifValue = :mifValue and c.subject = :subject")
-    List<Course> findByMifValueAndSubject(@Param("mifValue") String mifValue, @Param("subject") String subject);
+    @Query("select c from Course c where c.sourceInstitutionCode = :sourceInstitutionCode and c.mifValue = :mifValue " +
+        "and c.subjectCodeTrans = :subject and c.equivCourseAttribute <> :attribute")
+    List<Course> findBySourceTargetAndSubject(
+        @Param("sourceInstitutionCode") String sourceInstitutionCode,
+        @Param("mifValue") String mifValue,
+        @Param("subject") String subject,
+        @Param("attribute") String attribute);
 }

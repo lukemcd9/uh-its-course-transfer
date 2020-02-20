@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.hawaii.its.creditxfer.access.User;
 import edu.hawaii.its.creditxfer.access.UserContextService;
-import edu.hawaii.its.creditxfer.action.ActionRecorder;
-import edu.hawaii.its.creditxfer.service.MessageService;
-import edu.hawaii.its.creditxfer.type.Message;
+
 
 @Controller
 public class HomeController {
@@ -25,38 +23,11 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
-    private ActionRecorder actionRecorder;
-
-    @Autowired
     private UserContextService userContextService;
-
-    @Autowired
-    private MessageService messageService;
-
-    private int messageNumber = Message.GATE_MESSAGE;
-
-    public void setMessageService(MessageService messageService) {
-        this.messageService = messageService;
-    }
-
-    public void setMessageNumber(int messageNumber) {
-        this.messageNumber = messageNumber;
-    }
 
     @GetMapping(value = {"/", "/home" })
     public String home(Locale locale, Model model) {
         logger.debug("User at home. The client locale is {}.", locale);
-
-        try {
-            Message message = messageService.findMessage(messageNumber);
-            logger.debug("home; message: " +  message);
-
-            if (message != null) {
-                model.addAttribute("systemMessage", message.getText());
-            }
-        } catch (Exception e) {
-            logger.error("Error", e);
-        }
 
         return "home";
     }
@@ -69,7 +40,6 @@ public class HomeController {
 
         User user = userContextService.getCurrentUser();
         logger.info("current user    : " + user);
-        actionRecorder.publish("employee.view.home", user.getUhuuid());
         model.addAttribute("currentUser", user);
 
         logger.info("Leaving attributes.");

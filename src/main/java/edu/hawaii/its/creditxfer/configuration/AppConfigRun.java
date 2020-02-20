@@ -10,9 +10,9 @@ import org.springframework.context.annotation.PropertySources;
 @Configuration
 @ComponentScan(basePackages = "edu.hawaii.its.creditxfer")
 @PropertySources({
-        @PropertySource("classpath:custom.properties"),
-        @PropertySource(value = "file:${user.home}/.${user.name}-conf/creditxfer-overrides.properties",
-                        ignoreResourceNotFound = true)
+    @PropertySource("classpath:custom.properties"),
+    @PropertySource(value = "file://${user.home}/.${user.name}-conf/creditxfer-overrides.properties",
+        ignoreResourceNotFound = true),
 })
 public class AppConfigRun {
 

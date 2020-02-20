@@ -51,11 +51,21 @@ public class CatalogRestControllerTest {
     }
 
     @Test
-    public void httpGetCatalog() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/catalog"))
+    public void httpGetSourceCatalog() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/sourceCatalog"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(15000)))
+            .andExpect(jsonPath("$", hasSize(5000)))
+            .andReturn();
+        assertNotNull(result);
+    }
+
+    @Test
+    public void httpGetTargetCatalog() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/targetCatalog"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("$", hasSize(5000)))
             .andReturn();
         assertNotNull(result);
     }
@@ -65,7 +75,7 @@ public class CatalogRestControllerTest {
         MvcResult result = mockMvc.perform(get("/api/catalog/source/1042/target/MAN"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(883)))
+            .andExpect(jsonPath("$", hasSize(0)))
             .andReturn();
         assertNotNull(result);
     }

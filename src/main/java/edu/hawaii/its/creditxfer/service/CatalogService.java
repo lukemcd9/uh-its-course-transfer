@@ -5,20 +5,31 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.hawaii.its.creditxfer.repository.CatalogRepository;
-import edu.hawaii.its.creditxfer.type.Catalog;
+
+import edu.hawaii.its.creditxfer.repository.SourceCatalogRepository;
+import edu.hawaii.its.creditxfer.repository.TargetCatalogRepository;
+import edu.hawaii.its.creditxfer.type.CatalogDto;
+import edu.hawaii.its.creditxfer.type.SourceCatalog;
+import edu.hawaii.its.creditxfer.type.TargetCatalog;
 
 @Service
 public class CatalogService {
 
     @Autowired
-    private CatalogRepository catalogRepository;
+    private SourceCatalogRepository sourceCatalogRepository;
 
-    public List<Catalog> findAll() {
-        return catalogRepository.findAllByOrderBySourceInstitutionCode();
+    @Autowired
+    private TargetCatalogRepository targetCatalogRepository;
+
+    public List<SourceCatalog> findAllSourceCatalog() {
+        return sourceCatalogRepository.findAllByOrderBySourceInstitutionCode();
     }
 
-    public List<Catalog> findAllBySourceAndTarget(String sourceInstitutionCode, String mifValue) {
-        return catalogRepository.findAllBySourceAndTarget(sourceInstitutionCode, mifValue);
+    public List<TargetCatalog> findAllTargetCatalog() {
+        return targetCatalogRepository.findAllByOrderBySourceInstitutionCode();
+    }
+
+    public List<CatalogDto> findAllBySourceAndTarget(String sourceInstitutionCode, String mifValue) {
+        return sourceCatalogRepository.findAllBySourceAndTarget(sourceInstitutionCode, mifValue);
     }
 }

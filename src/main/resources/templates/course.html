@@ -1,38 +1,30 @@
 <div class="modal fade" id="course" role="dialog" aria-labelledby="courseDescription" th:fragment="copy">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header bg-{{color}} text-white">
-          <h5 class="modal-title">{{course.courseIdEquiv}}</h5>
+          <h5 class="modal-title">{{course.subjectCodeTrans}}{{course.courseNumberTrans}} {{course.courseTitleTrans}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-4 ml-auto">
-              <h6>Academic Period Start</h6>
-              <span>{{startDescription}}</span>
+            <div class="col-md-7">
+              <h6><b>Attribute</b></h6>
             </div>
             <div class="col-md-5">
-              <h6>Academic Period End</h6>
-              <span>{{endDescription}}</span>
-            </div>
-            <div class="col-md-3">
-              <h6>Attribute</h6>
-              <span>{{attribute}}</span>
+              <h6><b>Attribute Activity Date</b></h6>
             </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4 ml-auto">
-              <h6>Transfer Course Activity Date</h6>
-              <span>{{course.transCourseActivityDate}}</span>
+          <div class="row" data-ng-repeat="a in courseAttr">
+            <div class="col-md-7">
+              <p>{{a.equivCourseAttribute}} -- {{a.equivCourseAttributeDesc}}</p>
             </div>
-            <div class="col-md-8">
-              <h6>Equivalent Course Activity Date</h6>
-              <span>{{course.equivCourseActivityDate}}</span>
+            <div class="col-md-5">
+              <p>{{a.equivAttrActivityDate}}</p>
             </div>
           </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>

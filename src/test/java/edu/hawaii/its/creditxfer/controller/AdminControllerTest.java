@@ -1,7 +1,6 @@
 package edu.hawaii.its.creditxfer.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -11,8 +10,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,12 +20,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 
 import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
-import edu.hawaii.its.creditxfer.type.Action;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
@@ -76,27 +70,6 @@ public class AdminControllerTest {
         mockMvc.perform(get("/admin"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern(casLoginUrl + "**"));
-    }
-
-    @Test
-    public void actions() {
-        Model model = new ExtendedModelMap();
-        assertEquals("actions/list", controller.listActions(model));
-        Map<String, Object> map = model.asMap();
-        assertFalse(map.entrySet().isEmpty());
-
-        @SuppressWarnings("unchecked")
-        List<Action> actions = (List<Action>) map.get("actionList");
-
-        Action a0 = actions.get(0);
-        assertEquals(10, a0.getId().intValue());
-        assertEquals("employee.view.home", a0.getCode());
-        a0 = null;
-
-        Action aZ = actions.get(3);
-        assertEquals(13, aZ.getId().intValue());
-        assertEquals("employee.save.creditxfer", aZ.getCode());
-        aZ = null;
     }
 
     @Test
