@@ -31,7 +31,7 @@ import oracle.jdbc.pool.OracleDataSource;
 @PropertySources({
         @PropertySource("classpath:custom.properties"),
         @PropertySource(value = "file://${user.home}/.${user.name}-conf/creditxfer-overrides.properties",
-                        ignoreResourceNotFound = true),
+                ignoreResourceNotFound = true),
 })
 public class DatabaseConfig {
 
@@ -49,24 +49,36 @@ public class DatabaseConfig {
     @Value("${jdbc.dataSource.class}")
     private String driverClassName;
 
-//    @Value("${app.datasource.url}")
-//    private String url;
-//
-//    @Value("${app.datasource.username}")
-//    private String username;
-//
-//    @Value("${app.datasource.password}")
-//    private String password;
-//
-//    @Value("${app.datasource.driver-class-name}")
-//    private String driverClassName;
+    @Value("${env.db.hibernate.dialect}")
+    private String hibernateDialect;
+
+    @Value("${env.db.hibernate.hbm2ddl.auto}")
+    private String hibernateHbm2ddlAuto;
+
+    @Value("${env.db.hibernate.cache.provider_class}")
+    private String hibernateCacheProviderClass;
+
+    @Value("${env.db.hibernate.connection.shutdown}")
+    private String hibernateConnectionShutdown;
+
+    @Value("${env.db.hibernate.show_sql}")
+    private String hibernateShowSql;
 
     @PostConstruct
     public void init() {
+        logger.info("init; starting...");
+
+        logger.info("init; username            : " + username);
+        logger.info("init; url                 : " + url);
+        logger.info("init; driverClassName     : " + driverClassName);
+        logger.info("init; hibernateHbm2ddlAuto: " + hibernateHbm2ddlAuto);
+
         Assert.hasLength(url, "property 'url' is required");
         Assert.hasLength(username, "property 'user' is required");
         Assert.hasLength(driverClassName, "property 'driverClassName' is required");
         Assert.hasLength(hibernateCacheProviderClass, "property 'hibernateCacheProviderClass' is required");
+
+        logger.info("init; started.");
     }
 
     @Bean
@@ -85,7 +97,7 @@ public class DatabaseConfig {
 
     @Bean
     @Primary
-    @Profile(value= {"localhost", "prod", "test"})
+    @Profile(value = { "localhost", "prod", "test" })
     @SuppressWarnings("deprecation")
     public DataSource dataSource() {
         Assert.hasLength(url, "'url' is required");
@@ -110,7 +122,6 @@ public class DatabaseConfig {
             properties.setProperty("ValidateConnection", "true");
             properties.setProperty("ValidationQuery", "select * from dual");
             dataSource.setConnectionCacheProperties(properties);
-
 
         } catch (Exception e) {
             logger.error("Error", e);
@@ -143,35 +154,20 @@ public class DatabaseConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Value("${env.db.hibernate.dialect}")
-    private String hibernateDialect;
-
-    @Value("${env.db.hibernate.hbm2ddl.auto}")
-    private String hibernateHbm2ddlAuto;
-
-    @Value("${env.db.hibernate.cache.provider_class}")
-    private String hibernateCacheProviderClass;
-
-    @Value("${env.db.hibernate.connection.shutdown}")
-    private String hibernateConnectionShutdown;
-
-    @Value("${env.db.hibernate.show_sql}")
-    private String hibernateShowSql;
-
-//    @Value("${app.jpa.properties.hibernate.dialect}")
-//    private String hibernateDialect;
-//
-//    @Value("${app.jpa.hibernate.ddl-auto}")
-//    private String hibernateHbm2ddlAuto;
-//
-//    @Value("${app.jpa.properties.hibernate.cache.provider_class}")
-//    private String hibernateCacheProviderClass;
-//
-//    @Value("${app.jpa.properties.hibernate.connection.shutdown}")
-//    private String hibernateConnectionShutdown;
-//
-//    @Value("${app.jpa.show-sql}")
-//    private String hibernateShowSql;
+    //    @Value("${app.jpa.properties.hibernate.dialect}")
+    //    private String hibernateDialect;
+    //
+    //    @Value("${app.jpa.hibernate.ddl-auto}")
+    //    private String hibernateHbm2ddlAuto;
+    //
+    //    @Value("${app.jpa.properties.hibernate.cache.provider_class}")
+    //    private String hibernateCacheProviderClass;
+    //
+    //    @Value("${app.jpa.properties.hibernate.connection.shutdown}")
+    //    private String hibernateConnectionShutdown;
+    //
+    //    @Value("${app.jpa.show-sql}")
+    //    private String hibernateShowSql;
 
     protected Properties jpaProperties() {
         Properties properties = new Properties();

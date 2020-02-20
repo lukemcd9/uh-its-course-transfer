@@ -2,8 +2,8 @@ package edu.hawaii.its.creditxfer.controller;
 
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,18 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.hawaii.its.creditxfer.access.User;
 import edu.hawaii.its.creditxfer.access.UserContextService;
 
-
 @Controller
 public class HomeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+    private static final Log logger = LogFactory.getLog(HomeController.class);
 
     @Autowired
     private UserContextService userContextService;
 
-    @GetMapping(value = {"/", "/home" })
-    public String home(Locale locale, Model model) {
-        logger.debug("User at home. The client locale is {}.", locale);
+    @GetMapping(value = { "/", "/home" })
+    public String home(Locale locale) {
+        logger.debug("User at home. The client locale is " + locale);
 
         return "home";
     }
@@ -75,19 +74,19 @@ public class HomeController {
         return "help/fonts";
     }
 
-    @GetMapping(value= "/institutions")
+    @GetMapping(value = "/institutions")
     public String institutions() {
         logger.debug("User at institutions.");
         return "institutions";
     }
 
-    @GetMapping(value= "/institutions2")
+    @GetMapping(value = "/institutions2")
     public String institutions2() {
         logger.debug("User at institutions2.");
         return "institutions2";
     }
 
-    @GetMapping(value= "/institutions3")
+    @GetMapping(value = "/institutions3")
     public String institutions3() {
         logger.debug("User at institutions3.");
         return "institutions3";

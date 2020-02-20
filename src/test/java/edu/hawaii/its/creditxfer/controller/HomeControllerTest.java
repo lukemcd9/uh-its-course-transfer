@@ -22,8 +22,6 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 
 import edu.hawaii.its.creditxfer.configuration.AppConfig;
@@ -32,7 +30,7 @@ import edu.hawaii.its.creditxfer.configuration.SpringBootWebApplication;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { SpringBootWebApplication.class })
-@ContextConfiguration(classes = {AppConfig.class, AppConfigRun.class})
+@ContextConfiguration(classes = { AppConfig.class, AppConfigRun.class })
 public class HomeControllerTest {
 
     @Value("${cas.login.url}")
@@ -60,75 +58,69 @@ public class HomeControllerTest {
 
     @Test
     public void testController() throws Exception {
-        Model model = new ExtendedModelMap();
-        assertEquals("home", homeController.home(Locale.US, model));
+        assertEquals("home", homeController.home(Locale.US));
     }
 
     @Test
     public void requestUrlHome() throws Exception {
         mockMvc.perform(get("/home"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("home"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"));
     }
 
     @Test
     public void requestUrlContact() throws Exception {
         mockMvc.perform(get("/contact"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("contact"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("contact"));
     }
 
     @Test
     public void requestUrlFaq() throws Exception {
         mockMvc.perform(get("/faq"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("help/faq"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("help/faq"));
     }
 
     @Test
     public void requestUrlGlossary() throws Exception {
         mockMvc.perform(get("/glossary"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("glossary/glossary"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("glossary/glossary"));
     }
 
     @Test
     public void requestUrlGlossaryId() throws Exception {
         mockMvc.perform(get("/glossary/hon"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("glossary/glossary-hon"));
-
+                .andExpect(status().isOk())
+                .andExpect(view().name("glossary/glossary-hon"));
 
         mockMvc.perform(get("/glossary/kcc"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("glossary/glossary-kcc"));
-
+                .andExpect(status().isOk())
+                .andExpect(view().name("glossary/glossary-kcc"));
 
         mockMvc.perform(get("/glossary/uhh"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("glossary/glossary-uhh"));
-
+                .andExpect(status().isOk())
+                .andExpect(view().name("glossary/glossary-uhh"));
 
         mockMvc.perform(get("/glossary/uhm"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("glossary/glossary-uhm"));
-
+                .andExpect(status().isOk())
+                .andExpect(view().name("glossary/glossary-uhm"));
 
         mockMvc.perform(get("/glossary/uhwo"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("glossary/glossary-uhwo"));
-
+                .andExpect(status().isOk())
+                .andExpect(view().name("glossary/glossary-uhwo"));
 
         mockMvc.perform(get("/glossary/wcc"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("glossary/glossary-wcc"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("glossary/glossary-wcc"));
     }
 
     @Test
     public void requestUrlWrong() throws Exception {
         try {
             mockMvc.perform(post("/contact"))
-                .andExpect(status().is3xxRedirection());
+                    .andExpect(status().is3xxRedirection());
         } catch (Exception e) {
             fail("Should not reach here. Exception: " + e);
         }
@@ -144,26 +136,29 @@ public class HomeControllerTest {
     @Test
     public void requestUrlFonts() throws Exception {
         mockMvc.perform(get("/fonts"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("help/fonts"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("help/fonts"));
     }
 
-    @Test public void requestUrlInstitutions() throws Exception {
+    @Test
+    public void requestUrlInstitutions() throws Exception {
         mockMvc.perform(get("/institutions"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("institutions"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("institutions"));
     }
 
-    @Test public void requestUrlInstitutions2() throws Exception {
+    @Test
+    public void requestUrlInstitutions2() throws Exception {
         mockMvc.perform(get("/institutions2"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("institutions2"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("institutions2"));
     }
 
-    @Test public void requestUrlInstitutions3() throws Exception {
+    @Test
+    public void requestUrlInstitutions3() throws Exception {
         mockMvc.perform(get("/institutions3"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("institutions3"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("institutions3"));
     }
 
     @Test
@@ -197,7 +192,5 @@ public class HomeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("attributes"));
     }
-
-
 
 }

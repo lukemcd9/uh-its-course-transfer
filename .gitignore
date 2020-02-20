@@ -9,3 +9,4 @@ output.txt
 /.idea
 *.iml
 src/main/webapp
+/.gitignore
