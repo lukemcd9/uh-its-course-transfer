@@ -1,9 +1,7 @@
 package edu.hawaii.its.creditxfer.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -63,27 +61,7 @@ public class HomeControllerTest {
     @Test
     public void testController() throws Exception {
         Model model = new ExtendedModelMap();
-
         assertEquals("home", homeController.home(Locale.US, model));
-
-        assertFalse(model.asMap().entrySet().isEmpty());
-        assertTrue(model.asMap().keySet().contains("systemMessage"));
-
-    }
-
-    @Test
-    public void testControllerNullMessage() {
-        Model model = new ExtendedModelMap();
-
-        homeController.setMessageNumber(9999);
-        homeController.home(Locale.US, model);
-        assertTrue(model.asMap().entrySet().isEmpty());
-        assertFalse(model.asMap().keySet().contains("systemMessage"));
-
-        homeController.setMessageService(null);
-        homeController.home(Locale.US, model);
-        assertTrue(model.asMap().entrySet().isEmpty());
-        assertFalse(model.asMap().keySet().contains("systemMessage"));
     }
 
     @Test

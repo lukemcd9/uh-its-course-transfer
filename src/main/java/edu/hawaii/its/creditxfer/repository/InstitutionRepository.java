@@ -12,7 +12,7 @@ public interface InstitutionRepository extends JpaRepository<Institution, Intege
 
     List<Institution> findAll(Specification<Institution> specification);
 
-    Optional<Institution> findByCode(String code);
+    Optional<List<Institution>> findAllByCode(String code);
 
     List<Institution> findAllByStateProvince(String state);
 }

@@ -4,10 +4,12 @@ package edu.hawaii.its.creditxfer.type;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MST_TRANSFER_CATALOG_HEADER_UH")
+@Table(name = "MST_TRANSFER_CATALOG_HEADER_UH", schema= "ODSMGR")
+@IdClass(InstitutionId.class)
 public class Institution {
 
     public static final long serialVersionUID = 2L;
@@ -16,6 +18,9 @@ public class Institution {
     private String description;
     private String city;
     private String stateProvince;
+    private String mifValue;
+    private String mifDescription;
+    private String academicPeriodStart;
 
     @Id
     @Column(name = "SOURCE_INSTITUTION_CODE")
@@ -54,31 +59,33 @@ public class Institution {
         this.stateProvince = stateProvince;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        Institution that = (Institution) o;
-
-        if (code != null ? !code.equals(that.code) : that.code != null)
-            return false;
-        if (description != null ? !description.equals(that.description) : that.description != null)
-            return false;
-        if (city != null ? !city.equals(that.city) : that.city != null)
-            return false;
-        return stateProvince != null ? stateProvince.equals(that.stateProvince) : that.stateProvince == null;
+    @Id
+    @Column(name = "MIF_VALUE")
+    public String getMifValue() {
+        return mifValue;
     }
 
-    @Override
-    public int hashCode() {
-        int result = code != null ? code.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (stateProvince != null ? stateProvince.hashCode() : 0);
-        return result;
+    public void setMifValue(String mifValue) {
+        this.mifValue = mifValue;
+    }
+
+    @Column(name = "MIF_DESC")
+    public String getMifDescription() {
+        return mifDescription;
+    }
+
+    public void setMifDescription(String mifDescription) {
+        this.mifDescription = mifDescription;
+    }
+
+    @Id
+    @Column(name = "ACADEMIC_PERIOD_START")
+    public String getAcademicPeriodStart() {
+        return academicPeriodStart;
+    }
+
+    public void setAcademicPeriodStart(String academicPeriodStart) {
+        this.academicPeriodStart = academicPeriodStart;
     }
 
     @Override
@@ -87,6 +94,9 @@ public class Institution {
             + ", description=" + description
             + ", city=" + city
             + ", stateProvince=" + stateProvince
+            + ", mifValue=" + mifValue
+            + ", mifDesc=" + mifDescription
+            + ", academicPeriodStart=" + academicPeriodStart
             + "]";
     }
 }

@@ -30,50 +30,13 @@ public class CourseRestController {
             .body(courses);
     }
 
-    @GetMapping(value = "/api/courses/attribute/{attribute}")
-    public ResponseEntity<List<Course>> coursesByAttribute(@PathVariable String attribute) {
-        logger.info("Entered REST courses(" + attribute + ") ...");
-        List<Course> courses = courseService.findAllByAttribute(attribute.toUpperCase());
-        return ResponseEntity
-            .ok()
-            .body(courses);
-    }
-
-    @GetMapping(value = "/api/courses/subject/{subject}")
-    public ResponseEntity<List<Course>> coursesBySubject(@PathVariable String subject) {
-        logger.info("Entered REST courses(" + subject + ") ...");
-        List<Course> courses = courseService.findAllBySubject(subject.toUpperCase());
-        return ResponseEntity
-            .ok()
-            .body(courses);
-    }
-
-    @GetMapping(value = "api/courses/subject/{subject}/number/{courseNumber}")
-    public ResponseEntity<List<Course>> coursesBySubjectAndCourseNumber(
-        @PathVariable String subject,
-        @PathVariable String courseNumber) {
-        logger.info("Entered REST courses(" + subject + " " + courseNumber + ") ...");
-        List<Course> courses = courseService.findAllBySubjectAndCourseNumber(subject.toUpperCase(), String.valueOf(courseNumber));
-        return ResponseEntity
-            .ok()
-            .body(courses);
-    }
-
-    @GetMapping(value = "api/courses/mif/{mif}")
-    public ResponseEntity<List<Course>> coursesByMifValue(@PathVariable String mif) {
-        logger.info("Entered REST courses(" + mif + ") ...");
-        List<Course> courses = courseService.findAllByMifValue(mif.toUpperCase());
-        return ResponseEntity
-            .ok()
-            .body(courses);
-    }
-
-    @GetMapping(value = "api/courses/mif/{mifValue}/subject/{subject}")
-    public ResponseEntity<List<Course>> courseByMifValueAndSubject(
-        @PathVariable String mifValue,
+    @GetMapping(value = "api/courses/source/{source}/target/{target}/subject/{subject}")
+    public ResponseEntity<List<Course>> courseBySourceTargetAndSubject(
+        @PathVariable String source,
+        @PathVariable String target,
         @PathVariable String subject) {
-        logger.info("Entered REST courses(" + subject + ", " + mifValue + ")...");
-        List<Course> courses = courseService.findByMifValueAndSubject(mifValue.toUpperCase(), subject.toUpperCase());
+        logger.info("Entered REST courses(" + source + ", " + subject + ", " + target + ")...");
+        List<Course> courses = courseService.findBySourceTargetAndSubject(String.valueOf(source), target.toUpperCase(), subject.toUpperCase(), "WI");
         return ResponseEntity
             .ok()
             .body(courses);

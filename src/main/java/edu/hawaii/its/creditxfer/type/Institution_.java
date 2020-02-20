@@ -13,5 +13,8 @@ public class Institution_ {
     public static volatile SingularAttribute<Institution, String> description;
     public static volatile SingularAttribute<Institution, String> city;
     public static volatile SingularAttribute<Institution, String> stateProvince;
+    public static volatile SingularAttribute<Institution, String> mifValue;
+    public static volatile SingularAttribute<Institution, String> mifDescription;
+    public static volatile SingularAttribute<Institution, String> academicPeriodStart;
 
 }

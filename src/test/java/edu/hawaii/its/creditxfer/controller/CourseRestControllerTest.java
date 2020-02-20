@@ -56,99 +56,28 @@ public class CourseRestControllerTest {
         MvcResult result = mockMvc.perform(get("/api/courses"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(9486)))
+            .andExpect(jsonPath("$", hasSize(5000)))
             .andReturn();
         assertNotNull(result);
     }
 
     @Test
-    public void httpGetCoursesByAttribute() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/courses/attribute/dh"))
+    public void httpGetCoursesBySourceTargetAndSubject() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/courses/source/4867/target/kap/subject/ics"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(1741)))
-            .andExpect(jsonPath("$[0].attribute").value("DH"))
-            .andExpect(jsonPath("$[0].start").value("201910"))
-            .andExpect(jsonPath("$[0].startDescription").value("Fall 2018"))
-            .andExpect(jsonPath("$[0].end").value("999999"))
-            .andExpect(jsonPath("$[0].endDescription").value("The End of Time"))
-            .andExpect(jsonPath("$[0].mifValue").value("HAW"))
-            .andExpect(jsonPath("$[0].subject").value("HWST"))
-            .andExpect(jsonPath("$[0].courseNumber").value("100"))
-            .andReturn();
-        assertNotNull(result);
-    }
-
-    @Test
-    public void httpGetCoursesBySubject() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/courses/subject/ics"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(33)))
-            .andExpect(jsonPath("$[0].attribute").value("FS"))
-            .andExpect(jsonPath("$[0].start").value("200810"))
-            .andExpect(jsonPath("$[0].startDescription").value("Fall 2007"))
-            .andExpect(jsonPath("$[0].end").value("201845"))
-            .andExpect(jsonPath("$[0].endDescription").value("Summer 2018 Accelerated"))
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].sourceInstitutionCode").value("4867"))
             .andExpect(jsonPath("$[0].mifValue").value("KAP"))
-            .andExpect(jsonPath("$[0].subject").value("ICS"))
-            .andExpect(jsonPath("$[0].courseNumber").value("141"))
+            .andExpect(jsonPath("$[0].subjectCodeTrans").value("ICS"))
+            .andExpect(jsonPath("$[0].courseNumberTrans").value("141"))
+            .andExpect(jsonPath("$[0].subjectCodeEquiv").value("ICS"))
+            .andExpect(jsonPath("$[0].courseNumberEquiv").value("141"))
+            .andExpect(jsonPath("$[0].academicPeriodStart").value("000000"))
+            .andExpect(jsonPath("$[0].equivCourseAttribute").value("FS"))
+            .andExpect(jsonPath("$[0].equivCourseAttributeDesc").value("Foundations: Symbolic Reason"))
+            .andExpect(jsonPath("$[0].equivAttrActivityDate").value("2013-10-03"))
             .andReturn();
         assertNotNull(result);
     }
-
-    @Test
-    public void httpGetCoursesBySubjectAndCourseNumber() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/courses/subject/ics/number/141"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(12)))
-            .andExpect(jsonPath("$[0].attribute").value("FS"))
-            .andExpect(jsonPath("$[0].start").value("200810"))
-            .andExpect(jsonPath("$[0].startDescription").value("Fall 2007"))
-            .andExpect(jsonPath("$[0].end").value("201845"))
-            .andExpect(jsonPath("$[0].endDescription").value("Summer 2018 Accelerated"))
-            .andExpect(jsonPath("$[0].mifValue").value("KAP"))
-            .andExpect(jsonPath("$[0].subject").value("ICS"))
-            .andExpect(jsonPath("$[0].courseNumber").value("141"))
-            .andReturn();
-        assertNotNull(result);
-    }
-
-    @Test
-    public void httpGetCoursesByMif() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/courses/mif/kap"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(1039)))
-            .andExpect(jsonPath("$[0].attribute").value("DH"))
-            .andExpect(jsonPath("$[0].start").value("200310"))
-            .andExpect(jsonPath("$[0].startDescription").value("Fall 2002"))
-            .andExpect(jsonPath("$[0].end").value("200345"))
-            .andExpect(jsonPath("$[0].endDescription").value("Summer 2003 Accelerated"))
-            .andExpect(jsonPath("$[0].mifValue").value("KAP"))
-            .andExpect(jsonPath("$[0].subject").value("AMST"))
-            .andExpect(jsonPath("$[0].courseNumber").value("201"))
-            .andReturn();
-        assertNotNull(result);
-    }
-
-    @Test
-    public void httpGetCourseByMifValueAndSubject() throws Exception {
-        MvcResult result = mockMvc.perform(get("/api/courses/mif/man/subject/ics"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-            .andExpect(jsonPath("$", hasSize(9)))
-            .andExpect(jsonPath("$[0].attribute").value("FS"))
-            .andExpect(jsonPath("$[0].start").value("200410"))
-            .andExpect(jsonPath("$[0].startDescription").value("Fall 2003"))
-            .andExpect(jsonPath("$[0].end").value("201845"))
-            .andExpect(jsonPath("$[0].endDescription").value("Summer 2018 Accelerated"))
-            .andExpect(jsonPath("$[0].mifValue").value("MAN"))
-            .andExpect(jsonPath("$[0].subject").value("ICS"))
-            .andExpect(jsonPath("$[0].courseNumber").value("141"))
-            .andReturn();
-        assertNotNull(result);
-    }
-
 }

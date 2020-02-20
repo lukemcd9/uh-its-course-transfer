@@ -15,26 +15,10 @@ public class CourseService {
     private CourseRepository courseRepository;
 
     public List<Course> findAll() {
-        return courseRepository.findAllByOrderBySubject();
+        return courseRepository.findAllByOrderBySubjectCodeTrans();
     }
 
-    public List<Course> findAllByAttribute(String attribute) {
-        return courseRepository.findAllByAttribute(attribute);
-    }
-
-    public List<Course> findAllBySubject(String subject) {
-        return courseRepository.findAllBySubject(subject);
-    }
-
-    public List<Course> findAllBySubjectAndCourseNumber(String subject, String courseNumber) {
-        return courseRepository.findAllBySubjectAndCourseNumber(subject, courseNumber);
-    }
-
-    public List<Course> findAllByMifValue(String mifValue) {
-        return courseRepository.findAllByMifValueOrderBySubject(mifValue);
-    }
-
-    public List<Course> findByMifValueAndSubject(String mifValue, String subject) {
-        return courseRepository.findByMifValueAndSubject(mifValue, subject);
+    public List<Course> findBySourceTargetAndSubject(String sourceInstitutionCode, String mifValue, String subject, String attribute) {
+        return courseRepository.findBySourceTargetAndSubject(sourceInstitutionCode, mifValue, subject, attribute);
     }
 }

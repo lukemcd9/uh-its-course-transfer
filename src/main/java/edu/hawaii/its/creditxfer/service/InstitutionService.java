@@ -18,8 +18,8 @@ public class InstitutionService {
     private InstitutionRepository institutionRepository;
 
     @Transactional(readOnly = true)
-    public Institution findInstitution(String code) {
-        return institutionRepository.findByCode(code).get();
+    public List<Institution> findInstitution(String code) {
+        return institutionRepository.findAllByCode(code).get();
     }
 
     public List<Institution> findAllInstitutionsByState(String state) {

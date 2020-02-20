@@ -143,6 +143,11 @@
             <artifactId>commons-dbcp2</artifactId>
             <version>${commons-dbcp-version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
 
         <!-- Servlet -->
         <dependency>
@@ -501,6 +506,7 @@
                     <excludes>
                         <exclude>**/configuration/SpringBootWebApplication.class</exclude>
                         <exclude>**/configuration/AppConfig.class</exclude>
+                        <exclude>**/configuration/DatabaseConfig.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
