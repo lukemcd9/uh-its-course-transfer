@@ -11,14 +11,12 @@ public class AuthorizationService {
     @Autowired
     private AdministratorService administratorService;
 
-
-
     public RoleHolder fetchRoles(String uhUuid) {
         RoleHolder roleHolder = new RoleHolder();
 
         roleHolder.add(Role.USER);
 
-        if(administratorService.exists(uhUuid)) {
+        if (administratorService.exists(uhUuid)) {
             roleHolder.add(Role.ADMIN);
         }
 

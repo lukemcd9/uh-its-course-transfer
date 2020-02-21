@@ -3,13 +3,10 @@ package edu.hawaii.its.creditxfer.configuration;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,15 +15,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.Assert;
 
 import oracle.jdbc.pool.OracleDataSource;
 
 @Configuration
+@Profile(value = { "localhost", "prod", "test" })
 @EnableTransactionManagement
 @PropertySources({
         @PropertySource("classpath:custom.properties"),
@@ -35,7 +30,7 @@ import oracle.jdbc.pool.OracleDataSource;
 })
 public class DatabaseConfig {
 
-    private static final Log logger = LogFactory.getLog(SecurityConfig.class);
+    private static final Log logger = LogFactory.getLog(DatabaseConfig.class);
 
     @Value("${jdbc.url}")
     private String url;
@@ -46,23 +41,17 @@ public class DatabaseConfig {
     @Value("${jdbc.password}")
     private String password;
 
-    @Value("${jdbc.dataSource.class}")
+    @Value("${spring.datasource.driverClassName}")
     private String driverClassName;
 
-    @Value("${env.db.hibernate.dialect}")
-    private String hibernateDialect;
+    @Value("${spring.datasource.initialization-mode}")
+    private String initializationMode;
 
-    @Value("${env.db.hibernate.hbm2ddl.auto}")
-    private String hibernateHbm2ddlAuto;
+    @Value("${spring.jpa.hibernate.ddl-auto}")
+    private String hibernateDdlAuto;
 
-    @Value("${env.db.hibernate.cache.provider_class}")
-    private String hibernateCacheProviderClass;
-
-    @Value("${env.db.hibernate.connection.shutdown}")
-    private String hibernateConnectionShutdown;
-
-    @Value("${env.db.hibernate.show_sql}")
-    private String hibernateShowSql;
+    @Value("${spring.datasource.initialize:false}")
+    private Boolean initializeDatasource;
 
     @PostConstruct
     public void init() {
@@ -71,28 +60,16 @@ public class DatabaseConfig {
         logger.info("init; username            : " + username);
         logger.info("init; url                 : " + url);
         logger.info("init; driverClassName     : " + driverClassName);
-        logger.info("init; hibernateHbm2ddlAuto: " + hibernateHbm2ddlAuto);
 
         Assert.hasLength(url, "property 'url' is required");
         Assert.hasLength(username, "property 'user' is required");
         Assert.hasLength(driverClassName, "property 'driverClassName' is required");
-        Assert.hasLength(hibernateCacheProviderClass, "property 'hibernateCacheProviderClass' is required");
+
+        Assert.isTrue(initializationMode.equals("never"), "Should be a 'never'");
+        Assert.isTrue(hibernateDdlAuto.equals("validate"), "Should be a 'validate'");
+        Assert.isTrue(!initializeDatasource, "Should be a False");
 
         logger.info("init; started.");
-    }
-
-    @Bean
-    @Profile("dev")
-    public DataSource dataSourceDev() {
-        Assert.hasLength(url, "'url' is required");
-
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-
-        return dataSource;
     }
 
     @Bean
@@ -130,54 +107,8 @@ public class DatabaseConfig {
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
-        return new JpaTransactionManager(emf);
-    }
-
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-
-        em.setPersistenceUnitName("creditxferPersistenceUnit");
-        em.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        em.setPackagesToScan("edu.hawaii.its.creditxfer.type");
-
-        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setJpaProperties(jpaProperties());
-        em.setDataSource(dataSource());
-
-        return em;
-    }
-
-    @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
-    }
-
-    //    @Value("${app.jpa.properties.hibernate.dialect}")
-    //    private String hibernateDialect;
-    //
-    //    @Value("${app.jpa.hibernate.ddl-auto}")
-    //    private String hibernateHbm2ddlAuto;
-    //
-    //    @Value("${app.jpa.properties.hibernate.cache.provider_class}")
-    //    private String hibernateCacheProviderClass;
-    //
-    //    @Value("${app.jpa.properties.hibernate.connection.shutdown}")
-    //    private String hibernateConnectionShutdown;
-    //
-    //    @Value("${app.jpa.show-sql}")
-    //    private String hibernateShowSql;
-
-    protected Properties jpaProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", hibernateDialect);
-        properties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
-        properties.setProperty("hibernate.cache.provider_class", hibernateCacheProviderClass);
-        properties.setProperty("hibernate.connection.shutdown", hibernateConnectionShutdown);
-        properties.setProperty("hibernate.show_sql", hibernateShowSql);
-
-        return properties;
     }
 
 }

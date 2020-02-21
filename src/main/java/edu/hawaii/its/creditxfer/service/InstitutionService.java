@@ -1,15 +1,16 @@
 package edu.hawaii.its.creditxfer.service;
 
+import static edu.hawaii.its.creditxfer.repository.specification.InstitutionSpecification.exclude;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.hawaii.its.creditxfer.repository.InstitutionRepository;
 import edu.hawaii.its.creditxfer.type.Institution;
-
-import static edu.hawaii.its.creditxfer.repository.specification.InstitutionSpecification.exclude;
 
 @Service
 public class InstitutionService {
@@ -26,6 +27,7 @@ public class InstitutionService {
         return institutionRepository.findAllByStateProvince(state);
     }
 
+    @Cacheable(value = "institutions")
     public List<Institution> findAll() {
         return institutionRepository.findAll(exclude("Do Not Use"));
     }

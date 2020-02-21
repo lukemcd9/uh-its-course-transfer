@@ -1,3 +1,5 @@
+@import url('font.css');
+
 
 html {
     position: relative;
@@ -184,15 +186,16 @@ p.uh-align-left {
   padding: 30px;
   margin: 0 0 20px 0;
 }
-.result_box li{
+.result_box li {
   list-style:decimal;
 }
-.footer{
-  color:#fff;
+.footer {
+    color:#fff;
 }
-.footer a{
-  color:#c8c8c8;
+.footer a {
+    color:#c8c8c8;
 }
+
 .uh-branding-one {
     font-family: cinzel-regular, serif;
     font-size: 1.6em;
@@ -205,6 +208,14 @@ p.uh-align-left {
     font-size: 0.8em;
     font-style: normal;
     color: #777;
+}
+.uh-branding-title {
+    font-family: cinzel-regular, serif;
+    font-size: 1.6em;
+    font-style: normal;
+    font-weight: 900;
+    letter-spacing: 2.2px;
+    padding-top: 12px;    
 }
 
 .navbar {
