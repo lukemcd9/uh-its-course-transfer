@@ -394,6 +394,7 @@ button.redify-link {
 
 }
 
+
 .typeahead-institutions .dropdown-menu {
     position: absolute;
     display: block;
@@ -447,4 +448,10 @@ button.redify-link {
   -moz-border-radius-topright: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+.bg-nonuh-color{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0rem;
 }
