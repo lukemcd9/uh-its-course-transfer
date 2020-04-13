@@ -5,7 +5,7 @@
 <body ng-app="creditxferApp" ng-controller="CreditxferJsController" data-ng-init="init()">
 
 <nav th:replace="menubar :: copy"></nav>
-<div class="bg-gold pt-3 pb-3 table-responsive">
+<div class="bg-gold pt-3 pb-3">
       <div class="container search-box">
         <form class="form-row">
           <div class="form-group col-md-4">
@@ -50,17 +50,17 @@
     </div>
     <!-- main content starts-->
 
-    <div class="container pt-3 pb-4 table-responsive">
+    <div class="container pt-3 pb-4">
       <div class="panel-body">
         <table ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
           <thead class="text-white">
           <tr>
-            <th class="bg-nonuh-color" scope="col" width="8%">Subject</th>
-            <th class="bg-nonuh-color" scope="col" width="8%">Course</th>
-            <th class="bg-nonuh-color" scope="col" width="28%">Title</th>
-            <th class="bg-{{color}}" scope="col" width="8%">Subject</th>
-            <th class="bg-{{color}}" scope="col" width="10%">Course</th>
-            <th class="bg-{{color}}" scope="col" width="8%">Credits</th>
+            <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Subject</th>
+            <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Course</th>
+            <th class="bg-nonuh-color sticky-top" scope="col" width="28%">Title</th>
+            <th class="bg-{{color}} sticky-top" scope="col" width="8%">Subject</th>
+            <th class="bg-{{color}} sticky-top" scope="col" width="10%">Course</th>
+            <th class="bg-{{color}} sticky-top" scope="col" width="8%">Credits</th>
           </tr>
           </thead>
           <tbody>
