@@ -6,7 +6,7 @@
 
 <nav th:replace="menubar :: copy"></nav>
 <div class="bg-gold pt-3 pb-3">
-      <div class="container search-box">
+      <div class="container search-box fixed">
         <form class="form-row">
           <div class="form-group col-md-4">
             <label>Transferring from</label>
@@ -51,7 +51,7 @@
     <!-- main content starts-->
 
     <div class="container pt-3 pb-4">
-      <div class="panel-body">
+      <div class="card card-body">
         <table ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
           <thead class="text-white">
           <tr>
