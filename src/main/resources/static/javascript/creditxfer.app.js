@@ -4,7 +4,7 @@ var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select"
 
 
 function CreditxferJsController($scope, dataProvider) {
-  var institutionUrl = "api/institutions";
+  var institutionUrl = "/transferdatabase/api/institutions";
   $scope.institutions = [];
   $scope.sources = [];
   $scope.targets = [];
@@ -52,7 +52,7 @@ function CreditxferJsController($scope, dataProvider) {
     $scope.available = [];
     $scope.catalog = [];
     $scope.loadMessage = true;
-    var catalogUrl = "api/catalog/source/" + source + "/target/" + target;
+    var catalogUrl = "/transferdatabase/api/catalog/source/" + source + "/target/" + target;
     dataProvider.loadData(function(response) {
       $scope.catalog = response.data;
       $scope.catalog.forEach(function(c) {
@@ -89,7 +89,7 @@ function CreditxferJsController($scope, dataProvider) {
   }
 
   $scope.loadAttributes = function(source, target, subject) {
-    var attributeUrl = "api/courses/source/" + source + "/target/" + target + "/subject/" + subject;
+    var attributeUrl = "/transferdatabase/api/courses/source/" + source + "/target/" + target + "/subject/" + subject;
     dataProvider.loadData(function(response) {
       $scope.attributes = response.data;
     }, attributeUrl)
