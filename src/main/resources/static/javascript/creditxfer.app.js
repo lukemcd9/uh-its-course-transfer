@@ -1,6 +1,6 @@
 "use strict"
 
-var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select", "ngSanitize"]);
+var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select", "ngSanitize", "ngIdle"]);
 
 
 function CreditxferJsController($scope, dataProvider) {
