@@ -1,7 +1,7 @@
 function IdleConfig(IdleProvider, KeepaliveProvider) {
     IdleProvider.idle(5); // after 5 seconds of inactivity, marks user as idle.
-    IdleProvider.timeout(5);
-    KeepaliveProvider.interval(2);
+    IdleProvider.timeout(5); // after 5 of being idle, time out user.
+    KeepaliveProvider.interval(2); // trigger keep alive every 2 seconds.
 }
 
 function IdleController($scope, Idle, $uibModal) {
