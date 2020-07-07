@@ -1,5 +1,5 @@
 function IdleConfig(IdleProvider, KeepaliveProvider) {
-    IdleProvider.idle(5); // after 30 seconds of inactivity, marks user as idle.
+    IdleProvider.idle(5); // after 5 seconds of inactivity, marks user as idle.
     IdleProvider.timeout(5);
     KeepaliveProvider.interval(2);
 }
