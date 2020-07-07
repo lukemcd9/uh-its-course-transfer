@@ -260,6 +260,11 @@
             <artifactId>webjars-locator</artifactId>
             <version>0.38</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>ng-idle</artifactId>
+            <version>1.3.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
