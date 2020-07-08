@@ -1,25 +1,32 @@
-function IdleConfig(IdleProvider, KeepaliveProvider) {
+function IdleConfig(IdleProvider) {
     IdleProvider.idle(5); // after 5 seconds of inactivity, marks user as idle.
     IdleProvider.timeout(5); // after 5 of being idle, time out user.
-    KeepaliveProvider.interval(2); // trigger keep alive every 2 seconds.
 }
 
-function IdleController($scope, Idle, $uibModal) {
+function IdleController($scope, $log, Idle, $uibModal, $window) {
 
     $scope.$on("IdleStart", () => {
-        console.log("User idle.");
+        $log.debug("User idle.");
+        $uibModal.open({
+            templateUrl: "idleModal.html",
+            controller: "IdleModalController"
+        });
     });
 
     $scope.$on("IdleEnd", () => {
-        console.log("User no longer idle.");
+        $log.debug("User no longer idle.");
     })
 
     $scope.$on("IdleTimeout", () => {
-        console.log("User timed out.");
-        $uibModal.open({
-            templateUrl: "idleModal.html",
-        });
+        $log.debug("User timed out.");
+        $window.location = "/transferdatabase/logout";
     });
 }
 
 creditxferApp.controller("IdleController", IdleController).config(IdleConfig).run((Idle) => Idle.watch());
+
+function IdleModalController($scope) {
+    $scope.countdown = 5;
+}
+
+creditxferApp.controller("IdleModalController", IdleModalController);

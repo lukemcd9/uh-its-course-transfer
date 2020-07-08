@@ -6,9 +6,12 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="container-fluid">
-            <div class="row">
+        <div class="container-fluid" idle-countdown="countdown">
+            <div class="row" ng-if="countdown == 0">
                 You have been timed out due to inactivity.
+            </div>
+            <div class="row" ng-if="countdown > 0">
+                You will be timed out in {{ countdown }} seconds.
             </div>
         </div>
     </div>
