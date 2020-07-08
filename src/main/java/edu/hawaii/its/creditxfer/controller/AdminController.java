@@ -17,6 +17,11 @@ public class AdminController {
         return "admin";
     }
 
+    @GetMapping("/admin/idle")
+    public String idlePage() {
+        return "idle";
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Exceptions for testing. Remove this stuff at some point.
     //

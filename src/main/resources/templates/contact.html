@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="header :: copy"></head>
-<body ng-app="creditxferApp" ng-controller="IdleController">
+<body ng-app="creditxferApp">
 <nav th:replace="menubar :: copy"></nav>
     <!--  Content container -->
     <div class="container">
@@ -32,8 +32,6 @@
         </div>
     </div>
     <!-- / Contact container -->
-
-    <div th:replace="idle-modal :: copy"></div>
 
     <div th:replace="footer :: copy"></div>
 </body>
