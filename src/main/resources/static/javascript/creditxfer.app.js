@@ -1,10 +1,22 @@
 "use strict"
 
-var creditxferApp = angular.module("creditxferApp", ["ui.bootstrap", "ui.select", "ngSanitize", "ngIdle"]);
+var creditxferApp = angular.module("creditxferApp", 
+                                   ["ui.bootstrap", 
+                                    "ui.select", 
+                                    "ngSanitize", 
+                                    "ngIdle"]);
 
 
-function CreditxferJsController($scope, dataProvider) {
-  var institutionUrl = "/transferdatabase/api/institutions";
+creditxferApp.constant("App", {
+    URL: {
+        COURSE_SOURCE_BASE: "/transferdatabase/api/courses/source/",
+        INSTITUTIONS: "/transferdatabase/api/institutions",
+        LOGOUT: "/transferdatabase/logout"
+    }
+});
+
+
+function CreditxferJsController($scope, App, dataProvider) {
   $scope.institutions = [];
   $scope.sources = [];
   $scope.targets = [];
@@ -32,7 +44,7 @@ function CreditxferJsController($scope, dataProvider) {
         }
       })
       $scope.load($scope.sources);
-    }, institutionUrl);
+    }, App.URL.INSTITUTIONS);
   }
 
   $scope.loadTargets = function(source) {

@@ -3,7 +3,7 @@ function IdleConfig(IdleProvider) {
     IdleProvider.timeout(5); // after 5 of being idle, time out user.
 }
 
-function IdleController($scope, $log, Idle, $uibModal, $window) {
+function IdleController($scope, $log, Idle, $uibModal, $window, App) {
 
     $scope.$on("IdleStart", () => {
         $log.debug("User idle.");
@@ -19,14 +19,15 @@ function IdleController($scope, $log, Idle, $uibModal, $window) {
 
     $scope.$on("IdleTimeout", () => {
         $log.debug("User timed out.");
-        $window.location = "/transferdatabase/logout";
+        //$window.location = "/transferdatabase/logout";
+        $window.location = App.URL.LOGOUT;
     });
 }
 
-creditxferApp.controller("IdleController", IdleController).config(IdleConfig).run((Idle) => Idle.watch());
+creditxferApp.controller("IdleController", IdleController)
+    .config(IdleConfig).run((Idle) => Idle.watch());
 
 function IdleModalController($scope) {
     $scope.countdown = 5;
 }
-
 creditxferApp.controller("IdleModalController", IdleModalController);
