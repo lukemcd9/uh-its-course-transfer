@@ -16,6 +16,7 @@
                         <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/faq}">Help</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/feedback}">Feedback</a></li>
+                        <li class="nav-item" sec:authorize="hasRole('ADMIN')"><a class="nav-link" th:href="@{/admin}">Admin</a></li>
                     </ul>
                 </div>
             </nav>
