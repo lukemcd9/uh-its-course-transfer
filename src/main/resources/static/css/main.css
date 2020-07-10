@@ -218,6 +218,13 @@ p.uh-align-left {
     padding-top: 12px;    
 }
 
+.uh-branding-three {
+    font-family: cinzel-regular, serif;
+    letter-spacing: 2.2px;
+    font-weight: 900;
+    font-style: normal;
+}
+
 .navbar {
     margin: 0;
     padding: 0;

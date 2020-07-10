@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <nav role="navigation" th:fragment="copy">
-    <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="bg-dark">
         <div class ="container navbar-dark">
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-sm">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -26,10 +26,10 @@
     <div class="bg-white pt-4 pb-4">
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                     <img th:src="@{/images/uh_logo.png}" alt="University of Hawaii" width="100%" class="img-fluid">
                 </div>
-                <span class="uh-branding-title">Course Transfer Database</span>
+                <div class="col-md-6 col-sm-12 pt-lg-3 text-center"><span class="h3 uh-branding-three">Course Transfer Database</span></div>
             </div>
         </div>
     </div>

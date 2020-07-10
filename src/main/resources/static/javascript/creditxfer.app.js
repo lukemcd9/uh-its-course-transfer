@@ -11,7 +11,8 @@ creditxferApp.constant("App", {
     URL: {
         COURSE_SOURCE_BASE: "/transferdatabase/api/courses/source/",
         INSTITUTIONS: "/transferdatabase/api/institutions",
-        LOGOUT: "/transferdatabase/logout"
+        LOGOUT: "/transferdatabase/logout",
+        KEEP_ALIVE: "/transferdatabase/ping"
     }
 });
 
