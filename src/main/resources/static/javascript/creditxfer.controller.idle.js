@@ -1,7 +1,10 @@
-function IdleConfig(IdleProvider) {
+function IdleConfig(IdleProvider, KeepaliveProvider, App) {
     IdleProvider.idle(5); // after 5 seconds of inactivity, marks user as idle.
     IdleProvider.timeout(5); // after 5 of being idle, time out user.
-    IdleProvider.interrupt("mousedown"); // what event that can interrupt.
+    IdleProvider.interrupt("DOMMouseScroll mousewheel keydown mousedown"); // what event that can interrupt.
+
+    KeepaliveProvider.http(App.URL.KEEP_ALIVE);
+    KeepaliveProvider.interval(10); // every 10 seconds a keepalive event is broadcast and sends a request to KEEP_ALIVE url
 }
 
 function IdleController($scope, $log, Idle, $uibModal, $window, App) {
@@ -23,6 +26,10 @@ function IdleController($scope, $log, Idle, $uibModal, $window, App) {
     $scope.$on("IdleTimeout", () => {
         $log.debug("User timed out.");
         $window.location = App.URL.LOGOUT;
+    });
+
+    $scope.$on("KeepaliveResponse", (event, response, status) => {
+        $log.debug(`Keepalive Data: ${response.data}`);
     });
 }
 
