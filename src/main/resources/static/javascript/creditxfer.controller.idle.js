@@ -26,7 +26,7 @@ function IdleController($scope, $log, Idle, $uibModal, $window, App, Keepalive) 
 
     $scope.$on("IdleEnd", () => {
         $log.debug("User no longer idle.");
-        modal.dismiss("cancel")
+        modal.dismiss();
     })
 
     $scope.$on("IdleTimeout", () => {

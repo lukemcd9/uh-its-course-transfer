@@ -1,5 +1,6 @@
 package edu.hawaii.its.creditxfer.controller;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -20,6 +21,13 @@ public class InstitutionRestController {
 
     @Autowired
     private InstitutionService institutionService;
+
+    @PostConstruct
+    public void init() {
+        logger.debug("Caching institutions...");
+        institutionService.findAll();
+        logger.debug("Finished caching institutions");
+    }
 
     @GetMapping(value = "/api/institutions")
     public ResponseEntity<List<Institution>> institutions() {
