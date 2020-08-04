@@ -57,7 +57,7 @@ function CreditxferJsController($scope, App, dataProvider) {
         $scope.targets.push(i);
       }
     })
-    $scope.targets.sort((a,b) => a.mifDescription.localeCompare(b.mifDescription));;
+    $scope.targets.sort((a,b) => a.mifDescription.localeCompare(b.mifDescription));
   }
 
   $scope.loadCatalog = function(source, target) {
