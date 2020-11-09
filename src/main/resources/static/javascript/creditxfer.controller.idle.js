@@ -19,8 +19,7 @@ function IdleController($scope, $log, Idle, $uibModal, $window, App, Keepalive) 
     $scope.$on("IdleStart", () => {
         $log.debug("User idle.");
         modal = $uibModal.open({
-            templateUrl: "idleModal.html",
-            controller: "IdleModalController"
+            templateUrl: "idleModal.html"
         });
     });
 
@@ -41,9 +40,3 @@ function IdleController($scope, $log, Idle, $uibModal, $window, App, Keepalive) 
 
 creditxferApp.controller("IdleController", IdleController)
     .config(IdleConfig).run((Idle) => Idle.watch());
-
-function IdleModalController($scope) {
-    $scope.countdown = 5;
-}
-
-creditxferApp.controller("IdleModalController", IdleModalController);
