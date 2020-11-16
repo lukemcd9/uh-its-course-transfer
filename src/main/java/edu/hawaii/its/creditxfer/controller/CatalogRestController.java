@@ -1,5 +1,6 @@
 package edu.hawaii.its.creditxfer.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -43,11 +44,19 @@ public class CatalogRestController {
 
 
     @GetMapping(value = "/api/catalog/source/{source}/target/{target}")
-    public ResponseEntity<List<CatalogDto>> catalogBySourceAndTarget(
+    public ResponseEntity<List<List<CatalogDto>>> catalogBySourceAndTarget(
         @PathVariable String source,
         @PathVariable String target) {
         logger.info("Entered REST catalog (source=" + source + ", target=" + target +")...");
-        List<CatalogDto> catalog = catalogService.findAllBySourceAndTarget(source, target);
+        List<List<CatalogDto>> catalog = new ArrayList<>();
+        if (target.equalsIgnoreCase("alluh")) {
+            String[] targets = {"MAN", "HON", "HAW", "LEE", "KAP", "HIL", "WOA", "KAU", "MAU", "WIN"};
+            for (String targetCatalog : targets) {
+                catalog.add(catalogService.findAllBySourceAndTarget(source, targetCatalog));
+            }
+        } else {
+            catalog.add(catalogService.findAllBySourceAndTarget(source, target));
+        }
         return ResponseEntity
             .ok()
             .body(catalog);

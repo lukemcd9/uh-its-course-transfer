@@ -49,7 +49,7 @@ function CreditxferJsController($scope, App, dataProvider) {
   }
 
   $scope.loadTargets = function(source) {
-    $scope.targets = [];
+    $scope.targets = [{ mifDescription: "All UH Campuses", mifValue: "alluh" }];
     const map = new Map();
     $scope.institutions.forEach(function(i) {
       if(!map.has(i.mifDescription) && i.code === source) {
@@ -68,12 +68,14 @@ function CreditxferJsController($scope, App, dataProvider) {
     var catalogUrl = "/transferdatabase/api/catalog/source/" + source + "/target/" + target;
     dataProvider.loadData(function(response) {
       $scope.catalog = response.data;
-      $scope.catalog.forEach(function(c) {
-        var s = c.subjectCodeTrans;
-        if ($scope.subjects.indexOf(s) < 0) {
-          $scope.subjects.push(s);
-        }
-      });
+      for (var i = 0; i < $scope.catalog.length; i++) {
+        $scope.catalog[i].forEach(function(c) {
+          var s = c.subjectCodeTrans;
+          if ($scope.subjects.indexOf(s) < 0) {
+            $scope.subjects.push(s);
+          }
+        });
+      }
       $scope.subjects.sort();
       $scope.load($scope.subjects);
     }, catalogUrl)
@@ -81,11 +83,13 @@ function CreditxferJsController($scope, App, dataProvider) {
 
   $scope.filterCourses = function(subject) {
     $scope.available = [];
-    $scope.catalog.forEach(function(c) {
-      if ($scope.available.indexOf(c) < 0 && c.subjectCodeTrans === subject) {
-        $scope.available.push(c);
-      }
-    });
+    for (var i = 0; i < $scope.catalog.length; i++) {
+      $scope.catalog[i].forEach(function(c) {
+        if ($scope.available.indexOf(c) < 0 && c.subjectCodeTrans === subject) {
+          $scope.available.push(c);
+        }
+      });
+    }
 
     $scope.available.forEach(function(c) {
       $scope.findConnectedCourseRecursive(c);

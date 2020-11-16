@@ -52,15 +52,15 @@
 
     <div class="container pt-3 pb-4">
       <div class="card card-body">
-        <table ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
+        <table ng-repeat="catalog in catalog" ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
           <thead class="text-white">
           <tr>
             <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Subject</th>
             <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Course</th>
             <th class="bg-nonuh-color sticky-top" scope="col" width="28%">Title</th>
-            <th class="bg-{{color}} sticky-top" scope="col" width="8%">Subject</th>
-            <th class="bg-{{color}} sticky-top" scope="col" width="10%">Course</th>
-            <th class="bg-{{color}} sticky-top" scope="col" width="8%">Credits</th>
+            <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Subject</th>
+            <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="10%">Course</th>
+            <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Credits</th>
           </tr>
           </thead>
           <tbody>
@@ -68,9 +68,9 @@
               <td>{{c.subjectCodeTrans}}</td>
               <td>{{c.courseNumberTrans}}</td>
               <td>{{c.courseTitleTrans}}</td>
-              <td class="bg-{{color}}-hl" ng-bind-html="c.subjectCodeEquiv"/>
-              <td class="bg-{{color}}-hl" ng-bind-html="c.courseNumberEquiv"/>
-              <td class="bg-{{color}}-hl">{{c.equivCreditsUsed}}</td>
+              <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.subjectCodeEquiv"/>
+              <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.courseNumberEquiv"/>
+              <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl">{{c.equivCreditsUsed}}</td>
             </tr>
           </tbody>
         </table>
