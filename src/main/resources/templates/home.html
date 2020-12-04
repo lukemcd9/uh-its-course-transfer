@@ -64,7 +64,7 @@
           </tr>
           </thead>
           <tbody>
-            <tr data-ng-repeat="c in available" ng-class="findAttribute(c) ? 'bg-nonuh-color-hl clickable' : '' " ng-click="showCourse(c)">
+            <tr data-ng-repeat="c in available" ng-if="c.mifValue === catalog[0].mifValue" ng-class="findAttribute(c) ? 'bg-nonuh-color-hl clickable' : '' " ng-click="showCourse(c)">
               <td>{{c.subjectCodeTrans}}</td>
               <td>{{c.courseNumberTrans}}</td>
               <td>{{c.courseTitleTrans}}</td>
