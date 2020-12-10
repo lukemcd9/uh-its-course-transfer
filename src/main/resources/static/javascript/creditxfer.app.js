@@ -39,7 +39,7 @@ function CreditxferJsController($scope, App, dataProvider) {
       $scope.institutions = response.data;
       const map = new Map();
       $scope.institutions.forEach(function(i) {
-        if(!map.has(i.description)) {
+        if (!map.has(i.description)) {
           map.set(i.description, true);
           $scope.sources.push(i);
         }
@@ -52,12 +52,12 @@ function CreditxferJsController($scope, App, dataProvider) {
     $scope.targets = [{ mifDescription: "All UH Campuses", mifValue: "alluh" }];
     const map = new Map();
     $scope.institutions.forEach(function(i) {
-      if(!map.has(i.mifDescription) && i.code === source) {
+      if (!map.has(i.mifDescription) && i.code === source) {
         map.set(i.mifDescription, true);
         $scope.targets.push(i);
       }
     })
-    $scope.targets.sort((a,b) => a.mifDescription.localeCompare(b.mifDescription));
+    $scope.targets.sort((a, b) => a.mifDescription.localeCompare(b.mifDescription));
   }
 
   $scope.loadCatalog = function(source, target) {
@@ -95,14 +95,14 @@ function CreditxferJsController($scope, App, dataProvider) {
       $scope.findConnectedCourseRecursive(c);
     })
 
-    for(var i = 0; i < $scope.available.length; i++) {
-      if($scope.available[i].sequenceNumber !== 1 && $scope.available[i].sequenceNumber !== null) {
+    for (var i = 0; i < $scope.available.length; i++) {
+      if ($scope.available[i].sequenceNumber !== 1 && $scope.available[i].sequenceNumber !== null) {
         $scope.available.splice(i, 1);
         i -= 1;
       }
     }
 
-    $scope.available.sort((a,b) => a.courseNumberTrans.localeCompare(b.courseNumberTrans));
+    $scope.available.sort((a, b) => a.courseNumberTrans.localeCompare(b.courseNumberTrans));
   }
 
   $scope.loadAttributes = function(source, target, subject) {
@@ -114,24 +114,24 @@ function CreditxferJsController($scope, App, dataProvider) {
 
   $scope.filterAttributes = function(course) {
     var filteredAttributes = [];
-    var temp = $scope.attributes.filter(function (a) {
+    var temp = $scope.attributes.filter(function(a) {
       return a.sourceInstitutionCode === course.sourceInstitutionCode
-        && a.mifValue === course.mifValue
-        && a.subjectCodeTrans === course.subjectCodeTrans
-        && a.courseNumberTrans === course.courseNumberTrans
-        && course.subjectCodeEquiv.includes(a.subjectCodeEquiv)
-        && course.courseNumberEquiv.includes(a.courseNumberEquiv)
-        && a.academicPeriodStart === course.academicPeriodStart
+          && a.mifValue === course.mifValue
+          && a.subjectCodeTrans === course.subjectCodeTrans
+          && a.courseNumberTrans === course.courseNumberTrans
+          && course.subjectCodeEquiv.includes(a.subjectCodeEquiv)
+          && course.courseNumberEquiv.includes(a.courseNumberEquiv)
+          && a.academicPeriodStart === course.academicPeriodStart
     })
 
     const map = new Map();
     temp.forEach(function(a) {
-      if(!map.has(a.equivCourseAttribute)) {
+      if (!map.has(a.equivCourseAttribute)) {
         map.set(a.equivCourseAttribute, true);
         filteredAttributes.push(a);
       }
     })
-    filteredAttributes.sort((a,b) => a.equivCourseAttribute.localeCompare(b.equivCourseAttribute));
+    filteredAttributes.sort((a, b) => a.equivCourseAttribute.localeCompare(b.equivCourseAttribute));
     return filteredAttributes;
   }
 
@@ -146,7 +146,8 @@ function CreditxferJsController($scope, App, dataProvider) {
 
     if (filteredAttributes.length > 0) {
       $scope.courseAttr = filteredAttributes;
-      $("#course").modal();
+      $("#course")
+      .modal();
     }
   }
 
@@ -160,7 +161,7 @@ function CreditxferJsController($scope, App, dataProvider) {
   }
 
   $scope.findConnectedCourseRecursive = function(course) {
-    if(course.sequenceNumber === 1) {
+    if (course.sequenceNumber === 1) {
       var values = $scope.findConnectedCourseHelper(course, course.sequenceNumber + 1);
       course.courseNumberEquiv = values.courseNumber;
       course.equivCreditsUsed = values.credits;
@@ -170,12 +171,13 @@ function CreditxferJsController($scope, App, dataProvider) {
   $scope.findConnectedCourseHelper = function(course, sequence) {
     $scope.available.forEach(function(c) {
       if (c.sourceInstitutionCode === course.sourceInstitutionCode
-        && c.mifValue === course.mifValue
-        && c.subjectCodeTrans === course.subjectCodeTrans
-        && c.courseNumberTrans === course.courseNumberTrans
-        && c.courseTitleTrans === course.courseTitleTrans
-        && c.academicPeriodStart === course.academicPeriodStart
-        && c.sequenceNumber !== course.sequenceNumber) {
+          && c.mifValue === course.mifValue
+          && c.subjectCodeTrans === course.subjectCodeTrans
+          && c.courseNumberTrans === course.courseNumberTrans
+          && c.courseTitleTrans === course.courseTitleTrans
+          && c.academicPeriodStart === course.academicPeriodStart
+          && c.sequenceNumber !== course.sequenceNumber)
+      {
         if (c.sequenceNumber === sequence) {
           var values = $scope.findConnectedCourseHelper(c, sequence + 1);
           if (values.connector === "A") {
@@ -190,42 +192,38 @@ function CreditxferJsController($scope, App, dataProvider) {
         }
       }
     })
-    return {subject: course.subjectCodeEquiv, courseNumber: course.courseNumberEquiv, credits: course.equivCreditsUsed, connector: course.connector};
+    return {
+      subject: course.subjectCodeEquiv,
+      courseNumber: course.courseNumberEquiv,
+      credits: course.equivCreditsUsed,
+      connector: course.connector
+    };
   }
 
-
-  $scope.headerColor = function(inst) {
-    switch(inst) {
+  $scope.targetName = function(inst) {
+    switch (inst) {
       case "MAN":
-        $scope.color = "man";
-        break;
+        return "University of Hawaii at Manoa";
       case "HIL":
-        $scope.color = "hil";
-        break;
+        return "University of Hawaii at Hilo";
       case "WOA":
-        $scope.color = "woa";
-        break;
+        return "University of Hawaii West Oahu";
       case "HAW":
-        $scope.color = "haw";
-        break;
+        return "Hawaii Community College";
       case "HON":
-        $scope.color = "hon";
-        break;
+        return "Honolulu Community College";
       case "KAP":
-        $scope.color = "kap";
-        break;
+        return "Kapiolani Community College";
       case "KAU":
-        $scope.color = "kau";
-        break;
+        return "Kauai Community College";
       case "LEE":
-        $scope.color = "lee";
-        break;
+        return "Leeward Community College";
       case "MAU":
-        $scope.color = "mau";
-        break;
+        return "University of Hawaii Maui College"
       case "WIN":
-        $scope.color = "win";
+        return "Windward Community College";
       default:
+        return "";
     }
   }
 }

@@ -52,28 +52,31 @@
 
     <div class="container pt-3 pb-4">
       <div class="card card-body">
-        <table ng-repeat="catalog in catalog" ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
-          <thead class="text-white">
-          <tr>
-            <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Subject</th>
-            <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Course</th>
-            <th class="bg-nonuh-color sticky-top" scope="col" width="28%">Title</th>
-            <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Subject</th>
-            <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="10%">Course</th>
-            <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Credits</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr data-ng-repeat="c in available" ng-if="c.mifValue === catalog[0].mifValue" ng-class="findAttribute(c) ? 'bg-nonuh-color-hl clickable' : '' " ng-click="showCourse(c)">
-              <td>{{c.subjectCodeTrans}}</td>
-              <td>{{c.courseNumberTrans}}</td>
-              <td>{{c.courseTitleTrans}}</td>
-              <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.subjectCodeEquiv"/>
-              <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.courseNumberEquiv"/>
-              <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl">{{c.equivCreditsUsed}}</td>
+        <div ng-repeat="catalog in catalog">
+          <h2 ng-if="subjects.selected">{{ targetName(catalog[0].mifValue) }}</h2>
+          <table ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
+            <thead class="text-white">
+            <tr>
+              <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Subject</th>
+              <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Course</th>
+              <th class="bg-nonuh-color sticky-top" scope="col" width="28%">Title</th>
+              <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Subject</th>
+              <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="10%">Course</th>
+              <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Credits</th>
             </tr>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="c in available" ng-if="c.mifValue === catalog[0].mifValue" ng-class="findAttribute(c) ? 'bg-nonuh-color-hl clickable' : '' " ng-click="showCourse(c)">
+                <td>{{c.subjectCodeTrans}}</td>
+                <td>{{c.courseNumberTrans}}</td>
+                <td>{{c.courseTitleTrans}}</td>
+                <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.subjectCodeEquiv"/>
+                <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.courseNumberEquiv"/>
+                <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl">{{c.equivCreditsUsed}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p ng-show="loadMessage">{{message}}</p>
       </div>
       <!-- add the main content here-->
