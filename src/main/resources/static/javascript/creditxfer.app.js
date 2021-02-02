@@ -17,7 +17,7 @@ creditxferApp.constant("App", {
 });
 
 
-function CreditxferJsController($scope, App, dataProvider) {
+function CreditxferJsController($scope, App, dataProvider, $window) {
   $scope.institutions = [];
   $scope.sources = [];
   $scope.targets = [];
@@ -26,11 +26,19 @@ function CreditxferJsController($scope, App, dataProvider) {
   $scope.attributes = [];
   $scope.catalog = [];
   $scope.selected = "";
-  $scope.message = "Loading . . . "
-  $scope.loadMessage = true;
+  $scope.loading = true;
 
   $scope.init = function() {
     $scope.loadData();
+    $scope.catalogCode = $window.catalogCode;
+    $scope.uhCampus = $window.uhCampus;
+    $scope.subject = $window.subject;
+
+    if ($scope.catalogCode && $scope.uhCampus && $scope.subject) {
+      $scope.loadTargets($scope.catalogCode.toUpperCase());
+      $scope.loadCatalog($scope.catalogCode.toUpperCase(), $scope.uhCampus.toUpperCase());
+      $scope.loadAttributes($scope.catalogCode.toUpperCase(), $scope.uhCampus.toUpperCase());
+    }
   }
 
   $scope.loadData = function() {
@@ -153,10 +161,20 @@ function CreditxferJsController($scope, App, dataProvider) {
 
   $scope.load = function(arr) {
     if (arr.length === 0) {
-      $scope.message = "No results.";
+      $scope.loading = true;
     } else {
-      $scope.message = "Loading . . .";
-      $scope.loadMessage = false;
+      $scope.loading = false;
+
+      if ($scope.catalogCode && $scope.uhCampus && $scope.subject) {ß
+        $scope.sources.selected = $scope.sources.find(source =>
+            source.code.toUpperCase() === $scope.catalogCode.toUpperCase());
+
+        $scope.targets.selected = $scope.sources.find(source =>
+            source.mifValue.toUpperCase() === $scope.uhCampus.toUpperCase());
+
+        $scope.subjects.selected = $scope.subject;
+        $scope.filterCourses($scope.subjects.selected);
+      }
     }
   }
 

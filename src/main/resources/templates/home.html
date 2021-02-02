@@ -3,7 +3,13 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="header :: copy"></head>
 <body ng-app="creditxferApp" ng-controller="CreditxferJsController" data-ng-init="init()">
-
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  var catalogCode = [[${catalogCode}]];
+  var uhCampus = [[${uhCampus}]];
+  var subject = [[${subject}]];
+  /*]]>*/
+</script>
 <nav th:replace="menubar :: copy"></nav>
 <div class="bg-gold pt-3 pb-3">
       <div class="container search-box fixed">
@@ -23,7 +29,8 @@
           <div class="col-md-4">
             <label>Transferring to</label>
             <div class="form-group">
-              <ui-select ng-cloak ng-model="targets.selected" ng-disabled="!sources.selected" theme="bootstrap"
+              <ui-select ng-cloak ng-model="targets.selected" ng-disabled="!sources.selected
+              || ($scope.catalogCode && $scope.uhCampus && $scope.subject)" theme="bootstrap"
                 ng-change="loadCatalog(sources.selected.code, targets.selected.mifValue);
                 headerColor(targets.selected.mifValue); loadResults();">
                 <ui-select-match placeholder="Select a UH Campus">{{$select.selected.mifDescription}}</ui-select-match>
@@ -36,7 +43,8 @@
           <div class="col-md-4">
             <label>Subject</label>
             <div class="form-group">
-              <ui-select ng-cloak ng-model="subjects.selected" theme="bootstrap" ng-disabled="!targets.selected"
+              <ui-select ng-cloak ng-model="subjects.selected" theme="bootstrap" ng-disabled="!targets.selected
+                || ($scope.catalogCode && $scope.uhCampus && $scope.subject)"
                 ng-change="filterCourses(subjects.selected); loadAttributes(sources.selected.code, targets.selected.mifValue, subjects.selected)">
                 <ui-select-match>{{$select.selected}}</ui-select-match>
                 <ui-select-choices class="overlap-fix" repeat="item in subjects | filter: $select.search | limitTo: 400" >
@@ -52,32 +60,58 @@
 
     <div class="container pt-3 pb-4">
       <div class="card card-body">
-        <div ng-repeat="catalog in catalog">
-          <h2 ng-if="subjects.selected">{{ targetName(catalog[0].mifValue) }}</h2>
-          <table ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
-            <thead class="text-white">
-            <tr>
-              <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Subject</th>
-              <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Course</th>
-              <th class="bg-nonuh-color sticky-top" scope="col" width="28%">Title</th>
-              <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Subject</th>
-              <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="10%">Course</th>
-              <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Credits</th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr data-ng-repeat="c in available" ng-if="c.mifValue === catalog[0].mifValue" ng-class="findAttribute(c) ? 'bg-nonuh-color-hl clickable' : '' " ng-click="showCourse(c)">
-                <td>{{c.subjectCodeTrans}}</td>
-                <td>{{c.courseNumberTrans}}</td>
-                <td>{{c.courseTitleTrans}}</td>
-                <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.subjectCodeEquiv"/>
-                <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.courseNumberEquiv"/>
-                <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl">{{c.equivCreditsUsed}}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="row justify-content-end">
+          <div class="col-sm-4">
+            <a ng-if="subjects.selected" class="float-right btn btn-gold-search"
+                ng-href="/transferdatabase/share/{{sources.selected.code}}/{{targets.selected.mifValue}}/{{subjects.selected}}">
+              <span><i class="fas fa-link"></i> Share</span>
+            </a>
+          </div>
         </div>
-        <p ng-show="loadMessage">{{message}}</p>
+        <div class="row">
+          <div class="col-sm-12">
+            <div ng-repeat="catalog in catalog">
+              <h2 ng-if="subjects.selected">{{ targetName(catalog[0].mifValue) }}</h2>
+              <table ng-cloak ng-show="subjects.selected && available.length != 0" class="table table-bordered">
+                <thead class="text-white">
+                <tr>
+                  <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Subject</th>
+                  <th class="bg-nonuh-color sticky-top" scope="col" width="8%">Course</th>
+                  <th class="bg-nonuh-color sticky-top" scope="col" width="28%">Title</th>
+                  <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Subject</th>
+                  <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="10%">Course</th>
+                  <th class="bg-{{catalog[0].mifValue.toLowerCase()}} sticky-top" scope="col" width="8%">Credits</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="c in available" ng-if="c.mifValue === catalog[0].mifValue" ng-class="findAttribute(c) ? 'bg-nonuh-color-hl clickable' : '' " ng-click="showCourse(c)">
+                  <td>{{c.subjectCodeTrans}}</td>
+                  <td>{{c.courseNumberTrans}}</td>
+                  <td>{{c.courseTitleTrans}}</td>
+                  <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.subjectCodeEquiv"/>
+                  <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl" ng-bind-html="c.courseNumberEquiv"/>
+                  <td class="bg-{{catalog[0].mifValue.toLowerCase()}}-hl">{{c.equivCreditsUsed}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-center" ng-if="loading || (available.length === 0 && (catalogCode && uhCampus && subject))">
+              <span class="lead">Loading institutions...</span><br>
+              <div class="spinner-border" style="width: 2rem; height: 2rem; text-align: center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <div ng-if="!loading">
+              <ul class="lead">
+                <li ng-hide="sources.selected">Search for the institution you're transferring from.</li>
+                <li ng-hide="targets.selected">Select a UH campus you would like to transfer to.</li>
+                <li ng-hide="subjects.selected">Select a subject that you would like to see the credits transfer for.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+        </div>
       </div>
       <!-- add the main content here-->
       <div th:replace="course :: copy"></div>

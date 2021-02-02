@@ -186,6 +186,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/glossary/**").permitAll()
             .antMatchers("/li").permitAll()
             .antMatchers("/li/**").permitAll()
+            .antMatchers("/share/**").permitAll()
             .antMatchers("/institutions").permitAll()
             .antMatchers("/institutions2").permitAll()
             .antMatchers("/institutions3").permitAll()

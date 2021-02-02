@@ -97,6 +97,15 @@ public class HomeController {
         return "institutions3";
     }
 
+    @GetMapping(value = "/share/{catalogCode}/{uhCampus}/{subject}")
+    public String share(Model model,
+        @PathVariable String catalogCode, @PathVariable String uhCampus, @PathVariable String subject) {
+        model.addAttribute(catalogCode);
+        model.addAttribute(uhCampus);
+        model.addAttribute(subject);
+        return "home";
+    }
+
     @RequestMapping(value = "/denied", method = RequestMethod.GET)
     public String denied() {
         return "denied";
